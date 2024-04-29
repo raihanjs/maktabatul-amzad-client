@@ -21,28 +21,32 @@ export const router = createBrowserRouter([
         path: "books",
         element: <AllBooks />,
       },
-    ],
-  },
-  {
-    path: "auth",
-    element: <AuthLayout />,
-    children: [
       {
-        path: "",
-        element: <Auth />,
-      },
-      {
-        path: "signin",
+        path: "auth/signin",
         element: <SignIn />,
       },
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
-      {
-        path: "resetpassword",
-        element: <ResetPassword />,
-      },
     ],
   },
+  // {
+  //   path: "auth",
+  //   element: <AuthLayout />,
+  //   children: [
+  //     {
+  //       path: "",
+  //       element: <Auth />,
+  //     },
+  //     {
+  //       path: "signin",
+  //       element: <SignIn />,
+  //     },
+  //     {
+  //       path: "signup",
+  //       element: <SignUp />,
+  //     },
+  //     {
+  //       path: "resetpassword",
+  //       element: <ResetPassword />,
+  //     },
+  //   ],
+  // },
 ]);

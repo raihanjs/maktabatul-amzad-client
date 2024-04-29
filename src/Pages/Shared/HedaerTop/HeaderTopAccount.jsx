@@ -21,7 +21,7 @@ export default function HeaderTopAccount() {
         ref={accountRef}
         onClick={() => setAccountOpen(!accountOpen)}
       >
-        <BsFillPersonFill className="text-md mr-1 -mt-1" /> Account
+        <BsFillPersonFill className="text-md mr-1" /> Account
       </button>
       {/* Profile */}
       {accountOpen && (

@@ -18,7 +18,7 @@ export default function HeaderTopLanguage() {
         ref={languageMenuRef}
         onClick={() => setChangeLang(!changeLang)}
       >
-        <BsGlobe className="text-md mr-1 -mt-1" /> Language
+        <BsGlobe className="text-md mr-1" /> Language
       </button>
       {/* Select Language */}
       {changeLang && (

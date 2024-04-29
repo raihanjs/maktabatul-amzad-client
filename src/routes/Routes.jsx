@@ -8,6 +8,7 @@ import SignUp from "../Pages/Auth/SignUp/SignUp";
 import Auth from "../Pages/Auth/Auth/Auth";
 import ResetPassword from "../Pages/Auth/ResetPassword/ResetPassword";
 import AllWriters from "../Pages/AllWritersPage/AllWriters/AllWriters";
+import AllCategories from "../Pages/AllCategoriesPage/AllCategories/AllCategories";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "writers",
         element: <AllWriters />,
+      },
+      {
+        path: "categories",
+        element: <AllCategories />,
       },
     ],
   },

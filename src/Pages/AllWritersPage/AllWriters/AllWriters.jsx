@@ -1,42 +1,12 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../../Providers/ThemeProvider";
-import { Link } from "react-router-dom";
-import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import useWriters from "../../../hooks/useWriters";
 import Writer from "../Writer/Writer";
+import PageTitle from "../../../Components/PageTitle/PageTitle";
 
 export default function AllWriters() {
   const [writers, isLoading] = useWriters();
-  const { language } = useContext(ThemeContext);
   return (
     <section className="container">
-      {/* Section title and breadcrumb */}
-      <div className="border-b border-primary mt-5">
-        <div className="flex justify-between items-center">
-          {/* Title */}
-          <p className="text-xl font-semibold text-primary">
-            {language === 0
-              ? "সকল লেখক"
-              : language === 2
-              ? "جميع الكتاب"
-              : "All Writers"}
-          </p>
-          {/* Breadcrumb */}
-          <div className="flex items-center">
-            <Link to="/" className="text-primary">
-              {language === 0 ? "হোম" : language === 2 ? "بيت" : "Home"}
-            </Link>
-            <LiaLongArrowAltRightSolid className="mx-2" />
-            <span>
-              {language === 0
-                ? "সকল লেখক"
-                : language === 2
-                ? "جميع الكتاب"
-                : "All Writers"}
-            </span>
-          </div>
-        </div>
-      </div>
+      <PageTitle title={["সকল লেখক", "All Writers", "جميع الكتاب"]} />
 
       {/* Writers Container */}
       <div className="grid grid-cols-6 gap-10 my-10">
@@ -45,11 +15,7 @@ export default function AllWriters() {
         ) : (
           <>
             {writers.map((writer) => (
-              <Writer
-                writer={writer}
-                key={writer.writerId}
-                language={language}
-              ></Writer>
+              <Writer writer={writer} key={writer.writerId}></Writer>
             ))}
           </>
         )}

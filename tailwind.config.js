@@ -5,7 +5,14 @@ export default {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#108D41",
+        red: "#F0141E",
+        olive: "#95B32A",
+        gold: "#F9AC20",
+      },
+    },
   },
   plugins: [],
 };

@@ -9,7 +9,6 @@ export default function HomeTabs() {
   const sliderBtns = useRef(null);
 
   const [books] = useBooks();
-  console.log(books);
 
   var settings = {
     dots: false,

@@ -8,12 +8,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ThemeProvider from "./Providers/ThemeProvider.jsx";
+import CartProvider from "./Providers/CartProviders.jsx";
+import AuthProviders from "./Providers/AuthProviders.jsx";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}></RouterProvider>
+      <ThemeProvider>
+        <CartProvider>
+          <AuthProviders>
+            <RouterProvider router={router}></RouterProvider>
+          </AuthProviders>
+        </CartProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

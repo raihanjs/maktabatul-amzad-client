@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   BsFillTelephoneFill,
   BsEnvelopeFill,
@@ -7,8 +7,11 @@ import {
 import { Link } from "react-router-dom";
 import HeaderTopLanguage from "./HeaderTopLanguage";
 import HeaderTopAccount from "./HeaderTopAccount";
+import { CartContext } from "../../../Providers/CartProviders";
 
 export default function HeaderTop() {
+  const { cart } = useContext(CartContext);
+  const cartItem = cart.reduce((acc, currValue) => acc + currValue.quantity, 0);
   return (
     <div className="py-2 bg-black text-gray-300 text-sm fw-medium">
       <div className="container">
@@ -31,7 +34,7 @@ export default function HeaderTop() {
             <div>
               <Link className="flex items-center">
                 <BsCartCheckFill className="text-md mr-1 -mt-1" />
-                Cart (<span className="text-[#f0141e]">0 item</span>)
+                Cart (<span className="text-[#f0141e]">{cartItem} item</span>)
               </Link>
             </div>
             <HeaderTopLanguage />

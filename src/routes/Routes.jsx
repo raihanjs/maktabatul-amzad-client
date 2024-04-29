@@ -21,10 +21,6 @@ export const router = createBrowserRouter([
         path: "books",
         element: <AllBooks />,
       },
-      // {
-      //   path: "auth/signin",
-      //   element: <SignIn />,
-      // },
     ],
   },
   {

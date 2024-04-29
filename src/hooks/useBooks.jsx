@@ -3,12 +3,16 @@ import { useAxiosPublic } from "./useAxiosPublic";
 
 export default function useBooks() {
   const axiosPublic = useAxiosPublic();
-  const { data: books = [], refetch } = useQuery({
+  const {
+    data: books = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["books"],
     queryFn: () =>
       axiosPublic.get("/books").then((res) => {
         return res.data;
       }),
   });
-  return [books, refetch];
+  return [books, isLoading, refetch];
 }

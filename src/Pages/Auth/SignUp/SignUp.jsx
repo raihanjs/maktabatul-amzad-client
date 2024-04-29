@@ -1,14 +1,11 @@
-import AuthFooter from "../Shared/AuthFooter/AuthFooter";
 import Input from "../../../Components/Input/Input";
 import LinkSmall from "../../../Components/LinkSmall/LinkSmall";
 import AuthTitle from "../Shared/AuthTitle/AuthTitle";
-import AuthHeader from "../Shared/AuthHeader/AuthHeader";
 import SocialAuth from "../Shared/SocialAuth/SocialAuth";
 
 export default function SignUp() {
   return (
     <>
-      <AuthHeader />
       <div className="flex flex-col min-h-screen w-full justify-center items-center">
         <div>
           {/* -------------------------------------Form Header-------------------------------------  */}
@@ -33,7 +30,6 @@ export default function SignUp() {
           <SocialAuth text="Sign Up" />
         </div>
       </div>
-      <AuthFooter />
     </>
   );
 }

@@ -1,15 +1,11 @@
-import React from "react";
-import AuthHeader from "../Shared/AuthHeader/AuthHeader";
 import AuthTitle from "../Shared/AuthTitle/AuthTitle";
 import Input from "../../../Components/Input/Input";
-import AuthFooter from "../Shared/AuthFooter/AuthFooter";
 import { Link } from "react-router-dom";
 import LinkSmall from "../../../Components/LinkSmall/LinkSmall";
 
 export default function ResetPassword() {
   return (
     <>
-      <AuthHeader />
       <div className="flex flex-col min-h-screen w-full justify-center items-center">
         <div>
           {/* -------------------------------------Form Header-------------------------------------  */}
@@ -42,7 +38,6 @@ export default function ResetPassword() {
           </form>
         </div>
       </div>
-      <AuthFooter />
     </>
   );
 }

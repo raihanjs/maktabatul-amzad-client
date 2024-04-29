@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import BooksFilter from "../BooksFilter/BooksFilter";
-import { ThemeContext } from "../../../Providers/ThemeProvider";
 import { Link } from "react-router-dom";
-import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import React, { useContext } from "react";
 import useBooks from "../../../hooks/useBooks";
+import BooksFilter from "../BooksFilter/BooksFilter";
 import BookCard from "../../Shared/BookCard/BookCard";
+import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 export default function AllBooks() {
-  const { language } = useContext(ThemeContext);
   const [books, isLoading] = useBooks();
+  const { language } = useContext(ThemeContext);
   return (
     <section className="container">
       {/* Section title and breadcrumb */}

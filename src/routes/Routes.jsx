@@ -7,6 +7,7 @@ import SignIn from "../Pages/Auth/SignIn/SignIn";
 import SignUp from "../Pages/Auth/SignUp/SignUp";
 import Auth from "../Pages/Auth/Auth/Auth";
 import ResetPassword from "../Pages/Auth/ResetPassword/ResetPassword";
+import AllWriters from "../Pages/AllWritersPage/AllWriters/AllWriters";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "books",
         element: <AllBooks />,
+      },
+      {
+        path: "writers",
+        element: <AllWriters />,
       },
     ],
   },

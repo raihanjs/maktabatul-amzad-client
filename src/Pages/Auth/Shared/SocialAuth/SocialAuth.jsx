@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../../Providers/AuthProviders";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 export default function SocialAuth({ text }) {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
   const { setUser, signinUserGoogle } = useContext(AuthContext);

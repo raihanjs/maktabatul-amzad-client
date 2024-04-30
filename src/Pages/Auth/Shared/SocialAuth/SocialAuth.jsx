@@ -20,7 +20,7 @@ export default function SocialAuth({ text }) {
         // Save user to database
         axiosPublic.post("/users", userDetails).then((res) => {
           if (res.data.insertedId) {
-            // navigate("/");
+            navigate("/");
           }
         });
       })

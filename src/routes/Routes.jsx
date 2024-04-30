@@ -9,6 +9,11 @@ import Auth from "../Pages/Auth/Auth/Auth";
 import ResetPassword from "../Pages/Auth/ResetPassword/ResetPassword";
 import AllWriters from "../Pages/AllWritersPage/AllWriters/AllWriters";
 import AllCategories from "../Pages/AllCategoriesPage/AllCategories/AllCategories";
+import PrivateRoute from "./PrivateRoute";
+
+import UserLayout from "../Layout/UserLayout";
+import UserPage from "../Pages/UserPage/UserPage";
+import UserOrders from "../Pages/UserPage/UserOrders/userOrders";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +57,24 @@ export const router = createBrowserRouter([
       {
         path: "resetpassword",
         element: <ResetPassword />,
+      },
+    ],
+  },
+  {
+    path: "user",
+    element: (
+      <PrivateRoute>
+        <UserLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <UserPage />,
+      },
+      {
+        path: "orders",
+        element: <UserOrders />,
       },
     ],
   },

@@ -49,9 +49,12 @@ export default function HeaderTopAccount() {
                 </Link>
               </li>
               <li className="p-2 hover:bg-gray-100">
-                <Link className=" text-gray-900 font-medium block flex items-center">
+                <Link
+                  to="/user"
+                  className=" text-gray-900 font-medium block flex items-center"
+                >
                   <CiSettings className="text-xl mr-1" />
-                  Edit Profile
+                  Profile
                 </Link>
               </li>
               {/* <li className="p-2 hover:bg-gray-100">

@@ -1,9 +1,45 @@
+import { useNavigate } from "react-router-dom";
 import Input from "../../../Components/Input/Input";
 import LinkSmall from "../../../Components/LinkSmall/LinkSmall";
 import AuthTitle from "../Shared/AuthTitle/AuthTitle";
 import SocialAuth from "../Shared/SocialAuth/SocialAuth";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
+
+import Swal from "sweetalert2";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  const { setUser, createUserEmail } = useContext(AuthContext);
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    createUserEmail(email, password)
+      .then((res) => {
+        setUser(res.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errMsg = error.toString();
+        if (errMsg.includes("email-already-in-use")) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "User already exist",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something Error",
+          });
+        }
+      });
+  };
   return (
     <>
       <div className="flex flex-col min-h-screen w-full justify-center items-center">
@@ -11,14 +47,14 @@ export default function SignUp() {
           {/* -------------------------------------Form Header-------------------------------------  */}
           <AuthTitle title="User" subTitle="SignUp" />
           {/* -------------------------------------Form-------------------------------------  */}
-          <form className="flex flex-col space-y-5 mt-5">
+          <form
+            className="flex flex-col space-y-5 mt-5"
+            onSubmit={handleSignup}
+          >
+            <Input name="name" placeholder="Full Name" type="text" />
             <Input name="email" placeholder="Email" type="mail" />
             <Input name="password" placeholder="Password" type="password" />
-            <Input
-              name="conPass"
-              placeholder="Confirm Password"
-              type="password"
-            />
+
             <Input type="submit" name="SIGN UP" />
           </form>
           {/* -----------------------------------New User----------------------------------- */}

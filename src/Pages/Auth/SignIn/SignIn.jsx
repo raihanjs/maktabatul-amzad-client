@@ -3,10 +3,37 @@ import LinkLarge from "../../../Components/LinkLarge/LinkLarge";
 import Input from "../../../Components/Input/Input";
 import AuthTitle from "../Shared/AuthTitle/AuthTitle";
 import SocialAuth from "../Shared/SocialAuth/SocialAuth";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import Swal from "sweetalert2";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  const { setUser, signInUser } = useContext(AuthContext);
+
   const handleSignIn = (event) => {
-    console.log("clicked");
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signInUser(email, password)
+      .then((res) => {
+        setUser(res.user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid Email or Pasword",
+        });
+      });
   };
 
   return (
@@ -16,7 +43,10 @@ export default function SignIn() {
           {/* -------------------------------------Form Header-------------------------------------  */}
           <AuthTitle title="User" subTitle="Sign In" />
           {/* -------------------------------------Form-------------------------------------  */}
-          <form className="flex flex-col space-y-5 mt-5">
+          <form
+            className="flex flex-col space-y-5 mt-5"
+            onSubmit={handleSignIn}
+          >
             <Input name="email" placeholder="Email" type="mail" />
             <Input name="password" placeholder="Password" type="password" />
             <div className="flex justify-end">

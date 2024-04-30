@@ -7,8 +7,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 
 import Swal from "sweetalert2";
+import { useAxiosPublic } from "../../../hooks/useAxiosPublic";
 
 export default function SignUp() {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { setUser, createUserEmail } = useContext(AuthContext);
 
@@ -18,10 +20,19 @@ export default function SignUp() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+
+    const userDetails = { name, email, role: "user" };
+
+    // Signup User
     createUserEmail(email, password)
       .then((res) => {
         setUser(res.user);
-        navigate("/");
+        // Save user to database
+        axiosPublic.post("/users", userDetails).then((res) => {
+          if (res.data.insertedId) {
+            navigate("/");
+          }
+        });
       })
       .catch((error) => {
         const errMsg = error.toString();

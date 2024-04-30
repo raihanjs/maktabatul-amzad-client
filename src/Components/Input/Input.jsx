@@ -22,6 +22,8 @@ export default function Input({ type, placeholder, name }) {
           name={name}
           type={`${showPass ? "text" : "password"}`}
           placeholder={placeholder}
+          minLength="6"
+          required
           className="absolute w-full h-full pl-3 focus-within:outline-[#F0141E]"
         />
         <>
@@ -48,6 +50,7 @@ export default function Input({ type, placeholder, name }) {
           name={name}
           type={type}
           placeholder={placeholder}
+          required
           className="absolute w-full h-full pl-3 focus-within:outline-[#F0141E]"
         />
       </div>

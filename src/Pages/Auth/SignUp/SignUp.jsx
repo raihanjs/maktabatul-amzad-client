@@ -12,7 +12,7 @@ import { useAxiosPublic } from "../../../hooks/useAxiosPublic";
 export default function SignUp() {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-  const { setUser, createUserEmail } = useContext(AuthContext);
+  const { setUser, createUserEmail, updateUser } = useContext(AuthContext);
 
   const handleSignup = (event) => {
     event.preventDefault();
@@ -27,10 +27,18 @@ export default function SignUp() {
     createUserEmail(email, password)
       .then((res) => {
         setUser(res.user);
+        // Update User Display Name
+        updateUser(res.user, name)
+          .then(() => {
+            console.log("Displayname Updated");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         // Save user to database
         axiosPublic.post("/users", userDetails).then((res) => {
           if (res.data.insertedId) {
-            navigate("/");
+            // navigate("/");
           }
         });
       })

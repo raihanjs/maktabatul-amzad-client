@@ -15,7 +15,7 @@ export default function SingleSubCategory({ subCat, handleGetSubBooks }) {
       onClick={() => handleGetSubBooks(thisSubCatBooks)}
       className="bg-primary py-2 px-6 m-2 rounded-sm text-white capitalize border border-primary hover:bg-transparent hover:text-primary"
     >
-      {subCat?.name[language]} ({thisSubCatBooks.length})
+      {subCat?.name[language]} - {thisSubCatBooks.length}
     </button>
   );
 }

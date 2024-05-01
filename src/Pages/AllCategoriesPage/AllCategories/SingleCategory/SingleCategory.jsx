@@ -15,7 +15,7 @@ export default function SingleCategory({ category }) {
       key={category._id}
       className="bg-primary py-2 px-6 m-2 rounded-sm text-white capitalize border border-primary hover:bg-transparent hover:text-primary"
     >
-      {category.name[language]} ({thisCatBooks.length})
+      {category.name[language]} - {thisCatBooks.length}
     </Link>
   );
 }

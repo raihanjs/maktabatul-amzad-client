@@ -9,7 +9,7 @@ export default function AllWriters() {
       <PageTitle title={["সকল লেখক", "All Writers", "جميع الكتاب"]} />
 
       {/* Writers Container */}
-      <div className="grid grid-cols-6 gap-10 my-10">
+      <div className="flex flex-wrap">
         {isLoading ? (
           <>Loading .....</>
         ) : (

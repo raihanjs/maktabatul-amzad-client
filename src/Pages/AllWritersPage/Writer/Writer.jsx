@@ -13,7 +13,7 @@ export default function Writer({ writer }) {
   const [books] = useBooks();
   const writerBooks = books.filter((book) => book.writer.includes(writerId));
   return (
-    <div className=" p-5 border hover:border-primary writer-card overflow-hidden">
+    <div className=" p-5 border hover:border-primary overflow-hidden w-[250px] m-2">
       <Link to={`${writerId}`}>
         <div className="border-b border-red flex flex-col items-center">
           <div className="w-[100px] h-[100px] rounded-full overflow-hidden">

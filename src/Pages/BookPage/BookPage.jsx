@@ -5,6 +5,7 @@ import { ThemeContext } from "../../Providers/ThemeProvider";
 import { CartContext } from "../../Providers/CartProviders";
 import RelatedBooks from "../Auth/Shared/RelatedBooks/RelatedBooks";
 import PrimaryBtn from "../../Components/PrimaryBtn/PrimaryBtn";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 export default function BookPage() {
   const navigate = useNavigate();
@@ -30,8 +31,9 @@ export default function BookPage() {
     subCategoryDetails,
   } = bookDetails;
   return (
-    <section className="my-10">
-      <div className="container mx-auto px-0.5 sm:px-3 md:px-0 mb-8">
+    <section className="container">
+      <PageTitle title={[title[0], title[1], title[2]]} />
+      <div className="container mx-auto px-0.5 sm:px-3 md:px-0 mb-8 mt-5">
         <div className="grid grid-cols-12 gap-5">
           <div className="col-span-12 md:col-span-9">
             {/* Bookdetails top part */}
@@ -179,7 +181,7 @@ export default function BookPage() {
                   <div>
                     {status === "upcoming" ? (
                       <>
-                        <button className="py-2 px-12 bg-slate-700 text-white text-lg">
+                        <button className="py-2 px-12 bg-slate-700 text-white text-lg mt-3">
                           {language == 0
                             ? "আপকামিং"
                             : language == 2
@@ -189,7 +191,7 @@ export default function BookPage() {
                       </>
                     ) : stock == 0 ? (
                       <>
-                        <button className="py-2 px-12 bg-slate-700 text-white text-lg">
+                        <button className="py-2 px-12 bg-slate-700 text-white text-lg mt-3">
                           {language == 0
                             ? "ষ্টক আউট"
                             : language == 2
@@ -201,7 +203,7 @@ export default function BookPage() {
                       <>
                         <button
                           onClick={() => handleAddtoCart(bookDetails)}
-                          className="bg-primary text-white py-2 px-12 border border-primary text-lg font-semibold hover:border-black hover:bg-transparent hover:text-black flex items-center justify-center"
+                          className="bg-primary text-white py-2 px-12 border border-primary text-lg font-semibold hover:border-black hover:bg-transparent hover:text-black flex items-center justify-center mt-3"
                         >
                           {language == 0
                             ? "কার্টে যোগ করুন"

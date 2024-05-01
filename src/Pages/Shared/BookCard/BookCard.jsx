@@ -10,7 +10,7 @@ const BookCard = ({ book }) => {
   const { title, thumb, price, writerDetails, status, stock } = book;
 
   return (
-    <div className="book-card w-40 h-[320px] overflow-hidden ease-in duration-300">
+    <div className="book-card w-40 h-[320px] overflow-hidden ease-in duration-300 m-2">
       <Link to={`/books/${book._id}`}>
         <img
           src={`${thumb}`}
@@ -57,17 +57,6 @@ const BookCard = ({ book }) => {
             BDT <span>{price} TK</span>
           </p>
         </div>
-        {/* <button
-          onClick={() => handleAddtoCart(book)}
-          className="bg-primary text-sm text-white font-semibold w-full text-center py-2"
-        >
-          {language == 0
-            ? "কার্টে যোগ করুন"
-            : language == 2
-            ? "أضف إلى السلة"
-            : "Add to cart"}
-        </button> */}
-
         <div>
           {status === "upcoming" ? (
             <>

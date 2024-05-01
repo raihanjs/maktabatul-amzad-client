@@ -7,7 +7,7 @@ const RelatedBooks = ({ bookCategory, bookId }) => {
   const removeMainBook = relatedBooks.filter((book) => book._id !== bookId);
   return (
     <div>
-      {removeMainBook.slice(0, 6).map((book) => (
+      {removeMainBook.slice(0, 3).map((book) => (
         <BookCard book={book} key={book._id}></BookCard>
       ))}
     </div>

@@ -1,22 +1,15 @@
+import Swal from "sweetalert2";
 import { useContext } from "react";
+import useUser from "../../hooks/useUser";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProviders";
-import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import { useAxiosPublic } from "../../hooks/useAxiosPublic";
 
 export default function UserPage() {
   const { user, updateUser } = useContext(AuthContext);
 
   const axiosPublic = useAxiosPublic();
-
-  const { data: userDetails = {}, isLoading } = useQuery({
-    queryKey: ["userDetails"],
-    queryFn: () =>
-      axiosPublic.get(`/users?email=${user?.email}`).then((res) => {
-        return res.data;
-      }),
-  });
+  const [userDetails, isLoading, refetch] = useUser();
 
   const {
     register,
@@ -52,6 +45,8 @@ export default function UserPage() {
           showConfirmButton: false,
           timer: 1500,
         });
+
+        refetch();
       }
     });
   };
@@ -116,23 +111,26 @@ export default function UserPage() {
                   className="border border-black capitalize p-3"
                   {...register("district")}
                 >
-                  <option value="" className="capitalize">
-                    Select District
-                  </option>
-                  <option value="dhaka" className="capitalize">
-                    dhaka
-                  </option>
-                  <option value="cumilla" className="capitalize">
-                    cumilla
+                  <option value="barisal" className="capitalize">
+                    barishal
                   </option>
                   <option value="chittagong" className="capitalize">
                     chittagong
                   </option>
-                  <option value="barisal" className="capitalize">
-                    barisal
+                  <option value="dhaka" className="capitalize">
+                    dhaka
+                  </option>
+                  <option value="maymensingh" className="capitalize">
+                    maymensingh
+                  </option>
+                  <option value="khulna" className="capitalize">
+                    khulna
                   </option>
                   <option value="rajshahi" className="capitalize">
                     rajshahi
+                  </option>
+                  <option value="comilla" className="capitalize">
+                    comilla
                   </option>
                   <option value="rangpur" className="capitalize">
                     rangpur

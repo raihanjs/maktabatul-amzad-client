@@ -14,6 +14,8 @@ import PrivateRoute from "./PrivateRoute";
 import UserLayout from "../Layout/UserLayout";
 import UserPage from "../Pages/UserPage/UserPage";
 import UserOrders from "../Pages/UserPage/UserOrders/userOrders";
+import CartDetails from "../Pages/Orders/CartDetails/CartDetails";
+import ConfirmOrder from "../Pages/Orders/ConfirmOrder/ConfirmOrder";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: "categories",
         element: <AllCategories />,
+      },
+      {
+        path: "cartdetails",
+        element: <CartDetails />,
+      },
+      {
+        path: "confirmorder",
+        element: <ConfirmOrder />,
       },
     ],
   },

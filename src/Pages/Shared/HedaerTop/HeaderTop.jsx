@@ -32,7 +32,7 @@ export default function HeaderTop() {
           <div className="flex items-center space-x-4">
             {/* Cart */}
             <div>
-              <Link className="flex items-center">
+              <Link to="/cartdetails" className="flex items-center">
                 <BsCartCheckFill className="text-md mr-1 -mt-1" />
                 Cart (<span className="text-[#f0141e]">{cartItem} item</span>)
               </Link>

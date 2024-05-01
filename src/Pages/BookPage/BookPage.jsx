@@ -14,6 +14,7 @@ export default function BookPage() {
   const { handleAddtoCart } = useContext(CartContext);
 
   const {
+    _id,
     category,
     price,
     title,
@@ -236,7 +237,7 @@ export default function BookPage() {
             )}
           </div>
           <div className="col-span-12 md:col-span-3 mr-auto md:ml-auto">
-            <RelatedBooks bookCategory={category}></RelatedBooks>
+            <RelatedBooks bookCategory={category} bookId={_id}></RelatedBooks>
           </div>
         </div>
       </div>

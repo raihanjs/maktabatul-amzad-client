@@ -1,24 +1,13 @@
-import { useEffect, useState } from "react";
 import BookCard from "../../../Shared/BookCard/BookCard";
+import useBooks from "../../../../hooks/useBooks";
 
-const RelatedBooks = ({ bookCategory }) => {
-  const [books, setBooks] = useState([]);
-  useEffect(() => {
-    fetch("https://maktabatul-amzad-s-tan.vercel.app/api/books/getcategory", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ category: bookCategory }),
-    })
-      .then((res) => res.json())
-      .then((data) => setBooks(data));
-  }, []);
-
-  const showBooks = books.slice(0, 6);
+const RelatedBooks = ({ bookCategory, bookId }) => {
+  const [books] = useBooks();
+  const relatedBooks = books.filter((book) => book.category === bookCategory);
+  const removeMainBook = relatedBooks.filter((book) => book._id !== bookId);
   return (
     <div>
-      {showBooks.map((book) => (
+      {removeMainBook.slice(0, 6).map((book) => (
         <BookCard book={book} key={book._id}></BookCard>
       ))}
     </div>

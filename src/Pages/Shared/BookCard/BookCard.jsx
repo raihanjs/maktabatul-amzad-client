@@ -7,11 +7,11 @@ import { CartContext } from "../../../Providers/CartProviders";
 const BookCard = ({ book }) => {
   const { language } = useContext(ThemeContext);
   const { handleAddtoCart } = useContext(CartContext);
-  const { title, thumb, price, writerDetails } = book;
+  const { title, thumb, price, writerDetails, status, stock } = book;
 
   return (
     <div className="book-card w-40 h-[320px] overflow-hidden ease-in duration-300">
-      <Link to={`/book/${book._id}`}>
+      <Link to={`/books/${book._id}`}>
         <img
           src={`${thumb}`}
           className="h-40 md:h-56 bg-slate-200 mb-1.5 ease-out duration-300"
@@ -57,7 +57,7 @@ const BookCard = ({ book }) => {
             BDT <span>{price} TK</span>
           </p>
         </div>
-        <button
+        {/* <button
           onClick={() => handleAddtoCart(book)}
           className="bg-primary text-sm text-white font-semibold w-full text-center py-2"
         >
@@ -66,7 +66,44 @@ const BookCard = ({ book }) => {
             : language == 2
             ? "أضف إلى السلة"
             : "Add to cart"}
-        </button>
+        </button> */}
+
+        <div>
+          {status === "upcoming" ? (
+            <>
+              <button className="bg-slate-700 text-sm text-white font-semibold w-full text-center py-2">
+                {language == 0
+                  ? "আপকামিং"
+                  : language == 2
+                  ? "القادمة"
+                  : "Upcoming"}
+              </button>
+            </>
+          ) : stock == 0 ? (
+            <>
+              <button className="bg-slate-700 text-sm text-white font-semibold w-full text-center py-2">
+                {language == 0
+                  ? "ষ্টক আউট"
+                  : language == 2
+                  ? "المخزن نفذ"
+                  : "Stock Out"}
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => handleAddtoCart(book)}
+                className="bg-primary text-sm text-white font-semibold w-full text-center py-2"
+              >
+                {language == 0
+                  ? "কার্টে যোগ করুন"
+                  : language == 2
+                  ? "أضف إلى السلة"
+                  : "Add to cart"}
+              </button>
+            </>
+          )}
+        </div>
         <div></div>
       </div>
     </div>

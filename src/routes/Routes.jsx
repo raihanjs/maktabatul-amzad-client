@@ -16,6 +16,9 @@ import UserPage from "../Pages/UserPage/UserPage";
 import UserOrders from "../Pages/UserPage/UserOrders/userOrders";
 import CartDetails from "../Pages/Orders/CartDetails/CartDetails";
 import ConfirmOrder from "../Pages/Orders/ConfirmOrder/ConfirmOrder";
+import BookPage from "../Pages/BookPage/BookPage";
+
+const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +32,11 @@ export const router = createBrowserRouter([
       {
         path: "books",
         element: <AllBooks />,
+      },
+      {
+        path: "books/:id",
+        element: <BookPage />,
+        loader: ({ params }) => fetch(`${link}/books/${params.id}`),
       },
       {
         path: "writers",

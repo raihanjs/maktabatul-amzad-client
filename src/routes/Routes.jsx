@@ -18,6 +18,7 @@ import CartDetails from "../Pages/Orders/CartDetails/CartDetails";
 import ConfirmOrder from "../Pages/Orders/ConfirmOrder/ConfirmOrder";
 import BookPage from "../Pages/BookPage/BookPage";
 import WriterPage from "../Pages/WriterPage/WriterPage";
+import CategoryPage from "../Pages/CategoryPage/CategoryPage";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -51,6 +52,11 @@ export const router = createBrowserRouter([
       {
         path: "categories",
         element: <AllCategories />,
+      },
+      {
+        path: "categories/:id",
+        element: <CategoryPage />,
+        loader: ({ params }) => fetch(`${link}/categories/${params.id}`),
       },
       {
         path: "cartdetails",

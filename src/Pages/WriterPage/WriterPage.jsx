@@ -43,7 +43,7 @@ export default function WriterPage() {
               ? `كتب ${name[2]}`
               : `Books of ${name[1]}`}
           </p>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap  justify-center">
             {writerBooks.map((writerBook) => (
               <BookCard book={writerBook} key={writerBook._id}></BookCard>
             ))}

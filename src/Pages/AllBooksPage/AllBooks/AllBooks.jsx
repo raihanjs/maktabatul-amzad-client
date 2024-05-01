@@ -12,7 +12,7 @@ export default function AllBooks() {
       {/* Filter area */}
       <BooksFilter />
       {/* Books Container */}
-      <div className="grid grid-cols-7 gap-5">
+      <div className="flex flex-wrap justify-center">
         {isLoading ? (
           <>.............</>
         ) : (

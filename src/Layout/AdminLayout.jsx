@@ -11,8 +11,6 @@ export default function AdminLayout() {
   const [activeNav, setActiveNav] = useState("");
   const navLinks = ["booklist", "addbook", "writerlist", "addwriter"];
 
-  console.log(activeNav);
-
   return (
     <>
       <HeaderTop />
@@ -25,7 +23,7 @@ export default function AdminLayout() {
 
         <div className="grid grid-cols-12 mt-10">
           {/* -------------------------------------------Profile nav------------------------------------------- */}
-          <div className="col-span-3 border border-2 flex flex-col items-center">
+          <div className="col-span-2 border border-2 flex flex-col items-center">
             {/* Image or First letter of name */}
             <div className="h-36 w-36 overflow-hidden bg-primary flex justify-center items-center rounded-full m-2">
               {user?.photoURL ? (
@@ -38,7 +36,7 @@ export default function AdminLayout() {
             </div>
             {/* Name */}
             <h3 className="text-center my-2 font-semibold capitalize text-xl m-2">
-              {user?.displayName}
+              ADMIN
             </h3>
             {/* Navlinks */}
             <ul className="w-full mt-5 mb-96 ">
@@ -46,9 +44,11 @@ export default function AdminLayout() {
                 <li
                   key={index}
                   onClick={() => setActiveNav(nav)}
-                  className={`py-2 w-full ${activeNav === nav && "active"}`}
+                  className={`admin-nav py-2  block cursor-pointer ${
+                    activeNav === nav && "active"
+                  } hover:bg-gray-800 hover:text-white`}
                 >
-                  <Link to={nav} className="pl-3 text-md capitalize">
+                  <Link to={nav} className="pl-3 text-md block capitalize">
                     {nav}
                   </Link>
                 </li>
@@ -56,7 +56,7 @@ export default function AdminLayout() {
             </ul>
           </div>
           {/* -------------------------------------------Profile Nav Items------------------------------------------- */}
-          <div className="col-span-9 border border-2 border-l-0">
+          <div className="col-span-10 border border-2 border-l-0">
             <Outlet></Outlet>
           </div>
         </div>

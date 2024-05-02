@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import useBooks from "../../../../hooks/useBooks";
+import { useContext } from "react";
+import { ThemeContext } from "../../../../Providers/ThemeProvider";
+import { FaPencilAlt } from "react-icons/fa";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 export default function BookList() {
+  const { language } = useContext(ThemeContext);
   const axiosPubic = useAxiosPublic();
-  const [books, refetch] = useBooks();
+  const [books, isLoading, refetch] = useBooks();
   const handleDelBook = (id) => {
     Swal.fire({
       title: "আপনি কি এই বইটি ডিলিট করতে চাচ্ছেন?",
@@ -45,27 +50,20 @@ export default function BookList() {
 
       {/* Allbooks Table */}
       <div className="flex justify-center mt-5 mx-5">
-        <div className="overflow-x-auto">
-          <div style={{ width: "max-content" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div>
+          <div>
+            <table>
               <thead>
                 <tr>
                   <th className="p-2 border border-black">Sl</th>
                   <th className="p-2 border border-black">Image</th>
-                  <th className="p-2 border border-black">Title</th>
-                  <th className="p-2 border border-black">Category</th>
-                  <th className="p-2 border border-black">Sub Category</th>
-                  <th className="p-2 border border-black">Writer</th>
-                  <th className="p-2 border border-black">Translator</th>
-                  <th className="p-2 border border-black">Editor</th>
-                  <th className="p-2 border border-black">Publisher</th>
-                  <th className="p-2 border border-black">Imported</th>
-                  <th className="p-2 border border-black">Price</th>
-                  <th className="p-2 border border-black">Pages</th>
-                  <th className="p-2 border border-black">Stock</th>
-                  <th className="p-2 border border-black">Sold</th>
-                  <th className="p-2 border border-black">Edit</th>
-                  <th className="p-2 border border-black">Delete</th>
+                  <th className="p-2 border border-black">Category & Sub</th>
+                  <th className="p-2 border border-black">Authors</th>
+                  <th className="p-2 border border-black">
+                    Publisher & Importer
+                  </th>
+                  <th className="p-2 border border-black">Others</th>
+                  <th className="p-2 border border-black">Action</th>
                 </tr>
               </thead>
 
@@ -75,93 +73,83 @@ export default function BookList() {
                     <td className="border border-black p-1 text-center">
                       {index + 1}
                     </td>
-                    <td className="border border-black p-1 text-center">
+                    <td className="border border-black p-1">
                       <img src={book.thumb} className="h-20" alt="" />
+                      <p className="w-24 xl:w-44 truncate">
+                        {book.title[language]}
+                      </p>
                     </td>
-                    <td className="border border-black p-1 text-center">
-                      <p>{book.title[0]},</p>
-                      <p>{book.title[1]},</p>
-                      <p>{book.title[2]}</p>
-                    </td>
-                    <td className="border border-black p-1 text-center">
+                    <td className="border border-black p-1">
                       {book?.categoryDetails?.map((ct) => (
                         <div key={ct._id}>
-                          <p>{ct.name[0]}</p>
-                          <p>{ct.name[1]}</p>
-                          <p>{ct.name[2]}</p>
+                          <p className="w-40  xl:w-60 truncate">
+                            Category: {ct.name[language]}
+                          </p>
                         </div>
                       ))}
-                    </td>
-                    <td className="border border-black p-1 text-center">
                       {book?.subCategoryDetails?.map((sct) => (
                         <div key={sct._id}>
-                          <p>{sct.name[0]}</p>
-                          <p>{sct.name[1]}</p>
-                          <p>{sct.name[2]}</p>
+                          <p className="w-40 xl:w-60 truncate">
+                            Sub: {sct.name[language]}
+                          </p>
                         </div>
                       ))}
                     </td>
-                    <td className="border border-black p-1 text-center">
+                    <td className="border border-black p-1">
                       {book?.writerDetails?.map((wr) => (
                         <div key={wr._id}>
-                          <p>{wr.name[0]}</p>
-                          <p>{wr.name[1]}</p>
-                          <p>{wr.name[2]}</p>
+                          <p className="w-40 xl:w-60 truncate">
+                            Writer: {wr.name[0]}
+                          </p>
                         </div>
                       ))}
-                    </td>
-                    <td className="border border-black p-1 text-center">
                       {book?.translatorDetails?.map((tr) => (
                         <div key={tr._id}>
-                          <p>{tr.name[0]}</p>
-                          <p>{tr.name[1]}</p>
-                          <p>{tr.name[2]}</p>
+                          <p className="w-40 xl:w-60 truncate">
+                            Translator: {tr.name[language]}
+                          </p>
                         </div>
                       ))}
-                    </td>
-                    <td className="border border-black p-1 text-center">
                       {book?.editorDetails?.map((ed) => (
                         <div key={ed._id}>
-                          <p>{ed.name[0]}</p>
-                          <p>{ed.name[1]}</p>
-                          <p>{ed.name[2]}</p>
+                          <p className="w-40 xl:w-60 truncate">
+                            Editor: {ed.name[language]}
+                          </p>
                         </div>
                       ))}
                     </td>
-                    <td className="border border-black p-1 text-center">
+                    <td className="border border-black p-1">
                       {book?.publisherDetails?.map((pb) => (
                         <div key={pb._id}>
-                          <p>{pb.name[0]}</p>
-                          <p>{pb.name[1]}</p>
-                          <p>{pb.name[2]}</p>
+                          <p className="w-40 xl:w-60 truncate">
+                            Publisher: {pb.name[language]}
+                          </p>
                         </div>
                       ))}
-                    </td>
-                    <td className="border border-black p-1 text-center">
+
                       {book?.importedCountryDetails?.map((impc) => (
                         <div key={impc._id}>
-                          <p>{impc.name[0]}</p>
-                          <p>{impc.name[1]}</p>
-                          <p>{impc.name[2]}</p>
+                          <p className="w-40 xl:w-60 truncate">
+                            From: {impc.name[language]}
+                          </p>
                         </div>
                       ))}
                     </td>
-                    <td className="border border-black p-1 text-center">
-                      {book.price}
+                    <td className="border border-black p-1">
+                      <p>Price: {book.price}</p>
+                      <p>Pages: {book.pages}</p>
+                      <p>Stock: {book.stock}</p>
+                      <p>Stock: {book.sold}</p>
                     </td>
-                    <td className="border border-black p-1 text-center">
-                      {book.pages}
-                    </td>
-                    <td className="border border-black p-1 text-center">
-                      {book.stock}
-                    </td>
-                    <td className="border border-black p-1 text-center"></td>
-                    <td className="border border-black p-1 text-center">
-                      <Link to={`/admin/editbook/${book._id}`}>Edit</Link>
-                    </td>
-                    <td className="border border-black p-1 text-center">
+
+                    <td className="border border-black p-1">
+                      <div>
+                        <Link to={`/admin/editbook/${book._id}`}>
+                          <FaPencilAlt className="mx-auto m-2 text-xl" />
+                        </Link>
+                      </div>
                       <button onClick={() => handleDelBook(book._id)}>
-                        Delete
+                        <RiDeleteBin2Fill className="ml-5 m-2 text-xl" />
                       </button>
                     </td>
                   </tr>

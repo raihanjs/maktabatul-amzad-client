@@ -83,7 +83,7 @@ export default function userOrders() {
             </div>
           ) : (
             <div className="mt-36">
-              <h3 className="text-2xl font-bold">
+              <h3 className="text-2xl font-bold text-center">
                 You Did not order any item yet
               </h3>
             </div>

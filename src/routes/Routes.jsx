@@ -19,6 +19,13 @@ import ConfirmOrder from "../Pages/Orders/ConfirmOrder/ConfirmOrder";
 import BookPage from "../Pages/BookPage/BookPage";
 import WriterPage from "../Pages/WriterPage/WriterPage";
 import CategoryPage from "../Pages/CategoryPage/CategoryPage";
+import AdminRoute from "./AdminRoute";
+import AdminPages from "../Pages/AdminPages/AdminPages";
+import AdminLayout from "../Layout/AdminLayout";
+import BookList from "../Pages/AdminPages/Lists/BookList/BookList";
+import AddBook from "../Pages/AdminPages/Add/AddBook/AddBook";
+import WriterList from "../Pages/AdminPages/Lists/WriterList/WriterList";
+import AddWriter from "../Pages/AdminPages/Add/AddWriter/AddWriter";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -105,6 +112,36 @@ export const router = createBrowserRouter([
       {
         path: "orders",
         element: <UserOrders />,
+      },
+    ],
+  },
+  {
+    path: "admin",
+    element: (
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <AdminPages />,
+      },
+      {
+        path: "booklist",
+        element: <BookList />,
+      },
+      {
+        path: "addbook",
+        element: <AddBook />,
+      },
+      {
+        path: "writerlist",
+        element: <WriterList />,
+      },
+      {
+        path: "addwriter",
+        element: <AddWriter />,
       },
     ],
   },

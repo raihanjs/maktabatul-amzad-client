@@ -42,12 +42,18 @@ export default function HeaderTopAccount() {
         <div className="absolute w-[200px] -left-32 z-50">
           <div className="bg-white rounded-sm overflow-hidden border pt-2">
             <ul>
-              <li className="p-2 hover:bg-gray-100">
-                <Link className=" text-gray-900 font-medium block flex items-center">
-                  <MdOutlineAdminPanelSettings className="text-xl mr-1" />
-                  Admin
-                </Link>
-              </li>
+              {user.email === "maktabatulamzad@gmail.com" && (
+                <li className="p-2 hover:bg-gray-100">
+                  <Link
+                    to="/admin"
+                    className=" text-gray-900 font-medium block flex items-center"
+                  >
+                    <MdOutlineAdminPanelSettings className="text-xl mr-1" />
+                    Admin
+                  </Link>
+                </li>
+              )}
+
               <li className="p-2 hover:bg-gray-100">
                 <Link
                   to="/user"

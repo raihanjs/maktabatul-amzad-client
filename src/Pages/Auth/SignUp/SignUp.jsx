@@ -38,7 +38,7 @@ export default function SignUp() {
         // Save user to database
         axiosPublic.post("/users", userDetails).then((res) => {
           if (res.data.insertedId) {
-            // navigate("/");
+            navigate("/");
           }
         });
       })

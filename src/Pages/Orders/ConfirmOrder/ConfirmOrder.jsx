@@ -12,7 +12,7 @@ export default function ConfirmOrder() {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
-  const [userDetails] = useUser();
+  const [userDetails, isLoading] = useUser();
   const { language } = useContext(ThemeContext);
   const { cart, setCart } = useContext(CartContext);
   const {
@@ -125,149 +125,155 @@ export default function ConfirmOrder() {
             <div className="mt-5 md:mt-0 md:w-7/12">
               <p className="text-xl font-semibold mb-5">Billing Address</p>
 
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mb-5">
-                  <label htmlFor="">Name</label>
-                  <input
-                    className="py-1 px-3 border w-full"
-                    defaultValue={userDetails?.name}
-                    {...register("name", { required: true })}
-                    aria-invalid={errors.name ? "true" : "false"}
-                  />
-                  {errors.name?.type === "required" && (
-                    <p role="alert" className="text-red text-sm">
-                      Name is required
-                    </p>
-                  )}
-                </div>
+              {isLoading ? (
+                <>Loading user data ...</>
+              ) : (
+                <>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="mb-5">
+                      <label htmlFor="">Name</label>
+                      <input
+                        className="py-1 px-3 border w-full"
+                        defaultValue={userDetails?.name}
+                        {...register("name", { required: true })}
+                        aria-invalid={errors.name ? "true" : "false"}
+                      />
+                      {errors.name?.type === "required" && (
+                        <p role="alert" className="text-red text-sm">
+                          Name is required
+                        </p>
+                      )}
+                    </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-5">
-                  <div>
-                    <label htmlFor="">Email</label>
-                    <input
-                      className="py-1 px-3 border w-full"
-                      defaultValue={userDetails?.email}
-                      {...register("mail", {
-                        required: "Mail is required",
-                      })}
-                      aria-invalid={errors.mail ? "true" : "false"}
-                    />
-                    {errors.mail && (
-                      <p role="alert" className="text-red text-sm">
-                        {errors.mail.message}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="">Phone</label>
-                    <input
-                      className="py-1 px-3 border w-full"
-                      defaultValue={userDetails?.phone}
-                      {...register("phone", {
-                        required: "Phone number is required",
-                      })}
-                      aria-invalid={errors.phone ? "true" : "false"}
-                    />
-                    {errors.phone && (
-                      <p role="alert" className="text-red text-sm">
-                        {errors.phone.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                    <div className="grid grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="">Email</label>
+                        <input
+                          className="py-1 px-3 border w-full"
+                          defaultValue={userDetails?.email}
+                          {...register("mail", {
+                            required: "Mail is required",
+                          })}
+                          aria-invalid={errors.mail ? "true" : "false"}
+                        />
+                        {errors.mail && (
+                          <p role="alert" className="text-red text-sm">
+                            {errors.mail.message}
+                          </p>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="">Phone</label>
+                        <input
+                          className="py-1 px-3 border w-full"
+                          defaultValue={userDetails?.phone}
+                          {...register("phone", {
+                            required: "Phone number is required",
+                          })}
+                          aria-invalid={errors.phone ? "true" : "false"}
+                        />
+                        {errors.phone && (
+                          <p role="alert" className="text-red text-sm">
+                            {errors.phone.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
 
-                <div className="grid grid-cols-3 gap-5 mb-5">
-                  {/* District */}
-                  <div>
-                    <p>District</p>
-                    <select
-                      defaultValue={selectedDistrict}
-                      {...register("district", { required: true })}
-                      className="py-1 px-3 border capitalize w-full"
-                      onChange={handleChangeDistrict}
-                    >
-                      <option value="barisal" className="capitalize">
-                        barishal
-                      </option>
-                      <option value="chittagong" className="capitalize">
-                        chittagong
-                      </option>
-                      <option value="dhaka" className="capitalize">
-                        dhaka
-                      </option>
-                      <option value="maymensingh" className="capitalize">
-                        maymensingh
-                      </option>
-                      <option value="khulna" className="capitalize">
-                        khulna
-                      </option>
-                      <option value="rajshahi" className="capitalize">
-                        rajshahi
-                      </option>
-                      <option value="comilla" className="capitalize">
-                        comilla
-                      </option>
-                      <option value="rangpur" className="capitalize">
-                        rangpur
-                      </option>
-                      <option value="sylhet" className="capitalize">
-                        sylhet
-                      </option>
-                    </select>
-                  </div>
-                  {/* City */}
-                  <div>
-                    <label htmlFor="">City</label>
-                    <input
-                      className="py-1 px-3 border w-full"
-                      defaultValue={userDetails?.address?.city}
-                      {...register("city", { required: true })}
-                      aria-invalid={errors.city ? "true" : "false"}
-                    />
-                    {errors.city?.type === "required" && (
-                      <p role="alert" className="text-red text-sm">
-                        City name is required
-                      </p>
-                    )}
-                  </div>
-                  {/* Zip */}
-                  <div>
-                    <label htmlFor="">Zip</label>
-                    <input
-                      className="py-1 px-3 border w-full"
-                      defaultValue={userDetails?.address?.zip}
-                      {...register("zip", { required: true })}
-                      aria-invalid={errors.zip ? "true" : "false"}
-                    />
-                    {errors.zip?.type === "required" && (
-                      <p role="alert" className="text-red text-sm">
-                        ZIP code is required
-                      </p>
-                    )}
-                  </div>
-                </div>
+                    <div className="grid grid-cols-3 gap-5 mb-5">
+                      {/* District */}
+                      <div>
+                        <p>District</p>
+                        <select
+                          defaultValue={selectedDistrict}
+                          {...register("district", { required: true })}
+                          className="py-1 px-3 border capitalize w-full"
+                          onChange={handleChangeDistrict}
+                        >
+                          <option value="barisal" className="capitalize">
+                            barishal
+                          </option>
+                          <option value="chittagong" className="capitalize">
+                            chittagong
+                          </option>
+                          <option value="dhaka" className="capitalize">
+                            dhaka
+                          </option>
+                          <option value="maymensingh" className="capitalize">
+                            maymensingh
+                          </option>
+                          <option value="khulna" className="capitalize">
+                            khulna
+                          </option>
+                          <option value="rajshahi" className="capitalize">
+                            rajshahi
+                          </option>
+                          <option value="comilla" className="capitalize">
+                            comilla
+                          </option>
+                          <option value="rangpur" className="capitalize">
+                            rangpur
+                          </option>
+                          <option value="sylhet" className="capitalize">
+                            sylhet
+                          </option>
+                        </select>
+                      </div>
+                      {/* City */}
+                      <div>
+                        <label htmlFor="">City</label>
+                        <input
+                          className="py-1 px-3 border w-full"
+                          defaultValue={userDetails?.address?.city}
+                          {...register("city", { required: true })}
+                          aria-invalid={errors.city ? "true" : "false"}
+                        />
+                        {errors.city?.type === "required" && (
+                          <p role="alert" className="text-red text-sm">
+                            City name is required
+                          </p>
+                        )}
+                      </div>
+                      {/* Zip */}
+                      <div>
+                        <label htmlFor="">Zip</label>
+                        <input
+                          className="py-1 px-3 border w-full"
+                          defaultValue={userDetails?.address?.zip}
+                          {...register("zip", { required: true })}
+                          aria-invalid={errors.zip ? "true" : "false"}
+                        />
+                        {errors.zip?.type === "required" && (
+                          <p role="alert" className="text-red text-sm">
+                            ZIP code is required
+                          </p>
+                        )}
+                      </div>
+                    </div>
 
-                <div className="mb-5">
-                  <label htmlFor="">Address Details</label>
-                  <textarea
-                    className="py-1 px-3 border w-full h-32"
-                    defaultValue={userDetails?.address?.details}
-                    {...register("address", { required: true })}
-                    aria-invalid={errors.address ? "true" : "false"}
-                  />
-                  {errors.name?.type === "required" && (
-                    <p role="alert" className="text-red text-sm">
-                      address is required
-                    </p>
-                  )}
-                </div>
+                    <div className="mb-5">
+                      <label htmlFor="">Address Details</label>
+                      <textarea
+                        className="py-1 px-3 border w-full h-32"
+                        defaultValue={userDetails?.address?.details}
+                        {...register("address", { required: true })}
+                        aria-invalid={errors.address ? "true" : "false"}
+                      />
+                      {errors.name?.type === "required" && (
+                        <p role="alert" className="text-red text-sm">
+                          address is required
+                        </p>
+                      )}
+                    </div>
 
-                <input
-                  type="submit"
-                  value="Confirm Order"
-                  className="py-2 px-8 bg-primary text-white mt-5 cursor-pointer"
-                />
-              </form>
+                    <input
+                      type="submit"
+                      value="Confirm Order"
+                      className="py-2 px-8 bg-primary text-white mt-5 cursor-pointer"
+                    />
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </>

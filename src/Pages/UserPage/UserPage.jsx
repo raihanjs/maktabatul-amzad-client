@@ -104,7 +104,7 @@ export default function UserPage() {
             </div>
             {/* Input field */}
             <div className="mb-5 flex items-center justify-between">
-              <div className="flex flex-col">
+              <div className="flex flex-col w-4/12">
                 <label htmlFor="">District</label>
                 <select
                   defaultValue={userDetails?.address?.district}
@@ -141,7 +141,7 @@ export default function UserPage() {
                 </select>
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col w-5/12">
                 <label htmlFor="">City</label>
                 <input
                   type="text"
@@ -151,7 +151,7 @@ export default function UserPage() {
                 />
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col w-2/12">
                 <label htmlFor="">Zip</label>
                 <input
                   type="text"

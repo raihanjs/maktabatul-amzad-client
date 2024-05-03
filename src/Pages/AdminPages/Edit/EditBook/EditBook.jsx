@@ -383,7 +383,7 @@ export default function EditBook() {
 
           <input
             type="submit"
-            value="Add Book"
+            value="Edit Book"
             className="py-2 px-8 bg-[#108D41] text-white"
           />
         </form>

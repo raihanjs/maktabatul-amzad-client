@@ -9,7 +9,20 @@ export default function AdminLayout() {
   const { user } = useContext(AuthContext);
 
   const [activeNav, setActiveNav] = useState("");
-  const navLinks = ["booklist", "addbook", "writerlist", "addwriter"];
+  const navLinks = [
+    "booklist",
+    "addbook",
+    "writerlist",
+    "addwriter",
+    "editorlist",
+    "addeditor",
+    "translatorlist",
+    "addtranslator",
+    "categorylist",
+    "addcategory",
+    "subcategorylist",
+    "addsubcategory",
+  ];
 
   return (
     <>
@@ -25,7 +38,7 @@ export default function AdminLayout() {
           {/* -------------------------------------------Profile nav------------------------------------------- */}
           <div className="col-span-2 border border-2 flex flex-col items-center">
             {/* Image or First letter of name */}
-            <div className="h-36 w-36 overflow-hidden bg-primary flex justify-center items-center rounded-full m-2">
+            <div className="h-28 w-28 overflow-hidden bg-primary flex justify-center items-center rounded-full m-2">
               {user?.photoURL ? (
                 <img src={user?.photoURL} className="h-36 w-36" alt="" />
               ) : (

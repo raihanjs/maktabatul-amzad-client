@@ -52,7 +52,7 @@ export default function WriterList() {
       </div>
 
       {/* Allbooks Table */}
-      <div className="flex justify-center mt-5 mx-5 h-screen">
+      <div className="flex justify-center mt-5">
         {writers.length > 0 ? (
           <>
             <table>

@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 
-export default function AddWriter() {
+export default function EditWriter() {
   const navigate = useNavigate("");
+  const writer = useLoaderData();
+  const { writerId, name, image, desc } = writer;
   const axiosPubic = useAxiosPublic();
   const {
     register,
@@ -13,10 +16,9 @@ export default function AddWriter() {
 
   const onSubmit = (data) => {
     const { bnwriter, enwriter, arwriter, bnDesc, enDesc, arDesc } = data;
-    const newWriter = {
+    const updateWriter = {
       name: [bnwriter, enwriter, arwriter],
       desc: [bnDesc, enDesc, arDesc],
-      writerId: `writer${Math.ceil(Math.random() * 1000)}`,
     };
 
     if (data.image.length > 0) {
@@ -33,19 +35,22 @@ export default function AddWriter() {
         .then((imgRes) => {
           if (imgRes.success) {
             const imageUrl = imgRes.data.display_url;
-            newWriter.image = imageUrl;
+            updateWriter.image = imageUrl;
 
             // addWriter
-            axiosPubic.post("/addwriter", newWriter).then((res) => {
-              if (res.data.acknowledged) {
-                navigate("/admin/writerlist");
-              }
-            });
+            axiosPubic
+              .patch(`/editwriter/${writerId}`, updateWriter)
+              .then((res) => {
+                if (res.data.acknowledged) {
+                  navigate("/admin/writerlist");
+                }
+              });
           }
         });
     } else {
       // addWriter
-      axiosPubic.post("/addwriter", newWriter).then((res) => {
+      updateWriter.image = image;
+      axiosPubic.patch(`/editwriter/${writerId}`, updateWriter).then((res) => {
         if (res.data.acknowledged) {
           navigate("/admin/writerlist");
         }
@@ -55,7 +60,7 @@ export default function AddWriter() {
   return (
     <div>
       <div className="text-center p-5 border border-black-b-2">
-        <h3 className="text-2xl font-bold">Add Writer</h3>
+        <h3 className="text-2xl font-bold">Edit Book</h3>
       </div>
 
       <div className="m-2">
@@ -63,56 +68,64 @@ export default function AddWriter() {
           <div className="grid grid-cols-5 gap-5">
             <div className="col-span-3">
               <div className="mb-5">
+                <label>লেখকের নাম বাংলায়</label>
                 <input
                   className="border w-full border-primary p-2"
-                  placeholder="লেখকের নাম বাংলায়"
+                  defaultValue={name[0]}
                   {...register("bnwriter")}
                 />
               </div>
               <div className="mb-5">
+                <label>লেখকের নাম ইংরেজীতে</label>
                 <input
                   className="border w-full border-primary p-2"
-                  placeholder="লেখকের নাম ইংরেজীতে"
+                  defaultValue={name[1]}
                   {...register("enwriter")}
                 />
               </div>
               <div className="mb-5">
+                <label>লেখকের নাম আরবীতে</label>
                 <input
                   className="border w-full border-primary p-2"
-                  placeholder="লেখকের নাম আরবীতে"
+                  defaultValue={name[2]}
                   {...register("arwriter", { required: true })}
                 />
                 {errors.arwriter && <span>এই ঘরটি অবশ্যই পুরন করতে হবে</span>}
               </div>
             </div>
             <div className="col-span-2">
-              <div className="border py-12 border-primary">
+              <div className="border border-primary">
+                <p className="mb-2">লেখকের ছবি</p>
+                <img src={image} alt="" />
                 <input
                   type="file"
                   src=""
                   {...register("image")}
-                  className="mt-12 ml-12"
+                  className=""
                   alt=""
                 />
               </div>
             </div>
             <div className="col-span-5">
+              <p>লেখকের ব্যাপারে বাংলায়</p>
               <textarea
-                placeholder="লেখকের ব্যাপারে বাংলায় লিখুন"
+                defaultValue={desc[0]}
                 {...register("bnDesc")}
                 className="w-full border-primary border h-60 p-2"
               ></textarea>
             </div>
             <div className="col-span-5">
+              <p>লেখকের ব্যাপারে ইংরেজীতে</p>
               <textarea
-                placeholder="লেখকের ব্যাপারে ইংরেজীতে লিখুন"
+                defaultValue={desc[1]}
                 {...register("enDesc")}
                 className="w-full border-primary border h-60 p-2"
               ></textarea>
             </div>
             <div className="col-span-5">
+              <p>লেখকের ব্যাপারে আরবীতে</p>
               <textarea
-                placeholder="লেখকের ব্যাপারে আরবীতে লিখুন"
+                defaultValue={desc[2]}
                 {...register("arDesc")}
                 className="w-full border-primary border h-60 p-2"
               ></textarea>
@@ -121,7 +134,7 @@ export default function AddWriter() {
           <div>
             <input
               type="submit"
-              value="লেখক অ্যাড করুন"
+              value="Edit Writer"
               className="text-white bg-primary py-2 px-5 cursor-pointer"
             />
           </div>

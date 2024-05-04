@@ -27,6 +27,7 @@ import AddBook from "../Pages/AdminPages/Add/AddBook/AddBook";
 import WriterList from "../Pages/AdminPages/Lists/WriterList/WriterList";
 import AddWriter from "../Pages/AdminPages/Add/AddWriter/AddWriter";
 import EditBook from "../Pages/AdminPages/Edit/EditBook/EditBook";
+import EditWriter from "../Pages/AdminPages/Edit/EditWriter/EditWriter";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -148,6 +149,11 @@ export const router = createBrowserRouter([
       {
         path: "addwriter",
         element: <AddWriter />,
+      },
+      {
+        path: "editwriter/:wrtiterid",
+        element: <EditWriter />,
+        loader: ({ params }) => fetch(`${link}/writers/${params.wrtiterid}`),
       },
     ],
   },

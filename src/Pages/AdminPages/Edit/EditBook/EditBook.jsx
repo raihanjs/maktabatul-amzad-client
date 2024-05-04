@@ -129,7 +129,6 @@ export default function EditBook() {
             navigate("/admin/booklist");
           }
         });
-      console.log("No Image", updateBook);
     }
   };
   return (

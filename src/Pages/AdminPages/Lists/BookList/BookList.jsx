@@ -48,117 +48,131 @@ export default function BookList() {
         <p>See All Books</p>
       </div>
 
-      {/* Allbooks Table */}
-      <div className="flex justify-center mt-5 mx-5">
-        <div>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th className="p-2 border border-black">Sl</th>
-                  <th className="p-2 border border-black">Image</th>
-                  <th className="p-2 border border-black">Category & Sub</th>
-                  <th className="p-2 border border-black">Authors</th>
-                  <th className="p-2 border border-black">
-                    Publisher & Importer
-                  </th>
-                  <th className="p-2 border border-black">Others</th>
-                  <th className="p-2 border border-black">Action</th>
-                </tr>
-              </thead>
+      {isLoading ? (
+        <>
+          <p>Loading Books ...</p>
+        </>
+      ) : (
+        <>
+          {/* Allbooks Table */}
+          {books.length > 0 ? (
+            <>
+              <div className="flex justify-center mt-5 mx-5">
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="p-2 border border-black">Sl</th>
+                      <th className="p-2 border border-black">Image</th>
+                      <th className="p-2 border border-black">
+                        Category & Sub
+                      </th>
+                      <th className="p-2 border border-black">Authors</th>
+                      <th className="p-2 border border-black">
+                        Publisher & Importer
+                      </th>
+                      <th className="p-2 border border-black">Others</th>
+                      <th className="p-2 border border-black">Action</th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {books.map((book, index) => (
-                  <tr key={book._id}>
-                    <td className="border border-black p-1 text-center">
-                      {index + 1}
-                    </td>
-                    <td className="border border-black p-1">
-                      <img src={book.thumb} className="h-20" alt="" />
-                      <p className="w-24 xl:w-44 truncate">
-                        {book.title[language]}
-                      </p>
-                    </td>
-                    <td className="border border-black p-1">
-                      {book?.categoryDetails?.map((ct) => (
-                        <div key={ct._id}>
-                          <p className="w-40  xl:w-60 truncate">
-                            Category: {ct.name[language]}
+                  <tbody>
+                    {books.map((book, index) => (
+                      <tr key={book._id}>
+                        <td className="border border-black p-1 text-center">
+                          {index + 1}
+                        </td>
+                        <td className="border border-black p-1">
+                          <img src={book.thumb} className="h-20" alt="" />
+                          <p className="w-24 xl:w-44 truncate">
+                            {book.title[language]}
                           </p>
-                        </div>
-                      ))}
-                      {book?.subCategoryDetails?.map((sct) => (
-                        <div key={sct._id}>
-                          <p className="w-40 xl:w-60 truncate">
-                            Sub: {sct.name[language]}
-                          </p>
-                        </div>
-                      ))}
-                    </td>
-                    <td className="border border-black p-1">
-                      {book?.writerDetails?.map((wr) => (
-                        <div key={wr._id}>
-                          <p className="w-40 xl:w-60 truncate">
-                            Writer: {wr.name[0]}
-                          </p>
-                        </div>
-                      ))}
-                      {book?.translatorDetails?.map((tr) => (
-                        <div key={tr._id}>
-                          <p className="w-40 xl:w-60 truncate">
-                            Translator: {tr.name[language]}
-                          </p>
-                        </div>
-                      ))}
-                      {book?.editorDetails?.map((ed) => (
-                        <div key={ed._id}>
-                          <p className="w-40 xl:w-60 truncate">
-                            Editor: {ed.name[language]}
-                          </p>
-                        </div>
-                      ))}
-                    </td>
-                    <td className="border border-black p-1">
-                      {book?.publisherDetails?.map((pb) => (
-                        <div key={pb._id}>
-                          <p className="w-40 xl:w-60 truncate">
-                            Publisher: {pb.name[language]}
-                          </p>
-                        </div>
-                      ))}
+                        </td>
+                        <td className="border border-black p-1">
+                          {book?.categoryDetails?.map((ct) => (
+                            <div key={ct._id}>
+                              <p className="w-40  xl:w-60 truncate">
+                                Category: {ct.name[language]}
+                              </p>
+                            </div>
+                          ))}
+                          {book?.subCategoryDetails?.map((sct) => (
+                            <div key={sct._id}>
+                              <p className="w-40 xl:w-60 truncate">
+                                Sub: {sct.name[language]}
+                              </p>
+                            </div>
+                          ))}
+                        </td>
+                        <td className="border border-black p-1">
+                          {book?.writerDetails?.map((wr) => (
+                            <div key={wr._id}>
+                              <p className="w-40 xl:w-60 truncate">
+                                Writer: {wr.name[0]}
+                              </p>
+                            </div>
+                          ))}
+                          {book?.translatorDetails?.map((tr) => (
+                            <div key={tr._id}>
+                              <p className="w-40 xl:w-60 truncate">
+                                Translator: {tr.name[language]}
+                              </p>
+                            </div>
+                          ))}
+                          {book?.editorDetails?.map((ed) => (
+                            <div key={ed._id}>
+                              <p className="w-40 xl:w-60 truncate">
+                                Editor: {ed.name[language]}
+                              </p>
+                            </div>
+                          ))}
+                        </td>
+                        <td className="border border-black p-1">
+                          {book?.publisherDetails?.map((pb) => (
+                            <div key={pb._id}>
+                              <p className="w-40 xl:w-60 truncate">
+                                Publisher: {pb.name[language]}
+                              </p>
+                            </div>
+                          ))}
 
-                      {book?.importedCountryDetails?.map((impc) => (
-                        <div key={impc._id}>
-                          <p className="w-40 xl:w-60 truncate">
-                            From: {impc.name[language]}
-                          </p>
-                        </div>
-                      ))}
-                    </td>
-                    <td className="border border-black p-1">
-                      <p>Price: {book.price}</p>
-                      <p>Pages: {book.pages}</p>
-                      <p>Stock: {book.stock}</p>
-                      <p>Stock: {book.sold}</p>
-                    </td>
+                          {book?.importedCountryDetails?.map((impc) => (
+                            <div key={impc._id}>
+                              <p className="w-40 xl:w-60 truncate">
+                                From: {impc.name[language]}
+                              </p>
+                            </div>
+                          ))}
+                        </td>
+                        <td className="border border-black p-1">
+                          <p>Price: {book.price}</p>
+                          <p>Pages: {book.pages}</p>
+                          <p>Stock: {book.stock}</p>
+                          <p>Stock: {book.sold}</p>
+                        </td>
 
-                    <td className="border border-black p-1">
-                      <div>
-                        <Link to={`/admin/editbook/${book._id}`}>
-                          <FaPencilAlt className="mx-auto m-2 text-xl" />
-                        </Link>
-                      </div>
-                      <button onClick={() => handleDelBook(book._id)}>
-                        <RiDeleteBin2Fill className="ml-5 m-2 text-xl" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+                        <td className="border border-black p-1">
+                          <div>
+                            <Link to={`/admin/editbook/${book._id}`}>
+                              <FaPencilAlt className="mx-auto m-2 text-xl" />
+                            </Link>
+                          </div>
+                          <button onClick={() => handleDelBook(book._id)}>
+                            <RiDeleteBin2Fill className="ml-5 m-2 text-xl" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-2xl font-bold text-center">No books found</p>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }

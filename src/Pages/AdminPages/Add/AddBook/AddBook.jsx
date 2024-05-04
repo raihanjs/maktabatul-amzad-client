@@ -101,11 +101,18 @@ export default function AddBook() {
           // addbook
           axiosPublic.post("/addbook", newBook).then((res) => {
             if (res.data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Book added successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
               navigate("/admin/booklist");
             } else {
               Swal.fire({
                 icon: "error",
-                title: "ববইটি যুক্ত করা সম্ভব হয়নি",
+                title: "বইটি যুক্ত করা সম্ভব হয়নি",
               });
             }
           });

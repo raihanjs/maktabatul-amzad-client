@@ -31,6 +31,9 @@ import EditWriter from "../Pages/AdminPages/Edit/EditWriter/EditWriter";
 import EditorList from "../Pages/AdminPages/Lists/EditorList/EditorList";
 import AddEditor from "../Pages/AdminPages/Add/AddEditor/AddEditor";
 import EditEditor from "../Pages/AdminPages/Edit/EditEditor/EditEditor";
+import TranslatorList from "../Pages/AdminPages/Lists/TranslatorList/TranslatorList";
+import AddTranslator from "../Pages/AdminPages/Add/AddTranslator/AddTranslator";
+import EditTranslator from "../Pages/AdminPages/Edit/EditTranslator/EditTranslator";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -170,6 +173,20 @@ export const router = createBrowserRouter([
         path: "editeditor/:editorid",
         element: <EditEditor />,
         loader: ({ params }) => fetch(`${link}/editors/${params.editorid}`),
+      },
+      {
+        path: "translatorlist",
+        element: <TranslatorList />,
+      },
+      {
+        path: "addtranslator",
+        element: <AddTranslator />,
+      },
+      {
+        path: "edittranslator/:translatorid",
+        element: <EditTranslator />,
+        loader: ({ params }) =>
+          fetch(`${link}/translators/${params.translatorid}`),
       },
     ],
   },

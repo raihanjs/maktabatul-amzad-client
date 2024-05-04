@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 export default function EditEditor() {
   const navigate = useNavigate();
@@ -23,7 +24,20 @@ export default function EditEditor() {
 
     axiosPublic.patch(`/editeditor/${editorId}`, editedEditor).then((res) => {
       if (res.data.modifiedCount === 1) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Editor Updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/admin/editorlist");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       }
     });
   };

@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import useEditors from "../../../../hooks/useEditors";
 import { FaPencilAlt } from "react-icons/fa";
-import { FaRegUserCircle } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 
 export default function EditorList() {
@@ -48,55 +47,63 @@ export default function EditorList() {
         <p>See All Editors</p>
       </div>
 
-      <div className="flex justify-center mt-5">
-        {editors.length > 0 ? (
-          <>
-            <table>
-              <thead>
-                <tr>
-                  <th className="p-2 border border-black">SL</th>
-                  <th className="p-2 border border-black">Editor's Name</th>
-                  <th className="p-2 border border-black">Edit Editor</th>
-                  <th className="p-2 border border-black">Delete Editor</th>
-                </tr>
-              </thead>
+      {isLoading ? (
+        <>
+          <p className="text-center">Loading Editors ...</p>
+        </>
+      ) : (
+        <>
+          <div className="flex justify-center mt-5">
+            {editors.length > 0 ? (
+              <>
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="p-2 border border-black">SL</th>
+                      <th className="p-2 border border-black">Editor's Name</th>
+                      <th className="p-2 border border-black">Edit Editor</th>
+                      <th className="p-2 border border-black">Delete Editor</th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {editors.map((editor, index) => (
-                  <tr key={editor._id}>
-                    <td className="border border-black p-1">{index + 1}</td>
-                    <td className="border border-black p-1">
-                      <p>{editor.name[0]}</p>
-                      <p>{editor.name[1]}</p>
-                      <p>{editor.name[2]}</p>
-                    </td>
-                    <td className="border border-black p-1">
-                      <Link
-                        to={`/admin/editeditor/${editor.editorId}`}
-                        className="w-full flex justify-center"
-                      >
-                        <FaPencilAlt className="text-2xl" />
-                      </Link>
-                    </td>
-                    <td className="border border-black p-1">
-                      <button
-                        className="w-full flex justify-center"
-                        onClick={() => handleDelete(editor._id)}
-                      >
-                        <RiDeleteBin2Fill className="text-2xl" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        ) : (
-          <>
-            <p className="text-lg font-bold">Editors Loading ...</p>
-          </>
-        )}
-      </div>
+                  <tbody>
+                    {editors.map((editor, index) => (
+                      <tr key={editor._id}>
+                        <td className="border border-black p-1">{index + 1}</td>
+                        <td className="border border-black p-1">
+                          <p>{editor.name[0]}</p>
+                          <p>{editor.name[1]}</p>
+                          <p>{editor.name[2]}</p>
+                        </td>
+                        <td className="border border-black p-1">
+                          <Link
+                            to={`/admin/editeditor/${editor.editorId}`}
+                            className="w-full flex justify-center"
+                          >
+                            <FaPencilAlt className="text-2xl" />
+                          </Link>
+                        </td>
+                        <td className="border border-black p-1">
+                          <button
+                            className="w-full flex justify-center"
+                            onClick={() => handleDelete(editor._id)}
+                          >
+                            <RiDeleteBin2Fill className="text-2xl" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            ) : (
+              <>
+                <p className="text-lg font-bold">No Editors Found</p>
+              </>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

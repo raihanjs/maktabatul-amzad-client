@@ -42,7 +42,7 @@ export default function HeaderTopAccount() {
         <div className="absolute w-[200px] -left-32 z-50">
           <div className="bg-white rounded-sm overflow-hidden border pt-2">
             <ul>
-              {user.email === "maktabatulamzad@gmail.com" && (
+              {user?.email === "maktabatulamzad@gmail.com" && (
                 <li className="p-2 hover:bg-gray-100">
                   <Link
                     to="/admin"

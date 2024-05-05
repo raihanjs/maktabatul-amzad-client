@@ -9,38 +9,25 @@ export default function OrderList() {
   const [orders, isLoading, refetch] = useOrders();
   const axiosPublic = useAxiosPublic();
 
-  const [selectedOrders, setSelectedOrders] = useState(orders);
-  const [status, setStatus] = useState("");
+  const [allOrders, setAllOrders] = useState(orders);
+  const [selectedOrders, setSelectedOrders] = useState(allOrders);
 
   const handleChangeStatus = (event) => {
-    setStatus(event.target.value);
+    const orderType = event.target.value;
+    if (orderType === "all") {
+      setAllOrders(orders);
+    } else if (orderType) {
+      setAllOrders(orders.filter((order) => order.status === orderType));
+    }
   };
 
   useEffect(() => {
-    setSelectedOrders(orders);
-  }, [status]);
+    setAllOrders(orders);
+  }, [orders]);
 
   useEffect(() => {
-    let allOrders = orders;
-    if (status === "pending") {
-      const pnOrders = allOrders.filter((order) => order.status === "pending");
-      allOrders = pnOrders;
-    } else if (status === "confirmed") {
-      const cnOrders = allOrders.filter(
-        (order) => order.status === "confirmed"
-      );
-      allOrders = cnOrders;
-    } else if (status === "delivered") {
-      const dvOrders = allOrders.filter(
-        (order) => order.status === "delivered"
-      );
-      allOrders = dvOrders;
-    } else if (status === "canceled") {
-      const ccOrders = allOrders.filter((order) => order.status === "canceled");
-      allOrders = ccOrders;
-    }
     setSelectedOrders(allOrders);
-  }, [status]);
+  }, [allOrders]);
 
   const handleDeleteOrder = (id) => {
     axiosPublic.delete(`/orders/${id}`).then((res) => {
@@ -76,10 +63,10 @@ export default function OrderList() {
         <>
           <div className="flex space-x-3 items-center">
             <h2 className="my-5">
-              Total {selectedOrders.length} orders available
+              Total {selectedOrders.length} Orders available
             </h2>
             <select className="border" onChange={handleChangeStatus}>
-              <option value="">All</option>
+              <option value="all">All</option>
               <option value="pending">Pending</option>
               <option value="confirmed">Confirmed</option>
               <option value="delivered">Delivered</option>
@@ -100,7 +87,7 @@ export default function OrderList() {
               </>
             ) : (
               <>
-                <h2>No Data found for status: {status}</h2>
+                <h2>No Data found</h2>
               </>
             )}
           </div>

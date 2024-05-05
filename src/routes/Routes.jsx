@@ -43,6 +43,9 @@ import AddImporter from "../Pages/AdminPages/Add/AddImporter/AddImporter";
 import CategoryList from "../Pages/AdminPages/Lists/CategoryList/CategoryList";
 import AddCategory from "../Pages/AdminPages/Add/AddCategory/AddCategory";
 import EditCategory from "../Pages/AdminPages/Edit/EditCategory/EditCategory";
+import SubCategoryList from "../Pages/AdminPages/Lists/SubCategoryList/SubCategoryList";
+import AddSubCategory from "../Pages/AdminPages/Add/AddSubCategory/AddSubCategory";
+import EditSubCategory from "../Pages/AdminPages/Edit/EditSubCategory/EditSubCategory";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -237,6 +240,20 @@ export const router = createBrowserRouter([
         element: <EditCategory />,
         loader: ({ params }) =>
           fetch(`${link}/categories/${params.categoryid}`),
+      },
+      {
+        path: "subcategorylist",
+        element: <SubCategoryList />,
+      },
+      {
+        path: "addsubcategory",
+        element: <AddSubCategory />,
+      },
+      {
+        path: "editsubcategory/:subcategoryid",
+        element: <EditSubCategory />,
+        loader: ({ params }) =>
+          fetch(`${link}/subcategories/${params.subcategoryid}`),
       },
     ],
   },

@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAxiosPublic } from "./useAxiosPublic";
 
-export default function useBooks() {
+export default function useBooks(searchData) {
+  const query = searchData ? `/books?title=${searchData}` : "/books";
   const axiosPublic = useAxiosPublic();
   const {
     data: books = [],
@@ -10,7 +11,7 @@ export default function useBooks() {
   } = useQuery({
     queryKey: ["books"],
     queryFn: () =>
-      axiosPublic.get("/books").then((res) => {
+      axiosPublic.get(query).then((res) => {
         return res.data;
       }),
   });

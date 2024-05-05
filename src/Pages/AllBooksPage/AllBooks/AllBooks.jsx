@@ -2,9 +2,36 @@ import useBooks from "../../../hooks/useBooks";
 import BooksFilter from "../BooksFilter/BooksFilter";
 import BookCard from "../../Shared/BookCard/BookCard";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAxiosPublic } from "../../../hooks/useAxiosPublic";
 
 export default function AllBooks() {
-  const [books, isLoading] = useBooks();
+  const axiosPublic = useAxiosPublic();
+
+  const location = useLocation();
+  const searchQuery = location?.state?.search || false;
+
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const query = searchQuery ? `/books?title=${searchQuery}` : "/books";
+
+  useEffect(() => {
+    (async function () {
+      try {
+        setLoading(true);
+        const response = await axiosPublic.get(query);
+        setBooks(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [searchQuery]);
+
   return (
     <section className="container">
       <PageTitle title={["সকল বই", "All Books", "جميع الكتب"]} />
@@ -13,8 +40,12 @@ export default function AllBooks() {
       <BooksFilter />
       {/* Books Container */}
       <div className="flex flex-wrap justify-center">
-        {isLoading ? (
-          <>.............</>
+        {loading ? (
+          <>
+            <div className="min-h-96 flex items-center justify-center">
+              <p>Loading Books ...</p>
+            </div>
+          </>
         ) : (
           <>
             {books.map((book) => (

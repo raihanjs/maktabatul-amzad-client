@@ -90,14 +90,13 @@ export default function AddBook() {
             editor: selectedEditors,
             publisher: data.publisher,
             importedCountry: data.country,
-            price: data.bookPrice,
-            pages: data.bookPages,
-            stock: data.bookQuantity,
+            price: parseInt(data.bookPrice),
+            pages: parseInt(data.bookPages),
+            stock: parseInt(data.bookQuantity),
             desc: [data.bnDesc, data.enDesc, data.arDesc],
             status: data.bookStatus,
             sold: 0,
           };
-          console.log(newBook);
           // addbook
           axiosPublic.post("/addbook", newBook).then((res) => {
             if (res.data.insertedId) {
@@ -155,7 +154,9 @@ export default function AddBook() {
                 {...register("bookArabic", { required: true })}
               />
               {errors.arbook && (
-                <span className="text-red">এই ঘরটি অবশ্যই পুরন করতে হবে</span>
+                <span className="text-red text-sm ">
+                  এই ঘরটি অবশ্যই পুরন করতে হবে
+                </span>
               )}
             </div>
           </div>
@@ -274,22 +275,28 @@ export default function AddBook() {
           <div className="w-3/12">
             <label>বইয়ের পৃষ্ঠা</label>
             <input
+              type="number"
               {...register("bookPages", { required: true })}
               className="border border-black w-full p-1"
             />
             {errors.bookPages && (
-              <span className="text-red">এই ঘরটি অবশ্যই পুরন করতে হবে</span>
+              <span className="text-red text-sm ">
+                এই ঘরটি অবশ্যই পুরন করতে হবে
+              </span>
             )}
           </div>
           {/* Book Price */}
           <div className="w-3/12">
             <label>বইয়ের দাম</label>
             <input
+              type="number"
               {...register("bookPrice", { required: true })}
               className="border border-black w-full p-1"
             />
             {errors.bookPrice && (
-              <span className="text-red">এই ঘরটি অবশ্যই পুরন করতে হবে</span>
+              <span className="text-red text-sm ">
+                এই ঘরটি অবশ্যই পুরন করতে হবে
+              </span>
             )}
           </div>
 
@@ -297,11 +304,14 @@ export default function AddBook() {
           <div className="w-2/12">
             <label>বইয়ের সংখ্যা</label>
             <input
+              type="number"
               {...register("bookQuantity", { required: true })}
               className="border border-black w-full p-1"
             />
             {errors.bookQuantity && (
-              <span className="text-red">এই ঘরটি অবশ্যই পুরন করতে হবে</span>
+              <span className="text-red text-sm ">
+                এই ঘরটি অবশ্যই পুরন করতে হবে
+              </span>
             )}
           </div>
           {/* Book Status */}

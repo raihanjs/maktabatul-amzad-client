@@ -85,9 +85,9 @@ export default function EditBook() {
       editor: selectedEditors,
       publisher: publisher,
       importedCountry: importedCountry,
-      price: data.bookPrice,
-      pages: data.bookPages,
-      stock: data.bookQuantity,
+      price: parseInt(data.bookPrice),
+      pages: parseInt(data.bookPages),
+      stock: parseInt(data.bookQuantity),
       desc: [data.bnDesc, data.enDesc, data.arDesc],
       status: data.bookStatus,
       sold: 0,
@@ -145,7 +145,7 @@ export default function EditBook() {
             {/* Book Name Bangla, English and Arabic */}
             <div className="w-8/12">
               <div>
-                <label htmlFor="">নাম বাংলায়</label>
+                <label>নাম বাংলায়</label>
                 <input
                   className="border border-black border border-black-primary p-2 w-full mb-2"
                   // placeholder="বইয়ের নাম বাংলায়"
@@ -154,7 +154,7 @@ export default function EditBook() {
                 />
               </div>
               <div>
-                <label htmlFor="">নাম ইংরেজীতে</label>
+                <label>নাম ইংরেজীতে</label>
                 <input
                   className="border border-black border border-black-primary p-2 w-full mb-2"
                   defaultValue={bookDetails.title[1]}
@@ -162,7 +162,7 @@ export default function EditBook() {
                 />
               </div>
               <div>
-                <label htmlFor="">নাম আরবীতে</label>
+                <label>নাম আরবীতে</label>
                 <input
                   className="border border-black border border-black-primary p-2 w-full mb-2"
                   defaultValue={bookDetails.title[2]}
@@ -191,7 +191,7 @@ export default function EditBook() {
           {/* Category & SubCategory selection */}
           <div className="flex justify-between">
             <div className="w-6/12 my-5 flex flex-col">
-              <label htmlFor="">ক্যাটাগরি সিলেক্ট করুন</label>
+              <label>ক্যাটাগরি সিলেক্ট করুন</label>
               <select
                 {...register("category")}
                 value={selectedOption}
@@ -210,7 +210,7 @@ export default function EditBook() {
               </select>
             </div>
             <div className="w-5/12 my-5 flex flex-col">
-              <label htmlFor="">সাব ক্যাটাগরি সিলেক্ট করুন</label>
+              <label>সাব ক্যাটাগরি সিলেক্ট করুন</label>
               <select
                 {...register("subCategory")}
                 defaultValue={bookDetails.subCategory}
@@ -267,7 +267,7 @@ export default function EditBook() {
           {/* Publisher & Importer selection */}
           <div className="flex justify-between">
             <div className="w-6/12 my-5 flex flex-col">
-              <label htmlFor="">পাবলিশার সিলেক্ট করুন</label>
+              <label>পাবলিশার সিলেক্ট করুন</label>
               <select
                 {...register("publisher")}
                 defaultValue={bookDetails.publisher}
@@ -286,7 +286,7 @@ export default function EditBook() {
             </div>
             {/* Imported selection */}
             <div className="w-5/12 my-5 flex flex-col">
-              <label htmlFor="">ইমপোর্ট দেশ সিলেক্ট করুন</label>
+              <label>ইমপোর্ট দেশ সিলেক্ট করুন</label>
               <select
                 {...register("country")}
                 defaultValue={bookDetails.importedCountry}
@@ -310,38 +310,53 @@ export default function EditBook() {
           <div className="flex justify-between spcae-x-4">
             {/* Book Page */}
             <div className="my-5 flex flex-col">
-              <label htmlFor="">বইয়ের পৃষ্ঠা</label>
+              <label>বইয়ের পৃষ্ঠা</label>
               <input
+                type="number"
                 defaultValue={bookDetails.pages}
                 {...register("bookPages", { required: true })}
                 className="border border-black"
               />
-              {errors.bookPages && <span>এই ঘরটি অবশ্যই পুরন করতে হবে</span>}
+              {errors.bookPages && (
+                <span className="text-red text-sm">
+                  এই ঘরটি অবশ্যই পুরন করতে হবে
+                </span>
+              )}
             </div>
             {/* Book Price */}
             <div className="my-5 flex flex-col">
-              <label htmlFor="">বইয়ের দাম</label>
+              <label>বইয়ের দাম</label>
               <input
+                type="number"
                 defaultValue={bookDetails.price}
                 {...register("bookPrice", { required: true })}
                 className="border border-black"
               />
-              {errors.bookPrice && <span>এই ঘরটি অবশ্যই পুরন করতে হবে</span>}
+              {errors.bookPrice && (
+                <span className="text-red text-sm">
+                  এই ঘরটি অবশ্যই পুরন করতে হবে
+                </span>
+              )}
             </div>
 
             {/* Book Price */}
             <div className="my-5 flex flex-col">
-              <label htmlFor="">বইয়ের সংখ্যা</label>
+              <label>বইয়ের সংখ্যা</label>
               <input
+                type="number"
                 defaultValue={bookDetails.stock}
                 {...register("bookQuantity", { required: true })}
                 className="border border-black"
               />
-              {errors.bookQuantity && <span>এই ঘরটি অবশ্যই পুরন করতে হবে</span>}
+              {errors.bookQuantity && (
+                <span className="text-red text-sm">
+                  এই ঘরটি অবশ্যই পুরন করতে হবে
+                </span>
+              )}
             </div>
             {/* Book Status */}
             <div className="my-5 flex flex-col">
-              <label htmlFor="">Book Status</label>
+              <label>Book Status</label>
               <select
                 {...register("bookStatus")}
                 defaultValue={bookDetails.status}

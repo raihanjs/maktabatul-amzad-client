@@ -46,6 +46,7 @@ import EditCategory from "../Pages/AdminPages/Edit/EditCategory/EditCategory";
 import SubCategoryList from "../Pages/AdminPages/Lists/SubCategoryList/SubCategoryList";
 import AddSubCategory from "../Pages/AdminPages/Add/AddSubCategory/AddSubCategory";
 import EditSubCategory from "../Pages/AdminPages/Edit/EditSubCategory/EditSubCategory";
+import OrderList from "../Pages/AdminPages/Lists/OrderList/OrderList";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -254,6 +255,10 @@ export const router = createBrowserRouter([
         element: <EditSubCategory />,
         loader: ({ params }) =>
           fetch(`${link}/subcategories/${params.subcategoryid}`),
+      },
+      {
+        path: "orderlist",
+        element: <OrderList />,
       },
     ],
   },

@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAxiosPublic } from "./useAxiosPublic";
-import { useContext } from "react";
-import { AuthContext } from "../Providers/AuthProviders";
 
-export default function useOrders() {
+export default function useOrders(email) {
+  const query = email ? `/orders?email=${email}` : "orders";
   const axiosPublic = useAxiosPublic();
-  const { user } = useContext(AuthContext);
   const {
     data: orders = [],
     isLoading,
@@ -13,7 +11,7 @@ export default function useOrders() {
   } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      axiosPublic.get(`/orders?email=${user?.email}`).then((res) => {
+      axiosPublic.get(query).then((res) => {
         return res.data;
       }),
   });

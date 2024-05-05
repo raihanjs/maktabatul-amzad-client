@@ -26,6 +26,7 @@ export default function AdminLayout() {
     "addcategory",
     "subcategorylist",
     "addsubcategory",
+    "orderlist",
   ];
 
   return (

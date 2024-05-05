@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import useOrders from "../../../hooks/useOrders";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 export default function userOrders() {
+  const { user } = useContext(AuthContext);
   const { language } = useContext(ThemeContext);
-  const [orders, isLoading] = useOrders();
+  const [orders, isLoading] = useOrders(user?.email);
 
   return (
     <div>

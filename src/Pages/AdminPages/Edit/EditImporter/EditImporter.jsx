@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
-export default function EditPublisher() {
+export default function EditImporter() {
   const navigate = useNavigate();
-  const publisher = useLoaderData();
-  const { _id, publisherId, name } = publisher;
+  const importedCountry = useLoaderData();
+  const { _id, name } = importedCountry;
 
   const axiosPublic = useAxiosPublic();
   const {
@@ -17,63 +17,66 @@ export default function EditPublisher() {
   } = useForm();
 
   const onSubmit = (data) => {
-    const { bnPublisher, enPublisher, arPublisher } = data;
-    const editedPublisher = {
-      name: [bnPublisher, enPublisher, arPublisher],
+    const { bnImportedCountry, enImportedCountry, arImportedCountry } = data;
+    const editedImportedCountry = {
+      name: [bnImportedCountry, enImportedCountry, arImportedCountry],
     };
 
-    axiosPublic.patch(`/editpublisher/${_id}`, editedPublisher).then((res) => {
-      if (res.data.modifiedCount === 1) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Publisher Updated",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/admin/publisherlist");
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-      }
-    });
+    console.log(editedImportedCountry);
+
+    axiosPublic
+      .patch(`/editimportedcountry/${_id}`, editedImportedCountry)
+      .then((res) => {
+        if (res.data.modifiedCount === 1) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Importer Updated",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/admin/importerlist");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
+      });
   };
   return (
     <div>
       <div className="text-center p-5 border border-black-b-2">
-        <h3 className="text-2xl font-bold">Edit Publisher</h3>
+        <h3 className="text-2xl font-bold">Edit Importer</h3>
       </div>
-
       <div className="m-2">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-5">
-            <label>পাবলিশারের নাম বাংলায়</label>
+            <label>ইমপোর্টার দেশ এর নাম বাংলায়</label>
             <input
               className="border w-full border-primary p-2"
               defaultValue={name[0]}
-              {...register("bnPublisher")}
+              {...register("bnImportedCountry")}
             />
           </div>
           <div className="mb-5">
-            <label>পাবলিশারের নাম ইংরেজীতে</label>
+            <label>ইমপোর্টার দেশ এর নাম ইংরেজীতে</label>
             <input
               className="border w-full border-primary p-2"
               defaultValue={name[1]}
-              {...register("enPublisher")}
+              {...register("enImportedCountry")}
             />
           </div>
           <div className="mb-5">
-            <label>পাবলিশারের নাম আরবীতে</label>
+            <label>ইমপোর্টার দেশ এর নাম আরবীতে</label>
             <input
               className="border w-full border-primary p-2"
               defaultValue={name[2]}
-              {...register("arPublisher", { required: true })}
+              {...register("arImportedCountry", { required: true })}
             />
-            {errors.arPublisher && (
-              <span className="text-red text-sm">
+            {errors.arImportedCountry && (
+              <span className="text-sm text-red">
                 এই ঘরটি অবশ্যই পুরন করতে হবে
               </span>
             )}

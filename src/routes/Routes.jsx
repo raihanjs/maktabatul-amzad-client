@@ -37,6 +37,9 @@ import EditTranslator from "../Pages/AdminPages/Edit/EditTranslator/EditTranslat
 import PublisherList from "../Pages/AdminPages/Lists/PublisherList/PublisherList";
 import EditPublisher from "../Pages/AdminPages/Edit/EditPublisher/EditPublisher";
 import AddPublisher from "../Pages/AdminPages/Add/AddPublisher/AddPublisher";
+import ImporterList from "../Pages/AdminPages/Lists/ImporterList/ImporterList";
+import EditImporter from "../Pages/AdminPages/Edit/EditImporter/EditImporter";
+import AddImporter from "../Pages/AdminPages/Add/AddImporter/AddImporter";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -204,6 +207,19 @@ export const router = createBrowserRouter([
         element: <EditPublisher />,
         loader: ({ params }) =>
           fetch(`${link}/publishers/${params.publisherid}`),
+      },
+      {
+        path: "importerlist",
+        element: <ImporterList />,
+      },
+      {
+        path: "addimporter",
+        element: <AddImporter />,
+      },
+      {
+        path: "editimporter/:id",
+        element: <EditImporter />,
+        loader: ({ params }) => fetch(`${link}/importedcountry/${params.id}`),
       },
     ],
   },

@@ -9,7 +9,7 @@ import { useAxiosLocal } from "../../../hooks/useAxiosLocal";
 
 export default function AllBooks() {
   const axiosPublic = useAxiosPublic();
-  const axisLocal = useAxiosLocal();
+  // const axisLocal = useAxiosLocal();
 
   const location = useLocation();
   const searchQuery = location?.state?.search || false;
@@ -35,7 +35,7 @@ export default function AllBooks() {
     (async function () {
       try {
         setLoading(true);
-        const response = await axisLocal.get(query);
+        const response = await axiosPublic.get(query);
         setBooks(response.data);
       } catch (err) {
         setError(err);

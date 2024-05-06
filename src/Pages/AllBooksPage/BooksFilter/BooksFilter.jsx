@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function BooksFilter({ itemsPerpage, setItemsPerpage }) {
+export default function BooksFilter({
+  sort,
+  setSort,
+  itemsPerpage,
+  setItemsPerpage,
+}) {
   const handleItemsPerpage = (e) => {
     const selected = parseInt(e.target.value);
     setItemsPerpage(selected);
@@ -20,10 +25,13 @@ export default function BooksFilter({ itemsPerpage, setItemsPerpage }) {
           <option value="100">100</option>
         </select>
 
-        <select name="" id="" className="border px-3">
-          <option value="">Default</option>
-          <option value="">Low to High</option>
-          <option value="">High to Low</option>
+        <select
+          value={sort}
+          className="border px-3"
+          onChange={(event) => setSort(event.target.value)}
+        >
+          <option value="1">Low to High</option>
+          <option value="-1">High to Low</option>
         </select>
       </div>
     </div>

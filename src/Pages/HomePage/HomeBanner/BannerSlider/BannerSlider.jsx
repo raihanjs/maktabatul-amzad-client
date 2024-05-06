@@ -29,7 +29,7 @@ export default function BannerSlider() {
               </p>
               <Link
                 className="text-primary text-base lg:text-lg hover:underline"
-                to="https://maktabatul-amzad-server.onrender.com/book/8"
+                to=""
               >
                 View more
               </Link>

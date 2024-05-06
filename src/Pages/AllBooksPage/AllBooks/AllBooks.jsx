@@ -5,24 +5,37 @@ import PageTitle from "../../../Components/PageTitle/PageTitle";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAxiosPublic } from "../../../hooks/useAxiosPublic";
+import { useAxiosLocal } from "../../../hooks/useAxiosLocal";
 
 export default function AllBooks() {
   const axiosPublic = useAxiosPublic();
+  const axisLocal = useAxiosLocal();
 
   const location = useLocation();
   const searchQuery = location?.state?.search || false;
 
+  const [allBooks] = useBooks();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const query = searchQuery ? `/books?title=${searchQuery}` : "/books";
+  const [itemsPerpage, setItemsPerpage] = useState(10);
+  const [numberofPages, setNumberofPages] = useState(null);
+  useEffect(() => {
+    setNumberofPages(Math.ceil(allBooks.length / itemsPerpage));
+  }, [books, itemsPerpage]);
+  const pages = [...Array(numberofPages).keys()];
 
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const query = searchQuery
+    ? `/books?title=${searchQuery}`
+    : `/books?page=${currentPage}&size=${itemsPerpage}`;
   useEffect(() => {
     (async function () {
       try {
         setLoading(true);
-        const response = await axiosPublic.get(query);
+        const response = await axisLocal.get(query);
         setBooks(response.data);
       } catch (err) {
         setError(err);
@@ -30,14 +43,17 @@ export default function AllBooks() {
         setLoading(false);
       }
     })();
-  }, [searchQuery]);
+  }, [searchQuery, itemsPerpage, currentPage]);
 
   return (
     <section className="container">
       <PageTitle title={["সকল বই", "All Books", "جميع الكتب"]} />
 
       {/* Filter area */}
-      <BooksFilter />
+      <BooksFilter
+        itemsPerpage={itemsPerpage}
+        setItemsPerpage={setItemsPerpage}
+      />
       {/* Books Container */}
       <div className="flex flex-wrap justify-center">
         {loading ? (
@@ -56,23 +72,21 @@ export default function AllBooks() {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center items-center my-10">
-        <button className="py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white">
-          Prev
-        </button>
-        <button className="py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white">
-          1
-        </button>
-        <button className="py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white">
-          2
-        </button>
-        <button className="py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white">
-          3
-        </button>
-        <button className="py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white">
-          Next
-        </button>
-      </div>
+      {pages.length > 1 && (
+        <div className="flex justify-center items-center my-10">
+          {pages.map((page) => (
+            <button
+              onClick={() => setCurrentPage(page)}
+              className={`py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white ${
+                currentPage === page && "pagination-active"
+              }`}
+              key={page}
+            >
+              {page + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

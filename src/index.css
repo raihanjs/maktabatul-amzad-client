@@ -13,3 +13,9 @@ table tr:nth-child(even) {
 .active a {
   color: white;
 }
+
+.pagination-active {
+  background-color: #108d41;
+  border: 1px solid #108d41;
+  color: #fff;
+}

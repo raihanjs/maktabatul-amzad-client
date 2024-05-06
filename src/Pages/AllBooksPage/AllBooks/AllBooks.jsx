@@ -1,4 +1,3 @@
-import useBooks from "../../../hooks/useBooks";
 import BooksFilter from "../BooksFilter/BooksFilter";
 import BookCard from "../../Shared/BookCard/BookCard";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
@@ -6,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAxiosPublic } from "../../../hooks/useAxiosPublic";
 import { useAxiosLocal } from "../../../hooks/useAxiosLocal";
+import useBooksLength from "../../../hooks/useBooksLength";
 
 export default function AllBooks() {
   const axiosPublic = useAxiosPublic();
@@ -14,7 +14,7 @@ export default function AllBooks() {
   const location = useLocation();
   const searchQuery = location?.state?.search || false;
 
-  const [allBooks] = useBooks();
+  const [totalBooks] = useBooksLength();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,7 +22,7 @@ export default function AllBooks() {
   const [itemsPerpage, setItemsPerpage] = useState(10);
   const [numberofPages, setNumberofPages] = useState(null);
   useEffect(() => {
-    setNumberofPages(Math.ceil(allBooks.length / itemsPerpage));
+    setNumberofPages(Math.ceil(totalBooks / itemsPerpage));
   }, [books, itemsPerpage]);
   const pages = [...Array(numberofPages).keys()];
 

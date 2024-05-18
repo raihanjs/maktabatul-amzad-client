@@ -27,12 +27,6 @@ export default function BannerSlider() {
                 The Author Book Interpretation of the great qur'an tafsir ibn
                 kathir i ibn hazm and the author of 3 another books
               </p>
-              <Link
-                className="text-primary text-base lg:text-lg hover:underline"
-                to=""
-              >
-                View more
-              </Link>
             </div>
             <div className="w-4/12">
               <div>
@@ -56,12 +50,6 @@ export default function BannerSlider() {
                 The Author Book Interpretation of the great qur'an tafsir ibn
                 kathir i ibn hazm and the author of 3 another books
               </p>
-              <Link
-                className="text-primary text-base lg:text-lg hover:underline"
-                to="https://maktabatul-amzad-server.onrender.com/book/8"
-              >
-                View more
-              </Link>
             </div>
             <div className="w-4/12">
               <div>

@@ -57,7 +57,7 @@ export default function AllBooks() {
       <BooksFilter
         sort={sort}
         setSort={setSort}
-        itemsPerpage={itemsPerpage}
+        // itemsPerpage={itemsPerpage}
         setItemsPerpage={setItemsPerpage}
       />
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HeaderMenu from "./HeaderMenu";
 import HeaderSearch from "./HeaderSearch";
 
@@ -7,13 +8,13 @@ const Header = () => {
       <div className="container">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div>
+          <Link to="">
             <img
               src="https://i.ibb.co/0sPhz6P/logo.png"
               className="h-8 lg:h-10"
               alt=""
             />
-          </div>
+          </Link>
           {/* Menubar */}
           <HeaderMenu />
           <HeaderSearch />

@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import { LiaTimesSolid } from "react-icons/lia";
 
 import { ThemeContext } from "../../../../Providers/ThemeProvider";
 
@@ -13,9 +14,7 @@ import useCategories from "../../../../hooks/useCategories";
 import useTranslators from "../../../../hooks/useTranslators";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import useImportedCountries from "../../../../hooks/useImportedCountries";
-
-// Component
-import MultipleOption from "../../../../Components/MultipleOption/MultipleOption";
+import SelectMultiple from "../../../../Components/SelectMultiple/SelectMultiple";
 
 export default function AddBook() {
   const navigate = useNavigate();
@@ -66,6 +65,19 @@ export default function AddBook() {
   }, [selectedOption]);
 
   const onSubmit = (data) => {
+    const writersArr = [];
+    selectedWriters.forEach((selectedWr) =>
+      writersArr.push(selectedWr.writerId)
+    );
+    const editorsArr = [];
+    selectedEditors.forEach((selectedEr) =>
+      editorsArr.push(selectedEr.editorId)
+    );
+    const translatorsArr = [];
+    selectedTranslators.forEach((selectedTr) =>
+      translatorsArr.push(selectedTr.translatorId)
+    );
+
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
@@ -85,9 +97,9 @@ export default function AddBook() {
             title: [data.bookBangla, data.bookEnglish, data.bookArabic],
             category: data.category,
             subCategory: data.subCategory,
-            writer: selectedWriters,
-            translator: selectedTranslators,
-            editor: selectedEditors,
+            writer: writersArr,
+            translator: translatorsArr,
+            editor: editorsArr,
             publisher: data.publisher,
             importedCountry: data.country,
             price: parseInt(data.bookPrice),
@@ -206,35 +218,37 @@ export default function AddBook() {
         </div>
 
         {/* Writer and Translator and Editor */}
-        <div className="flex justify-between space-x-4">
-          {/* Writer selection */}
-          <div className="w-4/12">
-            <p>Select Writers</p>
-            <MultipleOption
-              itemId="writerId"
+        <div className="grid grid-cols-3 gap-2">
+          {/* Writers selection */}
+          <div>
+            <label>লেখক সিলেক্ট করুন</label>
+            <SelectMultiple
               items={writers}
+              itemId="writerId"
               selected={selectedWriters}
               setSelected={setSelectedWriters}
             />
           </div>
-          {/* Translator selection */}
-          <div className="w-4/12">
-            <p>Select Translators</p>
-            <MultipleOption
-              itemId="translatorId"
-              items={translators}
-              selected={selectedTranslators}
-              setSelected={setSelectedTranslators}
-            />
-          </div>
-          {/* Editor selection */}
-          <div className="w-3/12">
-            <p>Select Editors</p>
-            <MultipleOption
-              itemId="editorId"
+          {/* Editors selection */}
+          <div>
+            <label>ইডিটর সিলেক্ট করুন</label>
+
+            <SelectMultiple
               items={editors}
+              itemId="editorId"
               selected={selectedEditors}
               setSelected={setSelectedEditors}
+            />
+          </div>
+          {/* Translators selection */}
+          <div>
+            <label>ট্রান্সলেটর সিলেক্ট করুন</label>
+
+            <SelectMultiple
+              items={translators}
+              itemId="translatorId"
+              selected={selectedTranslators}
+              setSelected={setSelectedTranslators}
             />
           </div>
         </div>

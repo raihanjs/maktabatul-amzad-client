@@ -3,7 +3,7 @@ import React from "react";
 export default function BooksFilter({
   sort,
   setSort,
-  itemsPerpage,
+  // itemsPerpage,
   setItemsPerpage,
 }) {
   const handleItemsPerpage = (e) => {
@@ -13,7 +13,7 @@ export default function BooksFilter({
   return (
     <div className="flex justify-end py-5">
       <div className="flex space-x-5">
-        <select
+        {/* <select
           value={itemsPerpage}
           className="border px-3"
           onChange={handleItemsPerpage}
@@ -23,7 +23,7 @@ export default function BooksFilter({
           <option value="40">40</option>
           <option value="80">80</option>
           <option value="100">100</option>
-        </select>
+        </select> */}
 
         <select
           value={sort}

@@ -13,6 +13,7 @@ import useTranslators from "../../../../hooks/useTranslators";
 import useImportedCountries from "../../../../hooks/useImportedCountries";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import MultipleOption from "../../../../Components/MultipleOption/MultipleOption";
+import SelectMultiple from "../../../../Components/SelectMultiple/SelectMultiple";
 
 export default function EditBook() {
   const navigate = useNavigate();
@@ -34,15 +35,46 @@ export default function EditBook() {
   const [translators] = useTranslators();
   const [importedCountries] = useImportedCountries();
 
-  const [selectedWriters, setSelectedWriters] = useState(
-    bookDetails.writer || []
-  );
-  const [selectedEditors, setSelectedEditors] = useState(
-    bookDetails.editor || []
-  );
-  const [selectedTranslators, setSelectedTranslators] = useState(
-    bookDetails.translator || []
-  );
+  const [selectedWriters, setSelectedWriters] = useState([]);
+  const [selectedEditors, setSelectedEditors] = useState([]);
+  const [selectedTranslators, setSelectedTranslators] = useState([]);
+
+  for (let singleWriter of bookDetails.writer) {
+    const matched = writers.find((writer) => writer.writerId === singleWriter);
+    if (matched) {
+      const exist = selectedWriters.find(
+        (selectedWriter) => selectedWriter.writerId === matched.writerId
+      );
+      if (!exist) {
+        setSelectedWriters([...selectedWriters, matched]);
+      }
+    }
+  }
+  for (let singleEditor of bookDetails.editor) {
+    const matched = editors.find((editor) => editor.editorId === singleEditor);
+    if (matched) {
+      const exist = selectedEditors.find(
+        (selectedEditor) => selectedEditor.editorId === matched.editorId
+      );
+      if (!exist) {
+        setSelectedEditors([...selectedEditors, matched]);
+      }
+    }
+  }
+  for (let singleTranslator of bookDetails.translator) {
+    const matched = translators.find(
+      (translator) => translator.translatorId === singleTranslator
+    );
+    if (matched) {
+      const exist = selectedTranslators.find(
+        (selectedTranslator) =>
+          selectedTranslator.translatorId === matched.translatorId
+      );
+      if (!exist) {
+        setSelectedTranslators([...selectedTranslators, matched]);
+      }
+    }
+  }
   const [selectedOption, setSelectedOption] = useState(bookDetails.category);
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -67,6 +99,18 @@ export default function EditBook() {
   }, [selectedOption]);
 
   const onSubmit = (data) => {
+    const writersArr = [];
+    selectedWriters.forEach((selectedWr) =>
+      writersArr.push(selectedWr.writerId)
+    );
+    const editorsArr = [];
+    selectedEditors.forEach((selectedEr) =>
+      editorsArr.push(selectedEr.editorId)
+    );
+    const translatorsArr = [];
+    selectedTranslators.forEach((selectedTr) =>
+      translatorsArr.push(selectedTr.translatorId)
+    );
     const category =
       data.category.length > 0 ? data.category : bookDetails.category;
     const subCategory =
@@ -80,9 +124,9 @@ export default function EditBook() {
       title: [data.bookBangla, data.bookEnglish, data.bookArabic],
       category: category,
       subCategory: subCategory,
-      writer: selectedWriters,
-      translator: selectedTranslators,
-      editor: selectedEditors,
+      writer: writersArr,
+      translator: translatorsArr,
+      editor: editorsArr,
       publisher: publisher,
       importedCountry: importedCountry,
       price: parseInt(data.bookPrice),
@@ -110,7 +154,6 @@ export default function EditBook() {
             const imageUrl = imgRes.data.display_url;
             updateBook.thumb = imageUrl;
             // Edit Book
-            console.log(updateBook);
             axiosPublic
               .patch(`/editbook/${bookDetails._id}`, updateBook)
               .then((res) => {
@@ -231,35 +274,37 @@ export default function EditBook() {
             </div>
           </div>
           {/* Writer and Translator and Editor */}
-          <div className="flex justify-between">
-            {/* Writer selection */}
-            <div className="w-4/12">
-              <p>Select Writers</p>
-              <MultipleOption
-                itemId="writerId"
+          <div className="grid grid-cols-3 gap-2">
+            {/* Writers selection */}
+            <div>
+              <label>লেখক সিলেক্ট করুন</label>
+              <SelectMultiple
                 items={writers}
+                itemId="writerId"
                 selected={selectedWriters}
                 setSelected={setSelectedWriters}
               />
             </div>
-            {/* Translator selection */}
-            <div className="w-4/12">
-              <p>Select Translators</p>
-              <MultipleOption
-                itemId="translatorId"
-                items={translators}
-                selected={selectedTranslators}
-                setSelected={setSelectedTranslators}
-              />
-            </div>
-            {/* Editor selection */}
-            <div className="w-3/12">
-              <p>Select Editors</p>
-              <MultipleOption
-                itemId="editorId"
+            {/* Editors selection */}
+            <div>
+              <label>ইডিটর সিলেক্ট করুন</label>
+
+              <SelectMultiple
                 items={editors}
+                itemId="editorId"
                 selected={selectedEditors}
                 setSelected={setSelectedEditors}
+              />
+            </div>
+            {/* Translators selection */}
+            <div>
+              <label>ট্রান্সলেটর সিলেক্ট করুন</label>
+
+              <SelectMultiple
+                items={translators}
+                itemId="translatorId"
+                selected={selectedTranslators}
+                setSelected={setSelectedTranslators}
               />
             </div>
           </div>

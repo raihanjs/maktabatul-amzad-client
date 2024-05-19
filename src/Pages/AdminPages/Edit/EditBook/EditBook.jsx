@@ -99,18 +99,22 @@ export default function EditBook() {
       });
   }, [selectedOption]);
 
-  const [showCategory, setShowCategory] = useState(true);
-  const [showSubCategory, setShowSubCategory] = useState(true);
-  const [showWriters, setShowWriters] = useState(true);
-  const [showEditors, setShowEditors] = useState(true);
-  const [showTranslators, setShowTranslators] = useState(true);
-  const [showImport, setShowImport] = useState(true);
-  const [showPublisher, setShowPublisher] = useState(true);
-  const [showPages, setShowPages] = useState(true);
-  const [showPrice, setShowPrice] = useState(true);
-  const [showPieces, setShowPieces] = useState(true);
-  const [showStatus, setShowStatus] = useState(true);
-  const [showSummary, setShowSummary] = useState(true);
+  const [showCategory, setShowCategory] = useState(bookDetails.showCategory);
+  const [showSubCategory, setShowSubCategory] = useState(
+    bookDetails.showSubCategory
+  );
+  const [showWriters, setShowWriters] = useState(bookDetails.showWriters);
+  const [showEditors, setShowEditors] = useState(bookDetails.showEditors);
+  const [showTranslators, setShowTranslators] = useState(
+    bookDetails.showTranslators
+  );
+  const [showImport, setShowImport] = useState(bookDetails.showImport);
+  const [showPublisher, setShowPublisher] = useState(bookDetails.showPublisher);
+  const [showPages, setShowPages] = useState(bookDetails.showPages);
+  const [showPrice, setShowPrice] = useState(bookDetails.showPrice);
+  const [showPieces, setShowPieces] = useState(bookDetails.showPieces);
+  const [showStatus, setShowStatus] = useState(bookDetails.showStatus);
+  const [showSummary, setShowSummary] = useState(bookDetails.showSummary);
 
   const onSubmit = (data) => {
     const writersArr = [];
@@ -514,13 +518,13 @@ export default function EditBook() {
               name="Publisher"
             />
             <ToggleBtn show={showPages} setShow={setShowPages} name="Pages" />
-            <ToggleBtn
-              show={showPieces}
-              setShow={setShowPieces}
-              name="Pieces"
-            />
+            <ToggleBtn show={showPieces} setShow={setShowPieces} name="Stock" />
             <ToggleBtn show={showPrice} setShow={setShowPrice} name="Price" />
-            <ToggleBtn show={showStatus} setShow={setShowStatus} name="Price" />
+            <ToggleBtn
+              show={showStatus}
+              setShow={setShowStatus}
+              name="Status"
+            />
             <ToggleBtn
               show={showSummary}
               setShow={setShowSummary}

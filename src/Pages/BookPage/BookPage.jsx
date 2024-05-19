@@ -12,6 +12,8 @@ export default function BookPage() {
   const navigate = useNavigate();
   const bookDetails = useLoaderData();
 
+  console.log(bookDetails);
+
   const { language } = useContext(ThemeContext);
   const { handleAddtoCart } = useContext(CartContext);
 
@@ -30,6 +32,18 @@ export default function BookPage() {
     publisherDetails,
     categoryDetails,
     subCategoryDetails,
+    showCategory,
+    showSubCategory,
+    showWriters,
+    showEditors,
+    showTranslators,
+    showImport,
+    showPublisher,
+    showPages,
+    showPrice,
+    showPieces,
+    showStatus,
+    showSummary,
   } = bookDetails;
   return (
     <section className="container">
@@ -55,169 +69,195 @@ export default function BookPage() {
 
                 <div>
                   {/* Writers */}
-                  <div className="flex">
-                    <div className="w-20">
-                      {language == 0
-                        ? "লেখকঃ"
-                        : language == 2
-                        ? "كاتب : "
-                        : "Writer:"}
-                    </div>
-                    <div className="ml-5">
-                      {writerDetails.map((wr) => (
-                        <button
-                          onClick={() => navigate(`/writers/${wr.writerId}`)}
-                          key={wr.writerId}
-                          className="hover:text-red"
-                        >
-                          {wr.name[language]} ,
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Translators */}
-                  {translatorDetails.length > 0 && (
+                  {showWriters && (
                     <div className="flex">
                       <div className="w-20">
                         {language == 0
-                          ? "অনুবাদকঃ"
+                          ? "লেখকঃ"
                           : language == 2
-                          ? "مترجم: "
-                          : "Translator:"}
+                          ? "كاتب : "
+                          : "Writer:"}
                       </div>
                       <div className="ml-5">
-                        {translatorDetails.map((tr) => (
-                          <span key={tr.translatorId}>
-                            {tr.name[language]} ,
-                          </span>
+                        {writerDetails.map((wr) => (
+                          <button
+                            onClick={() => navigate(`/writers/${wr.writerId}`)}
+                            key={wr.writerId}
+                            className="hover:text-red"
+                          >
+                            {wr.name[language]} ,
+                          </button>
                         ))}
                       </div>
                     </div>
+                  )}
+                  {/* Translators */}
+                  {showTranslators && (
+                    <>
+                      {translatorDetails.length > 0 && (
+                        <div className="flex">
+                          <div className="w-20">
+                            {language == 0
+                              ? "অনুবাদকঃ"
+                              : language == 2
+                              ? "مترجم: "
+                              : "Translator:"}
+                          </div>
+                          <div className="ml-5">
+                            {translatorDetails.map((tr) => (
+                              <span key={tr.translatorId}>
+                                {tr.name[language]} ,
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
                   )}
                   {/* Editors */}
-                  {editorDetails.length > 0 && (
-                    <div className="flex">
-                      <div className="w-20">
-                        {language == 0
-                          ? "সম্পাদকঃ"
-                          : language == 2
-                          ? "محرر: "
-                          : "Editor:"}
-                      </div>
-                      <div className="ml-5">
-                        {editorDetails.map((ed) => (
-                          <span key={ed.editorId}>{ed.name[language]} ,</span>
-                        ))}
-                      </div>
-                    </div>
+                  {showEditors && (
+                    <>
+                      {editorDetails.length > 0 && (
+                        <div className="flex">
+                          <div className="w-20">
+                            {language == 0
+                              ? "সম্পাদকঃ"
+                              : language == 2
+                              ? "محرر: "
+                              : "Editor:"}
+                          </div>
+                          <div className="ml-5">
+                            {editorDetails.map((ed) => (
+                              <span key={ed.editorId}>
+                                {ed.name[language]} ,
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
                   )}
                   {/* Publishers */}
-                  <div className="flex">
-                    <div className="w-20">
-                      {language == 0
-                        ? "প্রকাশকঃ"
-                        : language == 2
-                        ? "الناشر : "
-                        : "Publisher:"}
-                    </div>
-                    <div className="ml-5">
-                      {publisherDetails[0]?.name[language]}
-                    </div>
-                  </div>
-                  {/* Categories */}
-                  <div className="flex">
-                    <div className="w-20">
-                      {language == 0
-                        ? "বিষয়ঃ"
-                        : language == 2
-                        ? "الصنف : "
-                        : "Category:"}
-                    </div>
-                    <div className="ml-5">
-                      <Link
-                        to={`/categories/${category}`}
-                        className="font-medium hover:text-red"
-                      >
-                        {categoryDetails[0]?.name[language]}
-                      </Link>
-                    </div>
-                  </div>
-                  {/* SubCategories */}
-                  <div className="flex">
-                    <div className="w-20">
-                      {language == 0
-                        ? "উপ বিষয়ঃ"
-                        : language == 2
-                        ? "تصنيف فرعي : "
-                        : "Sub Category:"}
-                    </div>
-                    <div className="ml-5">
-                      <Link to="" className="font-medium hover:text-red">
-                        {subCategoryDetails[0]?.name[language]}
-                      </Link>
-                    </div>
-                  </div>
-                  {/* Price */}
-                  <div className="flex">
-                    <div className="w-20">
-                      {language == 0
-                        ? "দামঃ "
-                        : language == 2
-                        ? "مخزون : "
-                        : "Price :"}
-                    </div>
-                    <div className="ml-5">{price}</div>
-                  </div>
-                  {/* Stock */}
-                  {status === "published" && (
+                  {showPublisher && (
                     <div className="flex">
                       <div className="w-20">
                         {language == 0
-                          ? "স্টকঃ "
+                          ? "প্রকাশকঃ"
                           : language == 2
-                          ? "مخزون : "
-                          : "Stock :"}
+                          ? "الناشر : "
+                          : "Publisher:"}
                       </div>
-                      <div className="ml-5">{stock}</div>
+                      <div className="ml-5">
+                        {publisherDetails[0]?.name[language]}
+                      </div>
                     </div>
                   )}
-                  {/* If ststus upcoming then remove Add to cart btn */}
-                  <div>
-                    {status === "upcoming" ? (
-                      <>
-                        <button className="py-2 px-12 bg-slate-700 text-white text-lg mt-3">
-                          {language == 0
-                            ? "আপকামিং"
-                            : language == 2
-                            ? "القادمة"
-                            : "Upcoming"}
-                        </button>
-                      </>
-                    ) : stock == 0 ? (
-                      <>
-                        <button className="py-2 px-12 bg-slate-700 text-white text-lg mt-3">
-                          {language == 0
-                            ? "ষ্টক আউট"
-                            : language == 2
-                            ? "المخزن نفذ"
-                            : "Stock Out"}
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => handleAddtoCart(bookDetails)}
-                          className="bg-primary text-white py-2 px-12 border border-primary text-lg font-semibold hover:border-black hover:bg-transparent hover:text-black flex items-center justify-center mt-3"
+                  {/* Categories */}
+                  {showCategory && (
+                    <div className="flex">
+                      <div className="w-20">
+                        {language == 0
+                          ? "বিষয়ঃ"
+                          : language == 2
+                          ? "الصنف : "
+                          : "Category:"}
+                      </div>
+                      <div className="ml-5">
+                        <Link
+                          to={`/categories/${category}`}
+                          className="font-medium hover:text-red"
                         >
-                          {language == 0
-                            ? "কার্টে যোগ করুন"
-                            : language == 2
-                            ? "أضف إلى السلة"
-                            : "Add to cart"}
-                        </button>
-                      </>
-                    )}
-                  </div>
+                          {categoryDetails[0]?.name[language]}
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  {/* SubCategories */}
+                  {showSubCategory && (
+                    <div className="flex">
+                      <div className="w-20">
+                        {language == 0
+                          ? "উপ বিষয়ঃ"
+                          : language == 2
+                          ? "تصنيف فرعي : "
+                          : "Sub Category:"}
+                      </div>
+                      <div className="ml-5">
+                        <Link to="" className="font-medium hover:text-red">
+                          {subCategoryDetails[0]?.name[language]}
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  {/* Price */}
+                  {showPrice && (
+                    <div className="flex">
+                      <div className="w-20">
+                        {language == 0
+                          ? "দামঃ "
+                          : language == 2
+                          ? "مخزون : "
+                          : "Price :"}
+                      </div>
+                      <div className="ml-5">{price}</div>
+                    </div>
+                  )}
+                  {/* Stock */}
+                  {showPieces && (
+                    <>
+                      {status === "published" && (
+                        <div className="flex">
+                          <div className="w-20">
+                            {language == 0
+                              ? "স্টকঃ "
+                              : language == 2
+                              ? "مخزون : "
+                              : "Stock :"}
+                          </div>
+                          <div className="ml-5">{stock}</div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {/* If ststus upcoming then remove Add to cart btn */}
+                  {showStatus && (
+                    <div>
+                      {status === "upcoming" ? (
+                        <>
+                          <button className="py-2 px-12 bg-slate-700 text-white text-lg mt-3">
+                            {language == 0
+                              ? "আপকামিং"
+                              : language == 2
+                              ? "القادمة"
+                              : "Upcoming"}
+                          </button>
+                        </>
+                      ) : stock == 0 ? (
+                        <>
+                          <button className="py-2 px-12 bg-slate-700 text-white text-lg mt-3">
+                            {language == 0
+                              ? "ষ্টক আউট"
+                              : language == 2
+                              ? "المخزن نفذ"
+                              : "Stock Out"}
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleAddtoCart(bookDetails)}
+                            className="bg-primary text-white py-2 px-12 border border-primary text-lg font-semibold hover:border-black hover:bg-transparent hover:text-black flex items-center justify-center mt-3"
+                          >
+                            {language == 0
+                              ? "কার্টে যোগ করুন"
+                              : language == 2
+                              ? "أضف إلى السلة"
+                              : "Add to cart"}
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* stock  <>

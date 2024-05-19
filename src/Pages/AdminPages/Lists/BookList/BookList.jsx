@@ -147,7 +147,7 @@ export default function BookList() {
                           <p>Price: {book.price}</p>
                           <p>Pages: {book.pages}</p>
                           <p>Stock: {book.stock}</p>
-                          <p>Stock: {book.sold}</p>
+                          <p>Sold: {book.sold}</p>
                         </td>
 
                         <td className="border border-black p-1">

@@ -436,9 +436,9 @@ export default function AddBook() {
             name="Publisher"
           />
           <ToggleBtn show={showPages} setShow={setShowPages} name="Pages" />
-          <ToggleBtn show={showPieces} setShow={setShowPieces} name="Pieces" />
+          <ToggleBtn show={showPieces} setShow={setShowPieces} name="Stock" />
           <ToggleBtn show={showPrice} setShow={setShowPrice} name="Price" />
-          <ToggleBtn show={showStatus} setShow={setShowStatus} name="Price" />
+          <ToggleBtn show={showStatus} setShow={setShowStatus} name="Status" />
           <ToggleBtn
             show={showSummary}
             setShow={setShowSummary}

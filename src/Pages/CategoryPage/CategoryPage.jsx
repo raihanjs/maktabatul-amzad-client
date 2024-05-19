@@ -4,6 +4,7 @@ import useSubCategories from "../../hooks/useSubCategories";
 import SingleSubCategory from "./SingleSubCategory/SingleSubCategory";
 import { useState } from "react";
 import BookCard from "../Shared/BookCard/BookCard";
+import { Helmet } from "react-helmet-async";
 
 export default function CategoryPage() {
   const category = useLoaderData();
@@ -21,6 +22,9 @@ export default function CategoryPage() {
 
   return (
     <section className="container">
+      <Helmet>
+        <title>Maktabatul Amzad - {name[1]}</title>
+      </Helmet>
       <PageTitle title={[name[0], name[1], name[2]]} />
 
       <div className="flex flex-wrap justify-center mt-5">

@@ -7,6 +7,7 @@ import { useAxiosPublic } from "../../../hooks/useAxiosPublic";
 import { useAxiosLocal } from "../../../hooks/useAxiosLocal";
 import useBooksLength from "../../../hooks/useBooksLength";
 import SideNav from "../../../Components/SideNav/SideNav";
+import { Helmet } from "react-helmet-async";
 
 export default function AllBooks() {
   const axiosPublic = useAxiosPublic();
@@ -51,6 +52,9 @@ export default function AllBooks() {
   }, [searchQuery, itemsPerpage, currentPage, sort, gte]);
   return (
     <section className="container">
+      <Helmet>
+        <title>Maktabatul Amzad - Books</title>
+      </Helmet>
       <PageTitle title={["সকল বই", "All Books", "جميع الكتب"]} />
 
       {/* Filter area */}

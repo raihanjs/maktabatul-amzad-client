@@ -48,6 +48,7 @@ import AddSubCategory from "../Pages/AdminPages/Add/AddSubCategory/AddSubCategor
 import EditSubCategory from "../Pages/AdminPages/Edit/EditSubCategory/EditSubCategory";
 import OrderList from "../Pages/AdminPages/Lists/OrderList/OrderList";
 import TestAddBook from "../Pages/AdminPages/TestAddBook";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -55,6 +56,7 @@ export const router = createBrowserRouter([
   {
     path: "",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -100,6 +102,7 @@ export const router = createBrowserRouter([
   {
     path: "auth",
     element: <AuthLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -126,6 +129,7 @@ export const router = createBrowserRouter([
         <UserLayout />
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -144,6 +148,8 @@ export const router = createBrowserRouter([
         <AdminLayout />
       </AdminRoute>
     ),
+    errorElement: <ErrorPage />,
+
     children: [
       {
         path: "",

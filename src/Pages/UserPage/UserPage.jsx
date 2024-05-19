@@ -4,6 +4,7 @@ import useUser from "../../hooks/useUser";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { useAxiosPublic } from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 export default function UserPage() {
   const { user, updateUser } = useContext(AuthContext);
@@ -53,6 +54,9 @@ export default function UserPage() {
 
   return (
     <div>
+      <Helmet>
+        <title>Maktabatul Amzad - {user?.displayName}</title>
+      </Helmet>
       <div className="text-center p-5 border-b-2">
         <h3 className="text-2xl font-bold">My Profile</h3>
         <p>Add information about yourself</p>

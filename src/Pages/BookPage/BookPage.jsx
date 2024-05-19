@@ -6,6 +6,7 @@ import { CartContext } from "../../Providers/CartProviders";
 import RelatedBooks from "../Auth/Shared/RelatedBooks/RelatedBooks";
 import PrimaryBtn from "../../Components/PrimaryBtn/PrimaryBtn";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import { Helmet } from "react-helmet-async";
 
 export default function BookPage() {
   const navigate = useNavigate();
@@ -32,6 +33,9 @@ export default function BookPage() {
   } = bookDetails;
   return (
     <section className="container">
+      <Helmet>
+        <title>Maktabatul Amzad - {title[1]}</title>
+      </Helmet>
       <PageTitle title={[title[0], title[1], title[2]]} />
       <div className="container mx-auto px-0.5 sm:px-3 md:px-0 mb-8 mt-5">
         <div className="grid grid-cols-12 gap-5">

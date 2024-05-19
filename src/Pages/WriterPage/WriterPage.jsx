@@ -6,6 +6,7 @@ import useBooks from "../../hooks/useBooks";
 import BookCard from "../Shared/BookCard/BookCard";
 import { ThemeContext } from "../../Providers/ThemeProvider";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import { Helmet } from "react-helmet-async";
 
 export default function WriterPage() {
   const [books] = useBooks();
@@ -16,6 +17,9 @@ export default function WriterPage() {
 
   return (
     <section className="container">
+      <Helmet>
+        <title>Maktabatul Amzad - {name[1]}</title>
+      </Helmet>
       <PageTitle title={[name[0], name[1], name[2]]} />
       <div className="container mx-auto px-0.5 sm:px-3 md:px-0 mb-8">
         {/* Writer life */}

@@ -6,6 +6,7 @@ import useBooks from "../../../hooks/useBooks";
 import BookCard from "../../Shared/BookCard/BookCard";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   const { language } = useContext(ThemeContext);
@@ -14,7 +15,9 @@ export default function Home() {
     <div>
       <HomeBanner />
       <HomeTabs />
-
+      <Helmet>
+        <title>Maktabatul Amzad - Home</title>
+      </Helmet>
       <div className="container">
         <div className="flex justify-between">
           <SideNav></SideNav>

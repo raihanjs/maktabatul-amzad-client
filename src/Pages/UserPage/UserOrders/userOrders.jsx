@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import useOrders from "../../../hooks/useOrders";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 export default function userOrders() {
   const { user } = useContext(AuthContext);
@@ -10,6 +11,9 @@ export default function userOrders() {
 
   return (
     <div>
+      <Helmet>
+        <title>Maktabatul Amzad - {user?.displayName}</title>
+      </Helmet>
       <div className="text-center p-5 border-b-2">
         <h3 className="text-2xl font-bold">My Orders</h3>
         <p>See All Your Orders</p>

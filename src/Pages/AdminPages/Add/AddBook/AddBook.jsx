@@ -15,6 +15,7 @@ import useTranslators from "../../../../hooks/useTranslators";
 import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import useImportedCountries from "../../../../hooks/useImportedCountries";
 import SelectMultiple from "../../../../Components/SelectMultiple/SelectMultiple";
+import ToggleBtn from "../../../../Components/ToggleBtn/ToggleBtn";
 
 export default function AddBook() {
   const navigate = useNavigate();
@@ -64,6 +65,19 @@ export default function AddBook() {
       });
   }, [selectedOption]);
 
+  const [showCategory, setShowCategory] = useState(true);
+  const [showSubCategory, setShowSubCategory] = useState(true);
+  const [showWriters, setShowWriters] = useState(true);
+  const [showEditors, setShowEditors] = useState(true);
+  const [showTranslators, setShowTranslators] = useState(true);
+  const [showImport, setShowImport] = useState(true);
+  const [showPublisher, setShowPublisher] = useState(true);
+  const [showPages, setShowPages] = useState(true);
+  const [showPrice, setShowPrice] = useState(true);
+  const [showPieces, setShowPieces] = useState(true);
+  const [showStatus, setShowStatus] = useState(true);
+  const [showSummary, setShowSummary] = useState(true);
+
   const onSubmit = (data) => {
     const writersArr = [];
     selectedWriters.forEach((selectedWr) =>
@@ -107,7 +121,19 @@ export default function AddBook() {
             stock: parseInt(data.bookQuantity),
             desc: [data.bnDesc, data.enDesc, data.arDesc],
             status: data.bookStatus,
-            sold: 0,
+            sold: parseInt(data.bookSold),
+            showCategory: showCategory,
+            showSubCategory: showSubCategory,
+            showWriters: showWriters,
+            showEditors: showEditors,
+            showTranslators: showTranslators,
+            showImport: showImport,
+            showPublisher: showPublisher,
+            showPages: showPages,
+            showPrice: showPrice,
+            showPieces: showPieces,
+            showStatus: showStatus,
+            showSummary: showSummary,
           };
           // addbook
           axiosPublic.post("/addbook", newBook).then((res) => {
@@ -328,6 +354,16 @@ export default function AddBook() {
               </span>
             )}
           </div>
+          {/* Book Price */}
+          <div className="w-2/12">
+            <label>মোট বিক্রিত বই</label>
+            <input
+              type="number"
+              defaultValue={0}
+              {...register("bookSold")}
+              className="border border-black w-full p-1"
+            />
+          </div>
           {/* Book Status */}
           <div className="w-3/12">
             <label>Book Status</label>
@@ -364,6 +400,50 @@ export default function AddBook() {
               placeholder="Arabic Summary"
             ></textarea>
           </div>
+        </div>
+
+        {/* Set Show */}
+        <div className="mb-3 flex flex-wrap gap-2">
+          <ToggleBtn
+            show={showCategory}
+            setShow={setShowCategory}
+            name="Category"
+          />
+          <ToggleBtn
+            show={showSubCategory}
+            setShow={setShowSubCategory}
+            name="Sub Category"
+          />
+          <ToggleBtn
+            show={showWriters}
+            setShow={setShowWriters}
+            name="Writers"
+          />
+          <ToggleBtn
+            show={showTranslators}
+            setShow={setShowTranslators}
+            name="Translators"
+          />
+          <ToggleBtn
+            show={showEditors}
+            setShow={setShowEditors}
+            name="Editors"
+          />
+          <ToggleBtn show={showImport} setShow={setShowImport} name="Import" />
+          <ToggleBtn
+            show={showPublisher}
+            setShow={setShowPublisher}
+            name="Publisher"
+          />
+          <ToggleBtn show={showPages} setShow={setShowPages} name="Pages" />
+          <ToggleBtn show={showPieces} setShow={setShowPieces} name="Pieces" />
+          <ToggleBtn show={showPrice} setShow={setShowPrice} name="Price" />
+          <ToggleBtn show={showStatus} setShow={setShowStatus} name="Price" />
+          <ToggleBtn
+            show={showSummary}
+            setShow={setShowSummary}
+            name="Summary"
+          />
         </div>
 
         <input

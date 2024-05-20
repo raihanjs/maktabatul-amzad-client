@@ -15,6 +15,7 @@ import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import MultipleOption from "../../../../Components/MultipleOption/MultipleOption";
 import SelectMultiple from "../../../../Components/SelectMultiple/SelectMultiple";
 import ToggleBtn from "../../../../Components/ToggleBtn/ToggleBtn";
+import PickYear from "../../../../Components/PickYear/PickYear";
 
 export default function EditBook() {
   const navigate = useNavigate();
@@ -108,6 +109,10 @@ export default function EditBook() {
   const [showTranslators, setShowTranslators] = useState(
     bookDetails.showTranslators
   );
+  const [selectedYear, setSelectedYear] = useState(bookDetails.publishedYear);
+  const [binding, setBinding] = useState(bookDetails.binding);
+  const [paperType, setPaperType] = useState(bookDetails.paperType);
+
   const [showImport, setShowImport] = useState(bookDetails.showImport);
   const [showPublisher, setShowPublisher] = useState(bookDetails.showPublisher);
   const [showPages, setShowPages] = useState(bookDetails.showPages);
@@ -115,6 +120,11 @@ export default function EditBook() {
   const [showPieces, setShowPieces] = useState(bookDetails.showPieces);
   const [showStatus, setShowStatus] = useState(bookDetails.showStatus);
   const [showSummary, setShowSummary] = useState(bookDetails.showSummary);
+  const [showPapertype, setShowPapertype] = useState(true);
+  const [showBinding, setShowBinding] = useState(true);
+  const [showPublishYear, setShowPublishYear] = useState(true);
+  const [showVolume, setShowVolume] = useState(true);
+  const [showPart, setShowPart] = useState(true);
 
   const onSubmit = (data) => {
     const writersArr = [];
@@ -165,6 +175,11 @@ export default function EditBook() {
       showPieces: showPieces,
       showStatus: showStatus,
       showSummary: showSummary,
+      showPapertype: showPapertype,
+      showBinding: showBinding,
+      showPublishYear: showPublishYear,
+      showVolume: showVolume,
+      showPart: showPart,
     };
 
     if (data.image.length > 0) {
@@ -452,6 +467,76 @@ export default function EditBook() {
               </select>
             </div>
           </div>
+          {/* Binding, Part, Volume, PublishedYear, PaperTypes */}
+          <div className="flex justify-between mb-5">
+            {/* Publish Year */}
+            <div>
+              <p>প্রকাশকাল</p>
+              <PickYear
+                selectedYear={selectedYear}
+                setSelectedYear={setSelectedYear}
+              />
+            </div>
+
+            {/* Bnding */}
+            <div>
+              <p>বাঁধাই</p>
+              <select
+                defaultValue={binding}
+                onChange={(e) => setBinding(e.target.value)}
+                className="border border-black py-1 px-5 capitalize"
+              >
+                <option value="" className="capitalize">
+                  Select
+                </option>
+                <option value="paperback" className="capitalize">
+                  paperback
+                </option>
+                <option value="hardcover" className="capitalize">
+                  hardcover
+                </option>
+              </select>
+            </div>
+            {/* Papertypes */}
+            <div>
+              <p>কাগজের ধরণ</p>
+              <select
+                defaultValue={paperType}
+                onChange={(e) => setPaperType(e.target.value)}
+                className="border border-black py-1 px-5 capitalize"
+              >
+                <option value="" className="capitalize">
+                  Select
+                </option>
+                <option value="white" className="capitalize">
+                  white
+                </option>
+                <option value="newsprint" className="capitalize">
+                  newsprint
+                </option>
+              </select>
+            </div>
+            {/* Volume */}
+            <div>
+              <p>ভলিউম</p>
+              <input
+                defaultValue={bookDetails.volume}
+                type="text"
+                className="p-2 border border-black"
+                {...register("volume")}
+              />
+            </div>
+            {/* Part */}
+            <div>
+              <p>খন্ড</p>
+              <input
+                defaultValue={bookDetails.part}
+                type="text"
+                className="p-2 border border-black"
+                {...register("part")}
+              />
+            </div>
+          </div>
           {/* Book Summary */}
           <div>
             <div className="">
@@ -530,6 +615,27 @@ export default function EditBook() {
               setShow={setShowSummary}
               name="Summary"
             />
+            <ToggleBtn
+              show={showBinding}
+              setShow={setShowBinding}
+              name="Binding"
+            />
+            <ToggleBtn
+              show={showPapertype}
+              setShow={setShowPapertype}
+              name="Papertype"
+            />
+            <ToggleBtn
+              show={showPublishYear}
+              setShow={setShowPublishYear}
+              name="Published Year"
+            />
+            <ToggleBtn
+              show={showVolume}
+              setShow={setShowVolume}
+              name="Volume"
+            />
+            <ToggleBtn show={showPart} setShow={setShowPart} name="Part" />
           </div>
 
           <input

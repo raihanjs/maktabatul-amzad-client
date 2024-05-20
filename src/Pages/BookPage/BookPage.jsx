@@ -44,6 +44,16 @@ export default function BookPage() {
     showPieces,
     showStatus,
     showSummary,
+    binding,
+    showBinding,
+    paperType,
+    showPapertype,
+    publishedYear,
+    showPublishYear,
+    volume,
+    showVolume,
+    part,
+    showPart,
   } = bookDetails;
   return (
     <section className="container">
@@ -66,24 +76,80 @@ export default function BookPage() {
                 <h2 className="text-xl sm:text-2xl font-semibold text-primary">
                   {bookDetails.title[language]}
                 </h2>
-
                 <div>
+                  {/* Part */}
+                  {showPublishYear && (
+                    <>
+                      {publishedYear && (
+                        <div className="flex">
+                          <div>
+                            {language == 0
+                              ? "প্রকাশকালঃ"
+                              : language == 2
+                              ? "سنة النشر :"
+                              : "Published Year : "}
+                          </div>
+                          <div className="ml-2">
+                            <p>{publishedYear}</p>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {/* Part */}
+                  {showPart && (
+                    <>
+                      {part && (
+                        <div className="flex">
+                          <div>
+                            {language == 0
+                              ? "খন্ডঃ"
+                              : language == 2
+                              ? "شريحة :"
+                              : "Part :"}
+                          </div>
+                          <div className="ml-2">
+                            <p>{part}</p>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {/* volume */}
+                  {showVolume && (
+                    <>
+                      {volume && (
+                        <div className="flex">
+                          <div>
+                            {language == 0
+                              ? "ভলিউমঃ"
+                              : language == 2
+                              ? "المجلد :"
+                              : "Volume:"}
+                          </div>
+                          <div className="ml-2">
+                            <p>{volume}</p>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
                   {/* Writers */}
                   {showWriters && (
                     <div className="flex">
-                      <div className="w-20">
+                      <div>
                         {language == 0
                           ? "লেখকঃ"
                           : language == 2
                           ? "كاتب : "
                           : "Writer:"}
                       </div>
-                      <div className="ml-5">
+                      <div className="ml-2">
                         {writerDetails.map((wr) => (
                           <button
                             onClick={() => navigate(`/writers/${wr.writerId}`)}
                             key={wr.writerId}
-                            className="hover:text-red"
+                            className="font-medium hover:text-red"
                           >
                             {wr.name[language]} ,
                           </button>
@@ -96,14 +162,14 @@ export default function BookPage() {
                     <>
                       {translatorDetails.length > 0 && (
                         <div className="flex">
-                          <div className="w-20">
+                          <div>
                             {language == 0
                               ? "অনুবাদকঃ"
                               : language == 2
                               ? "مترجم: "
                               : "Translator:"}
                           </div>
-                          <div className="ml-5">
+                          <div className="ml-2">
                             {translatorDetails.map((tr) => (
                               <span key={tr.translatorId}>
                                 {tr.name[language]} ,
@@ -119,14 +185,14 @@ export default function BookPage() {
                     <>
                       {editorDetails.length > 0 && (
                         <div className="flex">
-                          <div className="w-20">
+                          <div>
                             {language == 0
                               ? "সম্পাদকঃ"
                               : language == 2
                               ? "محرر: "
                               : "Editor:"}
                           </div>
-                          <div className="ml-5">
+                          <div className="ml-2">
                             {editorDetails.map((ed) => (
                               <span key={ed.editorId}>
                                 {ed.name[language]} ,
@@ -140,14 +206,29 @@ export default function BookPage() {
                   {/* Publishers */}
                   {showPublisher && (
                     <div className="flex">
-                      <div className="w-20">
+                      <div>
                         {language == 0
                           ? "প্রকাশকঃ"
                           : language == 2
                           ? "الناشر : "
                           : "Publisher:"}
                       </div>
-                      <div className="ml-5">
+                      <div className="ml-2">
+                        {publisherDetails[0]?.name[language]}
+                      </div>
+                    </div>
+                  )}
+                  {/* Importer */}
+                  {showImport && (
+                    <div className="flex">
+                      <div>
+                        {language == 0
+                          ? "আমদানিকারকঃ"
+                          : language == 2
+                          ? "المستورد: "
+                          : "Importer:"}
+                      </div>
+                      <div className="ml-2">
                         {publisherDetails[0]?.name[language]}
                       </div>
                     </div>
@@ -155,14 +236,14 @@ export default function BookPage() {
                   {/* Categories */}
                   {showCategory && (
                     <div className="flex">
-                      <div className="w-20">
+                      <div>
                         {language == 0
                           ? "বিষয়ঃ"
                           : language == 2
                           ? "الصنف : "
                           : "Category:"}
                       </div>
-                      <div className="ml-5">
+                      <div className="ml-2">
                         <Link
                           to={`/categories/${category}`}
                           className="font-medium hover:text-red"
@@ -175,31 +256,84 @@ export default function BookPage() {
                   {/* SubCategories */}
                   {showSubCategory && (
                     <div className="flex">
-                      <div className="w-20">
+                      <div>
                         {language == 0
                           ? "উপ বিষয়ঃ"
                           : language == 2
                           ? "تصنيف فرعي : "
                           : "Sub Category:"}
                       </div>
-                      <div className="ml-5">
-                        <Link to="" className="font-medium hover:text-red">
-                          {subCategoryDetails[0]?.name[language]}
-                        </Link>
+                      <div className="ml-2">
+                        {subCategoryDetails[0]?.name[language]}
                       </div>
                     </div>
+                  )}
+                  {/* Binding */}
+                  {showBinding && (
+                    <>
+                      {binding && (
+                        <div className="flex">
+                          <div>
+                            {language == 0
+                              ? "বাধাইঃ"
+                              : language == 2
+                              ? "العقبة :"
+                              : "Binding :"}
+                          </div>
+                          <div className="ml-2">
+                            <p className="capitalize">{binding}</p>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {/* Binding */}
+                  {showPapertype && (
+                    <>
+                      {paperType && (
+                        <div className="flex">
+                          <div>
+                            {language == 0
+                              ? "কাগজের ধরণঃ"
+                              : language == 2
+                              ? "نوع الورق :"
+                              : "Papertype :"}
+                          </div>
+                          <div className="ml-2">
+                            <p className="capitalize">{paperType}</p>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {/* Pages */}
+                  {showPages && (
+                    <>
+                      {showPrice && (
+                        <div className="flex">
+                          <div>
+                            {language == 0
+                              ? "পৃষ্ঠাঃ "
+                              : language == 2
+                              ? "الصفحات: "
+                              : "Pages :"}
+                          </div>
+                          <div className="ml-2">{price}</div>
+                        </div>
+                      )}
+                    </>
                   )}
                   {/* Price */}
                   {showPrice && (
                     <div className="flex">
-                      <div className="w-20">
+                      <div>
                         {language == 0
                           ? "দামঃ "
                           : language == 2
                           ? "مخزون : "
                           : "Price :"}
                       </div>
-                      <div className="ml-5">{price}</div>
+                      <div className="ml-2">{price}</div>
                     </div>
                   )}
                   {/* Stock */}
@@ -207,14 +341,14 @@ export default function BookPage() {
                     <>
                       {status === "published" && (
                         <div className="flex">
-                          <div className="w-20">
+                          <div>
                             {language == 0
                               ? "স্টকঃ "
                               : language == 2
                               ? "مخزون : "
                               : "Stock :"}
                           </div>
-                          <div className="ml-5">{stock}</div>
+                          <div className="ml-2">{stock}</div>
                         </div>
                       )}
                     </>
@@ -267,18 +401,22 @@ export default function BookPage() {
             </div>
             {/* Bookdetails bottom part */}
             {/* Show description */}
-            {desc && (
+            {showSummary && (
               <>
-                <p className="text-xl font-semibold border-b pb-1 mb-5 mt-10">
-                  {language == 0
-                    ? "সংক্ষিপ্ত বর্ণনা"
-                    : language == 1
-                    ? "Brief Description"
-                    : language == 2
-                    ? "وصف مختصر"
-                    : "Brief Description"}
-                </p>
-                <p className="text-lg">{desc[language]}</p>
+                {desc[language].length > 0 && (
+                  <>
+                    <p className="text-xl font-semibold border-b pb-1 mb-5 mt-10">
+                      {language == 0
+                        ? "সংক্ষিপ্ত বর্ণনা"
+                        : language == 1
+                        ? "Brief Description"
+                        : language == 2
+                        ? "وصف مختصر"
+                        : "Brief Description"}
+                    </p>
+                    <p className="text-lg">{desc[language]}</p>
+                  </>
+                )}
               </>
             )}
           </div>

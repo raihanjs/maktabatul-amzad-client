@@ -16,6 +16,7 @@ import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
 import useImportedCountries from "../../../../hooks/useImportedCountries";
 import SelectMultiple from "../../../../Components/SelectMultiple/SelectMultiple";
 import ToggleBtn from "../../../../Components/ToggleBtn/ToggleBtn";
+import PickYear from "../../../../Components/PickYear/PickYear";
 
 export default function AddBook() {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ export default function AddBook() {
   const [selectedWriters, setSelectedWriters] = useState([]);
   const [selectedEditors, setSelectedEditors] = useState([]);
   const [selectedTranslators, setSelectedTranslators] = useState([]);
+  const [selectedYear, setSelectedYear] = useState();
+  const [binding, setBinding] = useState("");
+  const [paperType, setPaperType] = useState("");
 
   const [selectedOption, setSelectedOption] = useState(
     categories[0]?.categoryId
@@ -77,6 +81,11 @@ export default function AddBook() {
   const [showPieces, setShowPieces] = useState(true);
   const [showStatus, setShowStatus] = useState(true);
   const [showSummary, setShowSummary] = useState(true);
+  const [showPapertype, setShowPapertype] = useState(true);
+  const [showBinding, setShowBinding] = useState(true);
+  const [showPublishYear, setShowPublishYear] = useState(true);
+  const [showVolume, setShowVolume] = useState(true);
+  const [showPart, setShowPart] = useState(true);
 
   const onSubmit = (data) => {
     const writersArr = [];
@@ -122,6 +131,11 @@ export default function AddBook() {
             desc: [data.bnDesc, data.enDesc, data.arDesc],
             status: data.bookStatus,
             sold: parseInt(data.bookSold),
+            binding: binding,
+            publishedYear: selectedYear,
+            paperType: paperType,
+            volume: data.volume,
+            part: data.part,
             showCategory: showCategory,
             showSubCategory: showSubCategory,
             showWriters: showWriters,
@@ -134,6 +148,11 @@ export default function AddBook() {
             showPieces: showPieces,
             showStatus: showStatus,
             showSummary: showSummary,
+            showPapertype: showPapertype,
+            showBinding: showBinding,
+            showPublishYear: showPublishYear,
+            showVolume: showVolume,
+            showPart: showPart,
           };
           // addbook
           axiosPublic.post("/addbook", newBook).then((res) => {
@@ -377,6 +396,74 @@ export default function AddBook() {
           </div>
         </div>
 
+        {/* Binding, Part, Volume, PublishedYear, PaperTypes */}
+        <div className="flex justify-between mb-5">
+          {/* Publish Year */}
+          <div>
+            <p>প্রকাশকাল</p>
+            <PickYear
+              selectedYear={selectedYear}
+              setSelectedYear={setSelectedYear}
+            />
+          </div>
+
+          {/* Bnding */}
+          <div>
+            <p>বাঁধাই</p>
+            <select
+              onChange={(e) => setBinding(e.target.value)}
+              className="border border-black py-1 px-5 capitalize"
+            >
+              <option value="" className="capitalize">
+                Select
+              </option>
+              <option value="paperback" className="capitalize">
+                paperback
+              </option>
+              <option value="hardcover" className="capitalize">
+                hardcover
+              </option>
+            </select>
+          </div>
+          {/* Papertypes */}
+          <div>
+            <p>কাগজের ধরণ</p>
+            <select
+              onChange={(e) => setPaperType(e.target.value)}
+              className="border border-black py-1 px-5 capitalize"
+            >
+              <option value="" className="capitalize">
+                Select
+              </option>
+              <option value="white" className="capitalize">
+                white
+              </option>
+              <option value="newsprint" className="capitalize">
+                newsprint
+              </option>
+            </select>
+          </div>
+          {/* Volume */}
+          <div>
+            <p>ভলিউম</p>
+            <input
+              placeholder="Volume"
+              type="text"
+              className="p-2 border border-black"
+              {...register("volume")}
+            />
+          </div>
+          {/* Part */}
+          <div>
+            <p>খন্ড</p>
+            <input
+              placeholder="Part"
+              type="text"
+              className="p-2 border border-black"
+              {...register("part")}
+            />
+          </div>
+        </div>
         {/* Book Summary */}
         <div>
           <div className="">
@@ -444,6 +531,23 @@ export default function AddBook() {
             setShow={setShowSummary}
             name="Summary"
           />
+          <ToggleBtn
+            show={showBinding}
+            setShow={setShowBinding}
+            name="Binding"
+          />
+          <ToggleBtn
+            show={showPapertype}
+            setShow={setShowPapertype}
+            name="Papertype"
+          />
+          <ToggleBtn
+            show={showPublishYear}
+            setShow={setShowPublishYear}
+            name="Published Year"
+          />
+          <ToggleBtn show={showVolume} setShow={setShowVolume} name="Volume" />
+          <ToggleBtn show={showPart} setShow={setShowPart} name="Part" />
         </div>
 
         <input

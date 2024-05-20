@@ -21,7 +21,6 @@ export default function EditBook() {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const bookDetails = useLoaderData();
-  // console.log(bookDetails);
   const {
     register,
     handleSubmit,
@@ -163,6 +162,11 @@ export default function EditBook() {
       desc: [data.bnDesc, data.enDesc, data.arDesc],
       status: data.bookStatus,
       sold: parseInt(data.bookSold),
+      binding: binding,
+      publishedYear: selectedYear,
+      paperType: paperType,
+      volume: data.volume,
+      part: data.part,
       showCategory: showCategory,
       showSubCategory: showSubCategory,
       showWriters: showWriters,

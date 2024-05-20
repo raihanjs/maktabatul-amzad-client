@@ -49,6 +49,7 @@ import EditSubCategory from "../Pages/AdminPages/Edit/EditSubCategory/EditSubCat
 import OrderList from "../Pages/AdminPages/Lists/OrderList/OrderList";
 import TestAddBook from "../Pages/AdminPages/TestAddBook";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AddBanner from "../Pages/AdminPages/Add/AddBanner/AddBanner";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -154,6 +155,10 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <AdminPages />,
+      },
+      {
+        path: "addbanner",
+        element: <AddBanner />,
       },
       {
         path: "booklist",

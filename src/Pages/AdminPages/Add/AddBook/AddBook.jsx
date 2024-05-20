@@ -183,7 +183,7 @@ export default function AddBook() {
   return (
     <div>
       <div className="text-center p-5 border border-black-b-2">
-        <h3 className="text-2xl font-bold">Edit Book</h3>
+        <h3 className="text-2xl font-bold">Add Book</h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="m-2">
         {/* Details */}

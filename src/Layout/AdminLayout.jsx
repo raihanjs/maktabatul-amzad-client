@@ -10,6 +10,7 @@ export default function AdminLayout() {
 
   const [activeNav, setActiveNav] = useState("");
   const navLinks = [
+    "addbanner",
     "booklist",
     "addbook",
     "writerlist",

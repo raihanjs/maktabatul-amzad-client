@@ -51,6 +51,7 @@ import TestAddBook from "../Pages/AdminPages/TestAddBook";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AddBanner from "../Pages/AdminPages/Add/AddBanner/AddBanner";
 import BannerList from "../Pages/AdminPages/Lists/BannerList/BannerList";
+import EditBanner from "../Pages/AdminPages/Edit/EditBanner/EditBanner";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -164,6 +165,11 @@ export const router = createBrowserRouter([
       {
         path: "bannerlist",
         element: <BannerList />,
+      },
+      {
+        path: "editbanner/:id",
+        element: <EditBanner />,
+        loader: ({ params }) => fetch(`${link}/banners/${params.id}`),
       },
       {
         path: "booklist",

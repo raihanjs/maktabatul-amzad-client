@@ -90,7 +90,10 @@ export default function BannerList() {
                       </td>
 
                       <td className="border border-black p-1">
-                        <Link to="" className="w-full flex justify-center">
+                        <Link
+                          to={`/admin/editbanner/${banner?._id}`}
+                          className="w-full flex justify-center"
+                        >
                           <FaPencilAlt className="text-2xl" />
                         </Link>
                       </td>
@@ -110,7 +113,7 @@ export default function BannerList() {
             </>
           ) : (
             <>
-              <p className="text-lg font-bold">No Editors Found</p>
+              <p className="text-lg font-bold">No Banners Found</p>
             </>
           )}
         </div>

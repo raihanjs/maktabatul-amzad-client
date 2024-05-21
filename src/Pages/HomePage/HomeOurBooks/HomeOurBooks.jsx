@@ -30,7 +30,7 @@ export default function HomeTabs() {
       {
         breakpoint: 1289,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 5,
         },
       },
       {
@@ -73,50 +73,48 @@ export default function HomeTabs() {
         </>
       ) : (
         <>
-          <div className="container mx-auto px-0.5  sm:px-3 md:px-0 bg-gray-100">
-            <div className="p-5">
-              <h3 className="text-xl font-medium">
-                {language == 0
-                  ? "আমাদের বই"
-                  : language == 1
-                  ? "Our Books"
-                  : "شكرا لك"}
-              </h3>
-              <div className="relative overflow-hidden pb-3">
-                <Slider ref={homeOurSlBtns} {...settings}>
-                  {maktabatulAmzadBooks.map((book) => (
-                    <BookCard key={book._id} book={book}></BookCard>
-                  ))}
-                  {maktabatulAmzadBooks.map((book) => (
-                    <BookCard key={book._id} book={book}></BookCard>
-                  ))}
-                  {maktabatulAmzadBooks.map((book) => (
-                    <BookCard key={book._id} book={book}></BookCard>
-                  ))}
-                  {maktabatulAmzadBooks.map((book) => (
-                    <BookCard key={book._id} book={book}></BookCard>
-                  ))}
-                  {maktabatulAmzadBooks.map((book) => (
-                    <BookCard key={book._id} book={book}></BookCard>
-                  ))}
-                </Slider>
+          <div className="container p-5 bg-gray-100 relative">
+            <h3 className="text-xl font-medium mb-3">
+              {language == 0
+                ? "মাকতাবাতুল আমজাদ"
+                : language == 1
+                ? "Maktabatul Amjad"
+                : "مكتبة الامجد"}
+            </h3>
+            <div className=" overflow-hidden pb-3">
+              <Slider ref={homeOurSlBtns} {...settings}>
+                {maktabatulAmzadBooks.map((book) => (
+                  <BookCard key={book._id} book={book}></BookCard>
+                ))}
+                {maktabatulAmzadBooks.map((book) => (
+                  <BookCard key={book._id} book={book}></BookCard>
+                ))}
+                {maktabatulAmzadBooks.map((book) => (
+                  <BookCard key={book._id} book={book}></BookCard>
+                ))}
+                {maktabatulAmzadBooks.map((book) => (
+                  <BookCard key={book._id} book={book}></BookCard>
+                ))}
+                {maktabatulAmzadBooks.map((book) => (
+                  <BookCard key={book._id} book={book}></BookCard>
+                ))}
+              </Slider>
 
-                {/* Slider buttons */}
-                <div className="absolute top-1/3 w-full flex justify-between">
-                  <button
-                    onClick={() => homeOurSlBtns.current.slickPrev()}
-                    className="h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
-                  >
-                    <IoIosArrowBack className="text-black" />
-                  </button>
-                  <button
-                    onClick={() => homeOurSlBtns.current.slickNext()}
-                    className="h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
-                  >
-                    <IoIosArrowForward className="text-black" />
-                  </button>
-                </div>
-              </div>
+              {/* Slider buttons */}
+              {/* <div className="absolute top-1/3 w-full flex justify-between"> */}
+              <button
+                onClick={() => homeOurSlBtns.current.slickPrev()}
+                className="absolute top-2/4 -left-0.5 h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
+              >
+                <IoIosArrowBack className="text-black text-2xl" />
+              </button>
+              <button
+                onClick={() => homeOurSlBtns.current.slickNext()}
+                className="absolute top-2/4 -right-0.5 h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
+              >
+                <IoIosArrowForward className="text-black text-2xl" />
+              </button>
+              {/* </div> */}
             </div>
           </div>
         </>

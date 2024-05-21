@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet-async";
 import HomeOurBooks from "../HomeOurBooks/HomeOurBooks";
 import HomeCategories from "../HomeCategories/HomeCategories";
 import HomeWriters from "../HomeWriters/HomeWriters";
+import HomePublishers from "../HomePublishers/HomePublishers";
 
 export default function Home() {
   const { language } = useContext(ThemeContext);
@@ -22,6 +23,7 @@ export default function Home() {
       <HomeOurBooks />
       <HomeCategories />
       <HomeWriters />
+      <HomePublishers />
       <div className="container">
         <div className="flex justify-between">
           <SideNav></SideNav>

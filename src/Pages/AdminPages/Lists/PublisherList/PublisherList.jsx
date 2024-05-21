@@ -64,6 +64,9 @@ export default function PublisherList() {
                         Publisher Name
                       </th>
                       <th className="border border-black p-2">
+                        Publisher Image
+                      </th>
+                      <th className="border border-black p-2">
                         Edit Publisher
                       </th>
                       <th className="border border-black p-2">
@@ -74,16 +77,19 @@ export default function PublisherList() {
 
                   <tbody>
                     {allPublishers.map((publisher, index) => (
-                      <tr key={publisher._id}>
+                      <tr key={publisher?._id}>
                         <td className="border border-black p-2">{index + 1}</td>
                         <td className="border border-black p-2">
-                          {publisher.name[0]} <br /> {publisher.name[1]} <br />{" "}
-                          {publisher.name[2]}
+                          {publisher?.name[0]} <br /> {publisher?.name[1]}{" "}
+                          <br /> {publisher?.name[2]}
                         </td>
 
                         <td className="border border-black p-1">
+                          <img src={publisher?.image} className="h-20" alt="" />
+                        </td>
+                        <td className="border border-black p-1">
                           <Link
-                            to={`/admin/editpublisher/${publisher.publisherId}`}
+                            to={`/admin/editpublisher/${publisher?.publisherId}`}
                             className="w-full flex justify-center"
                           >
                             <FaPencilAlt className="text-2xl" />
@@ -92,7 +98,7 @@ export default function PublisherList() {
                         <td className="border border-black p-1">
                           <button
                             className="w-full flex justify-center"
-                            onClick={() => handleDelete(publisher._id)}
+                            onClick={() => handleDelete(publisher?._id)}
                           >
                             <RiDeleteBin2Fill className="text-2xl" />
                           </button>

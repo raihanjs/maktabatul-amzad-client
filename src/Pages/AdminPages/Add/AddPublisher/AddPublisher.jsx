@@ -21,25 +21,63 @@ export default function AddPublisher() {
       publisherId: `country${Math.ceil(Math.random() * 1000000)}`,
     };
 
-    axiosPublic.post("/addpublisher", newPublisher).then((res) => {
-      console.log(res.data);
-      if (res.data.acknowledged) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Publisher added",
-          showConfirmButton: false,
-          timer: 1500,
+    if (data.image.length > 0) {
+      const formData = new FormData();
+      formData.append("image", data.image[0]);
+      fetch(
+        "https://api.imgbb.com/1/upload?key=e1f8cb2a3ec0064d89280dcbe819c1b7",
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
+        .then((res) => res.json())
+        .then((imgRes) => {
+          if (imgRes.success) {
+            const imageUrl = imgRes.data.display_url;
+            newPublisher.image = imageUrl;
+
+            // addWriter
+            axiosPublic.post("/addpublisher", newPublisher).then((res) => {
+              if (res.data.acknowledged) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Publisher added",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/admin/publisherlist");
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Something went wrong!",
+                });
+              }
+            });
+          }
         });
-        navigate("/admin/publisherlist");
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-      }
-    });
+    } else {
+      axiosPublic.post("/addpublisher", newPublisher).then((res) => {
+        if (res.data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Publisher added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/admin/publisherlist");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
+      });
+    }
   };
   return (
     <div>
@@ -48,31 +86,46 @@ export default function AddPublisher() {
       </div>
       <div className="m-2">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-5">
-            <input
-              className="border w-full border-primary p-2"
-              placeholder="পাবলিশারের নাম বাংলায়"
-              {...register("bnPublisher")}
-            />
-          </div>
-          <div className="mb-5">
-            <input
-              className="border w-full border-primary p-2"
-              placeholder="পাবলিশারের নাম ইংরেজীতে"
-              {...register("enPublisher")}
-            />
-          </div>
-          <div className="mb-5">
-            <input
-              className="border w-full border-primary p-2"
-              placeholder="পাবলিশারের নাম আরবীতে"
-              {...register("arPublisher", { required: true })}
-            />
-            {errors.arPublisher && (
-              <span className="text-sm text-red">
-                এই ঘরটি অবশ্যই পুরন করতে হবে
-              </span>
-            )}
+          <div className="grid grid-cols-5 gap-3">
+            <div className="col-span-3">
+              <div className="mb-5">
+                <input
+                  className="border w-full border-primary p-2"
+                  placeholder="পাবলিশারের নাম বাংলায়"
+                  {...register("bnPublisher")}
+                />
+              </div>
+              <div className="mb-5">
+                <input
+                  className="border w-full border-primary p-2"
+                  placeholder="পাবলিশারের নাম ইংরেজীতে"
+                  {...register("enPublisher")}
+                />
+              </div>
+              <div className="mb-5">
+                <input
+                  className="border w-full border-primary p-2"
+                  placeholder="পাবলিশারের নাম আরবীতে"
+                  {...register("arPublisher", { required: true })}
+                />
+                {errors.arPublisher && (
+                  <span className="text-sm text-red">
+                    এই ঘরটি অবশ্যই পুরন করতে হবে
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="col-span-2">
+              <div className="border py-12 border-primary">
+                <input
+                  type="file"
+                  src=""
+                  {...register("image")}
+                  className="mt-12 ml-12"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input

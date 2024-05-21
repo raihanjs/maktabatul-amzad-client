@@ -11,7 +11,7 @@ export default function BannerSlider() {
   const activeBanners = banners.filter((banner) => banner.isActive === true);
   const sliderBtns = useRef(null);
   const settings = {
-    dots: true,
+    dots: false,
     fade: true,
     infinite: true,
     speed: 500,

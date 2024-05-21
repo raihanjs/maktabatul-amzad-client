@@ -13,7 +13,6 @@ export default function PublisherPage() {
   const [books, isLoading] = useBooks();
   const { name, image, publisherId } = publisherDetails;
   const publisherBooks = books.filter((book) => book.publisher === publisherId);
-  console.log(publisherBooks);
   return (
     <section className="container">
       <Helmet>

@@ -6,10 +6,10 @@ import useBooks from "../../../hooks/useBooks";
 import BookCard from "../../Shared/BookCard/BookCard";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
 
-export default function HomeOurBooks() {
+export default function HomeBestSeller() {
   const { language } = useContext(ThemeContext);
   const [books, isLoading] = useBooks();
-  const homeOurSlBtns = useRef(null);
+  const homeBestSlBtns = useRef(null);
 
   const maktabatulAmzadBooks = books.filter(
     (book) =>
@@ -60,14 +60,13 @@ export default function HomeOurBooks() {
       },
     ],
   };
-
   return (
     <section className="mb-12">
       {isLoading ? (
         <>
           <div className="h-96 bg-gray-100">
             <div className="flex justify-center items-center">
-              <p>Loading Our Published Books ...</p>
+              <p>Loading Best Seller Books ...</p>
             </div>
           </div>
         </>
@@ -76,13 +75,13 @@ export default function HomeOurBooks() {
           <div className="container p-5 bg-gray-100 relative">
             <h3 className="text-xl font-medium mb-3">
               {language == 0
-                ? "মাকতাবাতুল আমজাদ"
+                ? "বেস্ট সেলার"
                 : language == 1
-                ? "Maktabatul Amjad"
-                : "مكتبة الامجد"}
+                ? "Best Seller"
+                : "الأكثر مبيعًا"}
             </h3>
             <div className=" overflow-hidden pb-3">
-              <Slider ref={homeOurSlBtns} {...settings}>
+              <Slider ref={homeBestSlBtns} {...settings}>
                 {maktabatulAmzadBooks.map((book) => (
                   <BookCard key={book._id} book={book}></BookCard>
                 ))}
@@ -103,13 +102,13 @@ export default function HomeOurBooks() {
               {/* Slider buttons */}
               {/* <div className="absolute top-1/3 w-full flex justify-between"> */}
               <button
-                onClick={() => homeOurSlBtns.current.slickPrev()}
+                onClick={() => homeBestSlBtns.current.slickPrev()}
                 className="absolute top-2/4 -left-0.5 h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
               >
                 <IoIosArrowBack className="text-black text-2xl" />
               </button>
               <button
-                onClick={() => homeOurSlBtns.current.slickNext()}
+                onClick={() => homeBestSlBtns.current.slickNext()}
                 className="absolute top-2/4 -right-0.5 h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
               >
                 <IoIosArrowForward className="text-black text-2xl" />

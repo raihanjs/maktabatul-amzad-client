@@ -10,6 +10,7 @@ import HomeOurBooks from "../HomeOurBooks/HomeOurBooks";
 import HomeCategories from "../HomeCategories/HomeCategories";
 import HomeWriters from "../HomeWriters/HomeWriters";
 import HomePublishers from "../HomePublishers/HomePublishers";
+import HomeBestSeller from "../HomeBestSeller/HomeBestSeller";
 
 export default function Home() {
   const { language } = useContext(ThemeContext);
@@ -24,6 +25,7 @@ export default function Home() {
       <HomeCategories />
       <HomeWriters />
       <HomePublishers />
+      <HomeBestSeller />
       <div className="container">
         <div className="flex justify-between">
           <SideNav></SideNav>

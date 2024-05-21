@@ -8,7 +8,7 @@ export default function PageTitle({ title }) {
   return (
     <div className="border-b border-primary mt-5">
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold text-primary">
+        <h3 className="text-xl font-semibold text-primary capitalize">
           {language === 0 ? title[0] : language === 2 ? title[2] : title[1]}
         </h3>
 
@@ -17,7 +17,7 @@ export default function PageTitle({ title }) {
             {language === 0 ? "হোম" : language === 2 ? "بيت" : "Home"}
           </Link>
           <LiaLongArrowAltRightSolid className="mx-2" />
-          <span>
+          <span className="capitalize">
             {language === 0 ? title[0] : language === 2 ? title[2] : title[1]}
           </span>
         </div>

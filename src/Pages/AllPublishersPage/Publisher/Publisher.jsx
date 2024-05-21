@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { FaBook } from "react-icons/fa6";
-import { FaRegUserCircle } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
 import useBooks from "../../../hooks/useBooks";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
 
@@ -11,7 +11,6 @@ export default function Publisher({ publisher }) {
   // Load this Publisher books
   const [books] = useBooks();
   const publisherBooks = books.filter((book) => book.publisher === publisherId);
-  console.log(publisherBooks);
   return (
     <div className=" p-5 border hover:border-primary overflow-hidden w-[200px] m-2">
       <Link to={`${publisherId}`}>
@@ -20,7 +19,7 @@ export default function Publisher({ publisher }) {
             {image ? (
               <img src={image} className="mx-auto" alt="" />
             ) : (
-              <FaRegUserCircle className="text-[100px]" />
+              <ImBooks className="text-[100px]" />
             )}
           </div>
           <p className="truncate w-full text-lg font-semibold mt-5 text-primary text-center">

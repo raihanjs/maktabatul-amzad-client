@@ -11,11 +11,15 @@ export default function BannerSlider() {
   const activeBanners = banners.filter((banner) => banner.isActive === true);
   const sliderBtns = useRef(null);
   const settings = {
-    dots: false,
+    dots: true,
+    fade: true,
     infinite: true,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    waitForAnimate: false,
   };
   return (
     <div className="border relative py-5 px-10 lg:px-20 flex flex-col justify-center">

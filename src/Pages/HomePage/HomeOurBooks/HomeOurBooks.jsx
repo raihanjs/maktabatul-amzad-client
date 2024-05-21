@@ -6,10 +6,10 @@ import useBooks from "../../../hooks/useBooks";
 import BookCard from "../../Shared/BookCard/BookCard";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
 
-export default function HomeOurBooks() {
+export default function HomeTabs() {
   const { language } = useContext(ThemeContext);
   const [books, isLoading] = useBooks();
-  const sliderBtns = useRef(null);
+  const homeOurSlBtns = useRef(null);
 
   const maktabatulAmzadBooks = books.filter(
     (book) =>
@@ -21,10 +21,44 @@ export default function HomeOurBooks() {
     autoplay: true,
     autoplaySpeed: 2000,
     infinite: false,
+    arrows: false,
     speed: 100,
-    slidesToShow: 5,
+    slidesToShow: 7,
     slidesToScroll: 1,
     easing: "linear",
+    responsive: [
+      {
+        breakpoint: 1289,
+        settings: {
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+        },
+      },
+    ],
   };
 
   return (
@@ -49,7 +83,19 @@ export default function HomeOurBooks() {
                   : "شكرا لك"}
               </h3>
               <div className="relative overflow-hidden pb-3">
-                <Slider ref={sliderBtns} {...settings}>
+                <Slider ref={homeOurSlBtns} {...settings}>
+                  {maktabatulAmzadBooks.map((book) => (
+                    <BookCard key={book._id} book={book}></BookCard>
+                  ))}
+                  {maktabatulAmzadBooks.map((book) => (
+                    <BookCard key={book._id} book={book}></BookCard>
+                  ))}
+                  {maktabatulAmzadBooks.map((book) => (
+                    <BookCard key={book._id} book={book}></BookCard>
+                  ))}
+                  {maktabatulAmzadBooks.map((book) => (
+                    <BookCard key={book._id} book={book}></BookCard>
+                  ))}
                   {maktabatulAmzadBooks.map((book) => (
                     <BookCard key={book._id} book={book}></BookCard>
                   ))}
@@ -58,13 +104,13 @@ export default function HomeOurBooks() {
                 {/* Slider buttons */}
                 <div className="absolute top-1/3 w-full flex justify-between">
                   <button
-                    onClick={() => sliderBtns.current.slickPrev()}
+                    onClick={() => homeOurSlBtns.current.slickPrev()}
                     className="h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
                   >
                     <IoIosArrowBack className="text-black" />
                   </button>
                   <button
-                    onClick={() => sliderBtns.current.slickNext()}
+                    onClick={() => homeOurSlBtns.current.slickNext()}
                     className="h-20 w-8 bg-white shadow-2xl flex justify-center items-center"
                   >
                     <IoIosArrowForward className="text-black" />

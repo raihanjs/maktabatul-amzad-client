@@ -11,6 +11,7 @@ import HomeCategories from "../HomeCategories/HomeCategories";
 import HomeWriters from "../HomeWriters/HomeWriters";
 import HomePublishers from "../HomePublishers/HomePublishers";
 import HomeBestSeller from "../HomeBestSeller/HomeBestSeller";
+import HomeRcentlySold from "../HomeRcentlySold/HomeRcentlySold";
 
 export default function Home() {
   const { language } = useContext(ThemeContext);
@@ -24,6 +25,7 @@ export default function Home() {
       <HomeOurBooks />
       <HomeCategories />
       <HomeWriters />
+      <HomeRcentlySold />
       <HomePublishers />
       <HomeBestSeller />
       <div className="container">

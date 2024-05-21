@@ -90,7 +90,7 @@ const BookCard = ({ book }) => {
               </>
             ) : stock == 0 ? (
               <>
-                <button className="bg-slate-700 text-sm text-white font-semibold w-full text-center py-2">
+                <button className="bg-red text-sm text-white font-semibold w-full text-center py-2">
                   {language == 0
                     ? "ষ্টক আউট"
                     : language == 2

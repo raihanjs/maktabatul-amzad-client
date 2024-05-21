@@ -1,23 +1,25 @@
 import React, { useContext } from "react";
 import HomeBanner from "../HomeBanner/HomeBanner";
-import HomeTabs from "../HomeTabs/HomeTabs";
 import SideNav from "../../../Components/SideNav/SideNav";
 import useBooks from "../../../hooks/useBooks";
 import BookCard from "../../Shared/BookCard/BookCard";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import HomeOurBooks from "../HomeOurBooks/HomeOurBooks";
+import HomeCategories from "../HomeCategories/HomeCategories";
 
 export default function Home() {
   const { language } = useContext(ThemeContext);
   const [books, isLoading] = useBooks();
   return (
     <div>
-      <HomeBanner />
-      <HomeTabs />
       <Helmet>
         <title>Maktabatul Amzad - Home</title>
       </Helmet>
+      <HomeBanner />
+      <HomeOurBooks />
+      <HomeCategories />
       <div className="container">
         <div className="flex justify-between">
           <SideNav></SideNav>

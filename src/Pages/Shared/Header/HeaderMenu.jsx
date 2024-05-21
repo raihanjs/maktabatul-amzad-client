@@ -22,6 +22,15 @@ export default function HeaderMenu() {
         </Link>
       </li>
       <li>
+        <Link to="/publishers" className="text-md lg:text-lg capitalize">
+          {language === 0
+            ? "প্রকাশক"
+            : language === 2
+            ? "الناشرين"
+            : "publishers"}
+        </Link>
+      </li>
+      <li>
         <Link to="/categories" className="text-md lg:text-lg capitalize">
           {language === 0 ? "ক্যাটেগরি" : language === 2 ? "فئة" : "category"}
         </Link>

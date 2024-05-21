@@ -52,6 +52,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AddBanner from "../Pages/AdminPages/Add/AddBanner/AddBanner";
 import BannerList from "../Pages/AdminPages/Lists/BannerList/BannerList";
 import EditBanner from "../Pages/AdminPages/Edit/EditBanner/EditBanner";
+import AllPublishers from "../Pages/AllPublishersPage/AllPublishers/AllPublishers";
 
 const link = "https://maktabatul-amzad-s-tan.vercel.app/api";
 
@@ -83,6 +84,15 @@ export const router = createBrowserRouter([
         element: <WriterPage />,
         loader: ({ params }) => fetch(`${link}/writers/${params.id}`),
       },
+      {
+        path: "publishers",
+        element: <AllPublishers />,
+      },
+      // {
+      //   path: "publishers/:id",
+      //   element: <Publisher />,
+      //   loader: ({ params }) => fetch(`${link}/publishers/${params.id}`),
+      // },
       {
         path: "categories",
         element: <AllCategories />,

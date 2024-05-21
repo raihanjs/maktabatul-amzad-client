@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
 /* Admin Layout Active Navlink CSS */
 table tr:nth-child(even) {
   background-color: #e1e1e1;

@@ -13,17 +13,17 @@ export default function Writer({ writer }) {
   const [books] = useBooks();
   const writerBooks = books.filter((book) => book.writer.includes(writerId));
   return (
-    <div className=" p-5 border hover:border-primary overflow-hidden w-[250px] m-2">
+    <div className="p-2 md:p-5 border hover:border-primary overflow-hidden w-[180px] md:w-[250px] m-2">
       <Link to={`${writerId}`}>
         <div className="border-b border-red flex flex-col items-center">
-          <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
+          <div className="w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-full overflow-hidden">
             {image ? (
               <img src={image} className="mx-auto" alt="" />
             ) : (
-              <FaRegUserCircle className="text-[100px]" />
+              <FaRegUserCircle className="text-[80px] md:text-[100px]" />
             )}
           </div>
-          <p className="truncate w-full text-lg font-semibold mt-5 text-primary">
+          <p className="truncate w-full text-lg font-semibold mt-2 md:mt-5 text-primary text-center">
             {name[language]}
           </p>
         </div>

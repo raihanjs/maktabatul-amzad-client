@@ -11,7 +11,7 @@ export default function HeaderSearch() {
   };
 
   return (
-    <div className="w-[200px] lg:w-[280px] flex items-center">
+    <div className="w-[170px] md:w-[200px] lg:w-[280px] flex items-center">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex">
           <input
@@ -23,7 +23,7 @@ export default function HeaderSearch() {
 
           <input
             type="submit"
-            className="bg-[#F0141E] text-white py-1.5 px-3 border-1.5 border-[#F0141E]  rounded-r-sm text-sm"
+            className="bg-[#F0141E] text-white py-1.5 px-1.5 md:px-3 border-1.5 border-[#F0141E]  rounded-r-sm text-xs md:text-sm"
           />
         </div>
       </form>

@@ -62,7 +62,7 @@ export default function HomeOurBooks() {
   };
 
   return (
-    <section className="mb-12">
+    <section className="mb-12 mx-2 md:mx-0">
       {isLoading ? (
         <>
           <div className="h-96 bg-gray-100">
@@ -73,7 +73,7 @@ export default function HomeOurBooks() {
         </>
       ) : (
         <>
-          <div className="container p-5 bg-gray-100 relative">
+          <div className="container p-5 bg-gray-100 relative shadow-2xl">
             <h3 className="text-xl font-medium mb-3">
               {language == 0
                 ? "মাকতাবাতুল আমজাদ"

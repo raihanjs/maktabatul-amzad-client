@@ -12,17 +12,17 @@ export default function Publisher({ publisher }) {
   const [books] = useBooks();
   const publisherBooks = books.filter((book) => book.publisher === publisherId);
   return (
-    <div className=" p-5 border hover:border-primary overflow-hidden w-[200px] m-2">
+    <div className=" p-5 border hover:border-primary overflow-hidden w-[150px] md:w-[200px] m-2">
       <Link to={`${publisherId}`}>
         <div className="border-b border-red flex flex-col items-center">
-          <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
+          <div className="w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-full overflow-hidden">
             {image ? (
               <img src={image} className="mx-auto" alt="" />
             ) : (
-              <ImBooks className="text-[100px]" />
+              <ImBooks className="text-[80px] md:text-[100px]" />
             )}
           </div>
-          <p className="truncate w-full text-lg font-semibold mt-5 text-primary text-center">
+          <p className="truncate w-full text-lg font-semibold mt-2 md:mt-5 text-primary text-center">
             {name[language]}
           </p>
         </div>

@@ -15,7 +15,7 @@ export default function HeaderTopLanguage() {
   const { handleLanguage } = useContext(ThemeContext);
 
   return (
-    <div className="relative z-50">
+    <div className="relative z-40">
       <button
         className="flex items-center"
         ref={languageMenuRef}

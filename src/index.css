@@ -24,3 +24,7 @@ table tr:nth-child(even) {
   border: 1px solid #108d41;
   color: #fff;
 }
+
+.box-shadow {
+  box-shadow: 0 4px 6px -3px #9c9c9c;
+}

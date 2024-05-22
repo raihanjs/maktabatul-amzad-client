@@ -55,7 +55,7 @@ export default function UserPage() {
   return (
     <div>
       <Helmet>
-        <title>Maktabatul Amzad - {user?.displayName}</title>
+        <title>Maktabatul Amzad - My Profile</title>
       </Helmet>
       <div className="text-center p-5 border-b-2">
         <h3 className="text-2xl font-bold">My Profile</h3>

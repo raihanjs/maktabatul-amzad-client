@@ -51,7 +51,7 @@ export default function AllBooks() {
     })();
   }, [searchQuery, itemsPerpage, currentPage, sort, gte]);
   return (
-    <section className="container">
+    <section className="container px-2 md:px-0">
       <Helmet>
         <title>Maktabatul Amzad - Books</title>
       </Helmet>
@@ -66,7 +66,7 @@ export default function AllBooks() {
       />
 
       {/* Books and Books Sidenav */}
-      <div className="flex">
+      <div className="md:flex">
         {/* SideNav */}
         <div>
           <SideNav />

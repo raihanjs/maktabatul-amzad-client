@@ -19,7 +19,7 @@ export default function SideNav() {
   const url = window.location.pathname;
 
   return (
-    <div className="w-[250px] pr-5 border-r hidden md:block">
+    <div className="md:w-[250px] pr-5 border-r">
       {url === "/" && (
         <p className="font-bold pb-2 mb-5 border-b">
           {language === 0
@@ -31,7 +31,7 @@ export default function SideNav() {
       )}
 
       {/* Subject */}
-      <div className="my-2">
+      <div className="my-2 hidden md:block">
         <p className="font-semibold">
           {language === 0 ? "বিষয়" : language === 2 ? "موضوع" : "SUBJECT"}
         </p>
@@ -50,46 +50,46 @@ export default function SideNav() {
         <p className="font-semibold">
           {language === 0 ? "দাম" : language === 2 ? "سعر" : "PRICE"}
         </p>
-        <ul>
+        <ul className="mb-5">
           <li className="ml-2">
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(50, 100)}
             >
               TK - 50-100
             </p>
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(101, 300)}
             >
               TK - 101-300
             </p>
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(301, 500)}
             >
               TK - 301-500
             </p>
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(501, 1000)}
             >
               TK - 501-1000
             </p>
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(1001, 2000)}
             >
               TK - 1001-2000
             </p>
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(2001, 3000)}
             >
               TK - 2001-3000
             </p>
             <p
-              className="hover:text-red cursor-pointer"
+              className="hover:text-red cursor-pointer inline-block md:block py-1 px-2 md:p-0 border md:border-0 m-1 md:m-0"
               onClick={() => handleRange(3000)}
             >
               TK - 3000+

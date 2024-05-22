@@ -55,8 +55,8 @@ export default function HomePublishers() {
     ],
   };
   return (
-    <section className="mb-12 mx-2 md:mx-0 bg-gray-100 shadow-xl rounded-sm">
-      <div className="container p-2 md:p-5">
+    <section className="mb-12 mx-2 md:mx-0">
+      <div className="container p-2 md:p-5 bg-gray-100 rounded-sm box-shadow">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl font-medium mb-2">
             {language == 0

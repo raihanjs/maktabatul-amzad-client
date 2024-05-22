@@ -72,7 +72,7 @@ export default function HomeBestSeller() {
         </>
       ) : (
         <>
-          <div className="container p-5 bg-gray-100 relative shadow-2xl rounded-sm">
+          <div className="container p-5 bg-gray-100 relative box-shadow rounded-sm">
             <h3 className="text-xl font-medium mb-3">
               {language == 0
                 ? "বেস্ট সেলার"

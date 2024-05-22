@@ -16,7 +16,7 @@ export default function UserLayout() {
 
         <div className="grid grid-cols-12 mt-10">
           {/* -------------------------------------------Profile nav------------------------------------------- */}
-          <div className="col-span-3 border border-2 flex flex-col items-center">
+          <div className="col-span-12 md:col-span-3 border border-2 flex flex-col items-center">
             {/* Image or First letter of name */}
             <div className="h-36 w-36 overflow-hidden bg-primary flex justify-center items-center rounded-full m-2">
               {user?.photoURL ? (
@@ -32,7 +32,7 @@ export default function UserLayout() {
               {user?.displayName}
             </h3>
             {/* Navlinks */}
-            <ul className="bg-gray-500 w-full mt-5 mb-96">
+            <ul className="bg-gray-500 w-full mt-5 md:mb-96">
               <li className="py-2 border-b">
                 <Link to="" className="pl-3 text-white text-lg font-semibold">
                   Profile
@@ -49,7 +49,7 @@ export default function UserLayout() {
             </ul>
           </div>
           {/* -------------------------------------------Profile Nav Items------------------------------------------- */}
-          <div className="col-span-9 border border-2 border-l-0">
+          <div className="col-span-12 md:col-span-9 border border-2 border-l-0">
             <Outlet></Outlet>
           </div>
         </div>

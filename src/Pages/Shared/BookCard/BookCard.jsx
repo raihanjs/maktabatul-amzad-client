@@ -24,7 +24,7 @@ const BookCard = ({ book }) => {
       <Link to={`/books/${book._id}`}>
         <img
           src={`${thumb}`}
-          className="h-40 md:h-56 bg-slate-200 mb-1.5 ease-out duration-300"
+          className="h-40 md:h-56 bg-slate-200 mb-1.5 ease-out duration-300 mx-auto"
           alt=""
         />
       </Link>

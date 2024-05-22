@@ -70,17 +70,19 @@ export default function userOrders() {
                         {order.orders.reduce(
                           (acc, book) => acc + book.price * book.items,
                           0
-                        )}
+                        )}{" "}
+                        TK
                       </p>
                       <p className="border-b-2 border-black">
-                        Delivery Charge: {order.deliveryCharge}
+                        Delivery Charge: {order.deliveryCharge} TK
                       </p>
                       <p>
                         Grand Total:{" "}
                         {order.orders.reduce(
                           (acc, book) => acc + book.price * book.items,
                           order.deliveryCharge
-                        )}
+                        )}{" "}
+                        TK
                       </p>
                     </div>
                   </div>

@@ -56,7 +56,7 @@ export default function HomeWriters() {
   };
   return (
     <section className="mb-12 mx-2 md:mx-0">
-      <div className="container p-2 md:p-5 shadow-xl rounded-sm bg-gray-100">
+      <div className="container p-2 md:p-5 box-shadow rounded-sm bg-gray-100">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl font-medium mb-2">
             {language == 0 ? "লেখক " : language == 1 ? "Writers" : "الكاتب"}

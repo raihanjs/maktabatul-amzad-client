@@ -1,16 +1,43 @@
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
-import useBooks from "../../../../hooks/useBooks";
-import { useContext } from "react";
-import { ThemeContext } from "../../../../Providers/ThemeProvider";
+import { Link } from "react-router-dom";
 import { FaPencilAlt } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { useContext, useEffect, useState } from "react";
+import useBooksLength from "../../../../hooks/useBooksLength";
+import { useAxiosPublic } from "../../../../hooks/useAxiosPublic";
+import { ThemeContext } from "../../../../Providers/ThemeProvider";
 
 export default function BookList() {
   const { language } = useContext(ThemeContext);
   const axiosPubic = useAxiosPublic();
-  const [books, isLoading, refetch] = useBooks();
+  const [books, setBooks] = useState([]);
+
+  const [totalBooks] = useBooksLength();
+  const [itemsPerpage, setItemsPerpage] = useState(10);
+  const [numberofPages, setNumberofPages] = useState(null);
+  const pages = [...Array(numberofPages).keys()];
+  const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    setNumberofPages(Math.ceil(totalBooks / itemsPerpage));
+  }, [books, itemsPerpage]);
+
+  const query = `/books?page=${currentPage}&size=${itemsPerpage}`;
+  useEffect(() => {
+    (async function () {
+      try {
+        setLoading(true);
+        const response = await axiosPubic.get(query);
+        setBooks(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [itemsPerpage, currentPage]);
+
   const handleDelBook = (id) => {
     Swal.fire({
       title: "আপনি কি এই বইটি ডিলিট করতে চাচ্ছেন?",
@@ -29,7 +56,8 @@ export default function BookList() {
               text: " ডিলিট করা হয়েছে",
               icon: "success",
             });
-            refetch();
+            const remainingBooks = books.filter((book) => book._id !== id);
+            setBooks(remainingBooks);
           }
         });
       } else {
@@ -48,7 +76,7 @@ export default function BookList() {
         <p>See All Books</p>
       </div>
 
-      {isLoading ? (
+      {loading ? (
         <>
           <p>Loading Books ...</p>
         </>
@@ -170,6 +198,27 @@ export default function BookList() {
             <>
               <p className="text-2xl font-bold text-center">No books found</p>
             </>
+          )}
+        </>
+      )}
+
+      {/* Pagination */}
+      {books.length > 1 && (
+        <>
+          {pages.length > 1 && (
+            <div className="flex justify-center items-center my-10">
+              {pages.map((page) => (
+                <button
+                  onClick={() => setCurrentPage(page)}
+                  className={`py-1 px-3 mx-2 border transition-all hover:border-primary hover:bg-primary hover:text-white ${
+                    currentPage === page && "pagination-active"
+                  }`}
+                  key={page}
+                >
+                  {page + 1}
+                </button>
+              ))}
+            </div>
           )}
         </>
       )}

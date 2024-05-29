@@ -13,7 +13,7 @@ export default function HomeOurBooks() {
 
   const maktabatulAmzadBooks = books.filter(
     (book) =>
-      book?.publisherDetails[0]?.name[1].toLowerCase() === "maktabatul amjad"
+      book?.publisherDetails[0]?.name[1].toLowerCase() === "maktabatul amzad"
   );
 
   var settings = {
@@ -78,23 +78,11 @@ export default function HomeOurBooks() {
               {language == 0
                 ? "মাকতাবাতুল আমজাদ"
                 : language == 1
-                ? "Maktabatul Amjad"
+                ? "Maktabatul Amzad"
                 : "مكتبة الامجد"}
             </h3>
             <div className=" overflow-hidden pb-3">
               <Slider ref={homeOurSlBtns} {...settings}>
-                {maktabatulAmzadBooks.map((book) => (
-                  <BookCard key={book._id} book={book}></BookCard>
-                ))}
-                {maktabatulAmzadBooks.map((book) => (
-                  <BookCard key={book._id} book={book}></BookCard>
-                ))}
-                {maktabatulAmzadBooks.map((book) => (
-                  <BookCard key={book._id} book={book}></BookCard>
-                ))}
-                {maktabatulAmzadBooks.map((book) => (
-                  <BookCard key={book._id} book={book}></BookCard>
-                ))}
                 {maktabatulAmzadBooks.map((book) => (
                   <BookCard key={book._id} book={book}></BookCard>
                 ))}

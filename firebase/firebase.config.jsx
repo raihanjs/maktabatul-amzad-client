@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_apiKey,
-  authDomain: import.meta.env.VITE_authDomain,
-  projectId: import.meta.env.VITE_projectId,
-  storageBucket: import.meta.env.VITE_storageBucket,
-  messagingSenderId: import.meta.env.VITE_messagingSenderId,
-  appId: import.meta.env.VITE_appId,
+  apiKey: "AIzaSyBl0g7wMIk5UoNA5y7v3fRR919c-t3uvyY",
+  authDomain: "amzadia-client.firebaseapp.com",
+  projectId: "amzadia-client",
+  storageBucket: "amzadia-client.appspot.com",
+  messagingSenderId: "106871586083",
+  appId: "1:106871586083:web:19b47a7199f17d8e81e096",
 };
 
 // Initialize Firebase

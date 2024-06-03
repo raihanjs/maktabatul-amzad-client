@@ -16,7 +16,7 @@ export default function AllBooks() {
   const searchQuery = location?.state?.search || false;
 
   const gte = location?.state?.range?.gte || 0;
-  const lte = location?.state?.range?.lte || 5000;
+  const lte = location?.state?.range?.lte || 50000;
 
   const [sort, setSort] = useState(1);
 
@@ -50,9 +50,6 @@ export default function AllBooks() {
       }
     })();
   }, [searchQuery, itemsPerpage, currentPage, sort, gte]);
-
-  // console.log(books);
-  console.log(query);
   return (
     <section className="container px-2 md:px-0">
       <Helmet>

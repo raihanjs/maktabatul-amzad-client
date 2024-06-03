@@ -50,6 +50,9 @@ export default function AllBooks() {
       }
     })();
   }, [searchQuery, itemsPerpage, currentPage, sort, gte]);
+
+  // console.log(books);
+  console.log(query);
   return (
     <section className="container px-2 md:px-0">
       <Helmet>

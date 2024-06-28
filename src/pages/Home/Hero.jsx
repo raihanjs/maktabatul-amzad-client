@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 
-export default function Banner() {
+export default function Hero() {
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Banner() {
   };
 
   return (
-    <section className="home-banner my-12">
+    <section className="home-banner mb-5 md:my-12">
       <div className="container">
         <div className="border hover:border-primary">
           <Carousel responsive={responsive}>

@@ -7,6 +7,40 @@ body {
   overflow-x: hidden;
 }
 
+/* Carousel arrows */
+.react-multiple-carousel__arrow {
+  border-radius: 0;
+  min-width: 30px;
+  min-height: 50px;
+}
+.react-multiple-carousel__arrow--left {
+  left: 0px;
+  background-color: white;
+}
+.react-multiple-carousel__arrow--right {
+  right: 0px;
+  background-color: white;
+}
+
+.react-multiple-carousel__arrow::before {
+  color: #252525;
+}
+
+.react-multiple-carousel__arrow:hover {
+  background: #108d41;
+}
+.react-multiple-carousel__arrow:hover::before {
+  color: white;
+}
+
+@media only screen and (max-width: 575px) {
+  .react-multiple-carousel__arrow {
+    min-width: 20px;
+    min-height: 30px;
+  }
+}
+/* Carousel arrows */
+
 /* -------------------------Home------------------------- */
 /* =====Banner===== */
 .home-banner .react-multiple-carousel__arrow {
@@ -30,4 +64,9 @@ body {
   .home-banner .react-multiple-carousel__arrow::before {
     font-size: 12px;
   }
+}
+
+/* -------------------------Book Card------------------------- */
+.book-card:hover img {
+  transform: scale(0.8);
 }

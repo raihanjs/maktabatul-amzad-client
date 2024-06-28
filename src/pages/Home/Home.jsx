@@ -1,10 +1,12 @@
 import "react-multi-carousel/lib/styles.css";
-import Banner from "./Banner";
+import Hero from "./Hero";
+import AmzadBooks from "./AmzadBooks";
 
 export default function Home() {
   return (
     <>
-      <Banner />
+      <Hero />
+      <AmzadBooks />
     </>
   );
 }

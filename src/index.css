@@ -66,6 +66,17 @@ body {
   }
 }
 
+/* =====Categories Button===== */
+.left-to-right-hover {
+  background-image: linear-gradient(to right, transparent 50%, #108d41 50%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  transition: background-position 0.5s ease-in-out; /* Adjust transition as desired */
+}
+
+.left-to-right-hover:hover {
+  background-position: -100% 0; /* Shift background position to create fill effect */
+}
 /* -------------------------Book Card------------------------- */
 .book-card:hover img {
   transform: scale(0.8);

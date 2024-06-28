@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
+import useBanners from "../../hooks/useBanners";
+import HeroSkeleton from "../../skeletons/HeroSkeleton";
 
 export default function Hero() {
-  const [banners, setBanners] = useState([]);
-
-  useEffect(() => {
-    fetch("https://maktabatul-amzad-s-tan.vercel.app/api/banners")
-      .then((res) => res.json())
-      .then((data) => setBanners(data));
-  }, [banners]);
+  const [banners, isLoading] = useBanners();
 
   const responsive = {
     desktop: {
@@ -16,6 +11,8 @@ export default function Hero() {
       items: 1,
     },
   };
+
+  if (isLoading) return <HeroSkeleton />;
 
   return (
     <section className="home-banner mb-5 md:my-12">
@@ -27,10 +24,10 @@ export default function Hero() {
                 <div className="flex items-center justify-center">
                   <div className="w-8/12">
                     <h3 className="text-sm sm:text-lg leading-[1.2rem] md:leading-[3.5rem] md:text-xl lg:leading-[3.5rem] lg:text-2xl xl:leading-[3.5rem] xl:text-4xl font-bold line-clamp-1 ">
-                      {banner?.title[0]}
+                      {banner?.title}
                     </h3>
                     <p className="text-xs sm:text-base lg:text-lg mt-2 mb-4 line-clamp-2">
-                      {banner?.text[0]}
+                      {banner?.text}
                     </p>
                   </div>
                   <div className="w-4/12">

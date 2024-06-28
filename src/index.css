@@ -7,24 +7,27 @@ body {
   overflow-x: hidden;
 }
 
-/* Admin Layout Active Navlink CSS */
-table tr:nth-child(even) {
-  background-color: #e1e1e1;
+/* -------------------------Home------------------------- */
+/* =====Banner===== */
+.home-banner .react-multiple-carousel__arrow {
+  border-radius: 0;
+  min-width: 30px;
+  min-height: 50px;
+}
+.home-banner .react-multiple-carousel__arrow--left {
+  left: 5px;
+}
+.home-banner .react-multiple-carousel__arrow--right {
+  right: 5px;
 }
 
-.active {
-  background-color: rgb(30 41 59);
-}
-.active a {
-  color: white;
-}
-
-.pagination-active {
-  background-color: #108d41;
-  border: 1px solid #108d41;
-  color: #fff;
-}
-
-.box-shadow {
-  box-shadow: 0 4px 6px -3px #9c9c9c;
+@media only screen and (max-width: 575px) {
+  .home-banner .react-multiple-carousel__arrow {
+    border-radius: 0;
+    min-width: 20px;
+    min-height: 30px;
+  }
+  .home-banner .react-multiple-carousel__arrow::before {
+    font-size: 12px;
+  }
 }

@@ -29,7 +29,7 @@ export default function Books() {
         </div>
         {/* Mobile sort and filter button */}
 
-        <div className="md:flex justify-between items-start">
+        <div className="md:flex justify-between md:space-x-6 xl:space-x-24 2xl:space-x-44 items-start">
           <div className="">
             {/* Sort options for mobile */}
             {showSort && (
@@ -43,7 +43,7 @@ export default function Books() {
               </div>
             )}
             {/* Sort options for desktop */}
-            <div className="w-[259px] lg:w-[290px] hidden md:block bg-red-500 md:mb-5">
+            <div className="w-[259px] lg:w-[290px] hidden md:block bg-red-500 md:mb-5 mt-2">
               <SortFilter />
             </div>
             {/* Filter options for mobile */}

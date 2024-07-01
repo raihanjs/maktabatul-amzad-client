@@ -7,6 +7,8 @@ import WritersFilter from "./Filter/WritersFilter";
 
 import { GrSort } from "react-icons/gr";
 import { LuListFilter } from "react-icons/lu";
+import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import { Link } from "react-router-dom";
 
 export default function Books() {
   const [showSort, setShowSort] = useState(false);
@@ -25,6 +27,22 @@ export default function Books() {
   return (
     <section className="my-12">
       <div className="container">
+        {/* Breadcrumb */}
+        <div className="border-b border-primary mb-5 mx-2 md:mx-0">
+          <div className="flex justify-between items-center">
+            <h3 className="text-xs md:text-md lg:text-xl font-semibold text-primary capitalize">
+              সকল বই
+            </h3>
+
+            <div className="flex items-center">
+              <Link to="/" className="text-primary text-xs md:text-md">
+                হোম
+              </Link>
+              <LiaLongArrowAltRightSolid className="mx-2" />
+              <span className="capitalize text-xs md:text-md">সকল বই</span>
+            </div>
+          </div>
+        </div>
         {/* Mobile sort and filter button */}
         <div className="block md:hidden flex items-center space-x-12 justify-center mb-5">
           <button

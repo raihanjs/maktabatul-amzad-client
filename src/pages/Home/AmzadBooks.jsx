@@ -87,18 +87,18 @@ export default function AmzadBooks() {
           </button>
         </div>
         <Carousel autoPlay autoPlaySpeed={2000} responsive={responsive}>
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
+          <BookCard margin="mx-auto" />
         </Carousel>
       </div>
     </section>

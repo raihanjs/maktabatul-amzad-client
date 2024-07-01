@@ -22,7 +22,7 @@ export default function Header() {
         Home
       </Link>
       <Link
-        to=""
+        to="/books"
         className="text-base text-white py-2 pl-5 pr-20 md:py-0 md:px-2 hover:bg-primary md:hover:text-gray"
       >
         Books

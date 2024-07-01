@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export default function BookCard() {
+export default function BookCard({ margin }) {
   return (
-    <div className="book-card w-40 overflow-hidden ">
+    <div className={`book-card w-36 lg:w-40 overflow-hidden ${margin}`}>
       <div className="book-card-image relative">
         <img src="https://i.ibb.co/gt70w2c/image.jpg" className="" alt="" />
         <div className="absolute bottom-3 left-0 w-full flex justify-center">

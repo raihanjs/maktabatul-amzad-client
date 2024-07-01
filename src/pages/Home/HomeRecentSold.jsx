@@ -61,17 +61,18 @@ export default function HomeRecentSold() {
             </div>
           </div>
           <Carousel arrows={false} responsive={responsive}>
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
+            <BookCard margin="mx-auto" />
           </Carousel>
         </div>
       </section>

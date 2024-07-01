@@ -16,7 +16,7 @@ export default function Header() {
   const menuItems = (
     <>
       <Link
-        to=""
+        to="/"
         className="text-base text-white py-2 pl-5 pr-20 md:py-0 md:px-2 hover:bg-primary md:hover:text-gray"
       >
         Home
@@ -28,7 +28,7 @@ export default function Header() {
         Books
       </Link>
       <Link
-        to=""
+        to="/writers"
         className="text-base text-white py-2 pl-5 pr-20 md:py-0 md:px-2 hover:bg-primary md:hover:text-gray"
       >
         Writers

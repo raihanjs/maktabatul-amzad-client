@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import BookCard, { BookCardSkeletion } from "../../components/BookCard";
 
-export default function AmzadBooks() {
+export default function HomeBestSeller() {
   const responsive = {
     one: {
       breakpoint: {

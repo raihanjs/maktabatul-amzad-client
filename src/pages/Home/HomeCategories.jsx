@@ -33,7 +33,7 @@ export default function HomeCategories() {
           {categories.map((category) => (
             <Link
               key={category._id}
-              className="py-2 md:py-4 px-3 md:px-5 border text-gray-600 hover:text-white left-to-right-hover text-white rounded-md font-medium truncate"
+              className="py-2 md:py-4 px-3 md:px-5 border text-gray-600 hover:text-white left-to-right-hover rounded-md font-bold truncate"
             >
               {category.name[0]}
             </Link>

@@ -78,6 +78,6 @@ body {
   background-position: -100% 0; /* Shift background position to create fill effect */
 }
 /* -------------------------Book Card------------------------- */
-.book-card:hover img {
-  transform: scale(0.8);
+.book-card-image:hover button {
+  display: block;
 }

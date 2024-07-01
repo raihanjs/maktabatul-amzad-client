@@ -1,7 +1,10 @@
 import Carousel from "react-multi-carousel";
-import BookCard, { BookCardSkeletion } from "../../components/BookCard";
+import WriterCard, { WriterCardSkeletion } from "../../components/WriterCard";
+import useWriters from "../../hooks/useWriters";
 
-export default function AmzadBooks() {
+export default function HomeWriters() {
+  const [writers, isLoading] = useWriters();
+
   const responsive = {
     one: {
       breakpoint: {
@@ -15,7 +18,7 @@ export default function AmzadBooks() {
         max: 1535,
         min: 1280,
       },
-      items: 7,
+      items: 8,
     },
     three: {
       breakpoint: {
@@ -29,16 +32,23 @@ export default function AmzadBooks() {
         max: 1023,
         min: 768,
       },
-      items: 4,
+      items: 5,
     },
     five: {
       breakpoint: {
         max: 767,
+        min: 575,
+      },
+      items: 4,
+    },
+    six: {
+      breakpoint: {
+        max: 574,
         min: 500,
       },
       items: 3,
     },
-    six: {
+    seven: {
       breakpoint: {
         max: 499,
         min: 320,
@@ -47,38 +57,34 @@ export default function AmzadBooks() {
     },
   };
 
-  let loading = false;
-
-  if (loading)
+  if (isLoading)
     return (
-      <section className="bg-emerald-50 mb-5 md:mb-10 py-12">
+      <section className="mb-5 md:mb-10 py-12">
         <div className="container">
-          <div className="animate-pulse">
+          <div className="animate-pulse mb-5">
             <div className="grid grid-cols-12 gap-5">
               <div className="col-span-2 h-2 bg-slate-200 rounded mb-2"></div>
               <div className="col-span-9 h-2 rounded mb-2"></div>
               <div className="col-span-1 h-8 bg-slate-200 rounded mb-2"></div>
             </div>
           </div>
-          <Carousel arrows={false} responsive={responsive}>
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
-            <BookCardSkeletion />
+          <Carousel responsive={responsive}>
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
+            <WriterCardSkeletion />
           </Carousel>
         </div>
       </section>
     );
 
   return (
-    <section className="bg-emerald-50 mb-5 md:mb-10 py-12">
+    <section className="mb-5 md:mb-10 py-12">
       <div className="container">
         <div className="flex justify-between items-center mb-5">
           <h3 className="text-xl font-medium mb-3">মাকতাবাতুল আমজাদ</h3>
@@ -86,19 +92,10 @@ export default function AmzadBooks() {
             See All
           </button>
         </div>
-        <Carousel autoPlay autoPlaySpeed={2000} responsive={responsive}>
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
+        <Carousel responsive={responsive}>
+          {writers.map((writer) => (
+            <WriterCard key={writer._id} writer={writer} />
+          ))}
         </Carousel>
       </div>
     </section>

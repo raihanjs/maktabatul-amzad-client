@@ -14,7 +14,7 @@ export default function Hero() {
   if (isLoading) return <HeroSkeleton />;
 
   return (
-    <section className="home-banner mb-5 md:my-12">
+    <section className="home-banner my-5 md:my-12">
       <div className="container">
         <div className="border hover:border-primary">
           <Carousel responsive={responsive} showDots>

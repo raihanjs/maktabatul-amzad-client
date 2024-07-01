@@ -5,6 +5,9 @@ import CategoriesFilter from "./Filter/CategoriesFilter";
 import PublishersFilter from "./Filter/PublishersFilter";
 import WritersFilter from "./Filter/WritersFilter";
 
+import { GrSort } from "react-icons/gr";
+import { LuListFilter } from "react-icons/lu";
+
 export default function Books() {
   const [showSort, setShowSort] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
@@ -23,13 +26,23 @@ export default function Books() {
     <section className="my-12">
       <div className="container">
         {/* Mobile sort and filter button */}
-        <div className="block md:hidden flex items-center space-x-5 justify-center mb-5">
-          <button onClick={() => setShowSort(!showSort)}>Sort</button>
-          <button onClick={() => setShowFilter(!showFilter)}>Filter</button>
+        <div className="block md:hidden flex items-center space-x-12 justify-center mb-5">
+          <button
+            className="flex items-center"
+            onClick={() => setShowSort(!showSort)}
+          >
+            <GrSort className="mr-1" /> Sort
+          </button>
+          <button
+            className="flex items-center"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            <LuListFilter className="mr-1" /> Filter
+          </button>
         </div>
         {/* Mobile sort and filter button */}
 
-        <div className="md:flex justify-between md:space-x-6 xl:space-x-24 2xl:space-x-44 items-start">
+        <div className="md:flex justify-between md:space-x-3 items-start">
           <div className="">
             {/* Sort options for mobile */}
             {showSort && (
@@ -75,6 +88,16 @@ export default function Books() {
             </div>
           </div>
           <div className="flex flex-wrap justify-center sm:justify-start">
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
             <BookCard margin="m-2" />
             <BookCard margin="m-2" />
             <BookCard margin="m-2" />

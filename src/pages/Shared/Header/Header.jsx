@@ -34,7 +34,7 @@ export default function Header() {
         Writers
       </Link>
       <Link
-        to=""
+        to="/publishers"
         className="text-base text-white py-2 pl-5 pr-20 md:py-0 md:px-2 hover:bg-primary md:hover:text-gray"
       >
         Publishers

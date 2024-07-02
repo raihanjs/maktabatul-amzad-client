@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import WriterBreadCrumb from "./WriterBreadCrumb";
+import BookCard from "../../components/BookCard";
 
 export default function Writer() {
   const writer = useLoaderData();
@@ -16,6 +17,24 @@ export default function Writer() {
               <small>লেখকের জীবনী</small>
             </p>
             <p className="col-span-10">{writer?.desc[0]}</p>
+          </div>
+        </div>
+
+        <div className="my-10">
+          <p className="text-md font-bold text-primary">
+            {writer?.name[0]}এর বইসমুহ
+          </p>
+          <div className="flex flex-wrap justify-center">
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
+            <BookCard margin="m-2" />
           </div>
         </div>
       </div>

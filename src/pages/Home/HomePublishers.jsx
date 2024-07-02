@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
-import WriterCard, { WriterCardSkeletion } from "../../components/WriterCard";
 
 import usePublishers from "../../hooks/usePublishers";
+import PublisherCard from "../../components/PublisherCard";
 
 export default function HomePublishers() {
   const [publishers, isLoading] = usePublishers();
@@ -70,15 +70,15 @@ export default function HomePublishers() {
             </div>
           </div>
           <Carousel responsive={responsive}>
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
-            <WriterCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
+            <PublisherCardSkeletion />
           </Carousel>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function HomePublishers() {
         </div>
         <Carousel responsive={responsive}>
           {publishers.map((publisher) => (
-            <WriterCard key={publisher._id} writer={publisher} />
+            <PublisherCard key={publisher._id} publisher={publisher} />
           ))}
         </Carousel>
       </div>

@@ -1,7 +1,9 @@
 import Carousel from "react-multi-carousel";
 
 import usePublishers from "../../hooks/usePublishers";
-import PublisherCard from "../../components/PublisherCard";
+import PublisherCard, {
+  PublisherCardSkeletion,
+} from "../../components/PublisherCard";
 
 export default function HomePublishers() {
   const [publishers, isLoading] = usePublishers();

@@ -40,7 +40,7 @@ export default function Header() {
         Publishers
       </Link>
       <Link
-        to=""
+        to="/categories"
         className="text-base text-white py-2 pl-5 pr-20 md:py-0 md:px-2 hover:bg-primary md:hover:text-gray"
       >
         Category

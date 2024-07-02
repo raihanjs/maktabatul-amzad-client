@@ -8,6 +8,7 @@ import Publishers from "../pages/Publishers/Publishers";
 import Publisher from "../pages/Publisher/Publisher";
 import Categories from "../pages/Categories/Categories";
 import Category from "../pages/Category/Category";
+import SubCategory from "../pages/SubCategory/SubCategory";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,12 @@ export const router = createBrowserRouter([
         element: <Category />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categories/${params.id}`),
+      },
+      {
+        path: "subcategory/:id",
+        element: <SubCategory />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/subcategories/${params.id}`),
       },
     ],
   },
